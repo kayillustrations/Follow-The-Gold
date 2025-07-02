@@ -12,8 +12,6 @@ var all_items: Array
 
 #---------------------
 func _ready() -> void:
-	data = Utils.load_data_into_dict("Items")
-	all_items = Utils.create_item_array(data,"",null)
 	pass
 
 func PauseGame(b: bool):
@@ -22,7 +20,4 @@ func PauseGame(b: bool):
 	pass
 
 func ResetDailyStats():
-	pass
-
-func ConfigItems():
 	pass

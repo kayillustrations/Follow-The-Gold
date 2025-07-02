@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=16 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://kjceexv2xwig" path="res://_imported/temp art/Background.png" id="1_2q6dc"]
 [ext_resource type="Texture2D" uid="uid://blo06rafyn3x6" path="res://_imported/temp art/2.png" id="2_ppgk2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
 [ext_resource type="Texture2D" uid="uid://bvufnpfy68ynm" path="res://_imported/temp art/6.png" id="5_b121j"]
 [ext_resource type="PackedScene" uid="uid://iqtxh4ptoq52" path="res://objects/despawner.tscn" id="6_2r41h"]
+[ext_resource type="Script" uid="uid://dhu2arpfxq6j5" path="res://_globals/components/damager_comp.gd" id="6_8c41q"]
 [ext_resource type="Script" uid="uid://b8ono3hmwbpux" path="res://scenes/camera_2d.gd" id="6_b121j"]
 [ext_resource type="PackedScene" uid="uid://dh2v0600vkess" path="res://objects/player.tscn" id="7_klq6b"]
 
@@ -16,6 +17,9 @@ normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_klq6b"]
 normal = Vector2(1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olg7q"]
+size = Vector2(20, 1062)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b121j"]
 normal = Vector2(-1, 0)
@@ -106,6 +110,15 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stationary/Back Wall"]
 shape = SubResource("WorldBoundaryShape2D_klq6b")
 
+[node name="DamagerComp" type="Area2D" parent="Stationary/Back Wall"]
+collision_layer = 12
+collision_mask = 2
+script = ExtResource("6_8c41q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stationary/Back Wall/DamagerComp"]
+position = Vector2(0, 173)
+shape = SubResource("RectangleShape2D_olg7q")
+
 [node name="Front Wall" type="StaticBody2D" parent="Stationary"]
 position = Vector2(550, 0)
 collision_mask = 2
@@ -131,5 +144,8 @@ script = ExtResource("6_b121j")
 [node name="Player" parent="." instance=ExtResource("7_klq6b")]
 position = Vector2(-419, 98)
 collision_layer = 3
+
+[connection signal="area_entered" from="Stationary/Back Wall/DamagerComp" to="Stationary/Back Wall/DamagerComp" method="_on_area_entered"]
+[connection signal="area_exited" from="Stationary/Back Wall/DamagerComp" to="Stationary/Back Wall/DamagerComp" method="_on_area_exited"]
 
 [editable path="Stationary/Despawner"]

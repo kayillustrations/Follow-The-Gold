@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv8oagkld5ick"]
+
+[ext_resource type="Texture2D" uid="uid://bfsee7do51b48" path="res://_imported/temp art/heart_base.png" id="1_mpj2w"]
+[ext_resource type="Texture2D" uid="uid://5d01yeml081i" path="res://_imported/temp art/heart_bar.png" id="2_ipgsx"]
+
+[node name="Heart" type="TextureRect"]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 165.0
+offset_bottom = 170.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_mpj2w")
+stretch_mode = 4
+
+[node name="Filled" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.5
+offset_top = -70.0
+offset_right = 67.5
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ipgsx")
+stretch_mode = 4

@@ -11,7 +11,7 @@ extends Control
 @onready var temp_parent: CanvasLayer = $"Temp Scenes"
 @onready var debug_menu: Control = $"UI Scenes/Debug"
 
-var level_path: String = ""
+var level_path: String = "res://scenes/level.tscn"
 var menu_path: String = ""
 
 var inTempScene: bool

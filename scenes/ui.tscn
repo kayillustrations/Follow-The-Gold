@@ -1,0 +1,114 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbxdll7jkkq64"]
+
+[ext_resource type="Script" uid="uid://dsxi4lmrd2q8t" path="res://scenes/ui.gd" id="1_nt7q6"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nt7q6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 169.0
+offset_bottom = 148.0
+color = Color(0.206914, 0.206914, 0.206913, 0.486275)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBox" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/HBox"]
+layout_mode = 2
+text = "Time:"
+
+[node name="Min" type="Label" parent="ColorRect/VBoxContainer/HBox"]
+layout_mode = 2
+text = "00"
+
+[node name="_" type="Label" parent="ColorRect/VBoxContainer/HBox"]
+layout_mode = 2
+text = ":"
+
+[node name="Sec" type="Label" parent="ColorRect/VBoxContainer/HBox"]
+layout_mode = 2
+text = "00"
+
+[node name="_2" type="Label" parent="ColorRect/VBoxContainer/HBox"]
+layout_mode = 2
+text = ":"
+
+[node name="Millisec" type="Label" parent="ColorRect/VBoxContainer/HBox"]
+layout_mode = 2
+text = "00"
+
+[node name="HBox2" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/HBox2"]
+layout_mode = 2
+text = "Current Health: "
+
+[node name="Health" type="Label" parent="ColorRect/VBoxContainer/HBox2"]
+layout_mode = 2
+text = "#"
+
+[node name="HBox3" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/HBox3"]
+layout_mode = 2
+text = "Obstacles Hit:"
+
+[node name="Hit" type="Label" parent="ColorRect/VBoxContainer/HBox3"]
+layout_mode = 2
+text = "#"
+
+[node name="HBox4" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/HBox4"]
+layout_mode = 2
+text = "Coins:"
+
+[node name="Coins" type="Label" parent="ColorRect/VBoxContainer/HBox4"]
+layout_mode = 2
+text = "#"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Restart" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -4.0
+offset_right = 4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+text = "Restart"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

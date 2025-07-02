@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh2v0600vkess"]
+[gd_scene load_steps=6 format=3 uid="uid://dh2v0600vkess"]
 
 [ext_resource type="Script" uid="uid://053yqqoj8kga" path="res://objects/player.gd" id="1_ykyjo"]
 [ext_resource type="Texture2D" uid="uid://hivd6l8m2h8s" path="res://_imported/temp art/sheet_alley_placeholder.png" id="2_uxov2"]
+[ext_resource type="Script" uid="uid://dqvai2dc6pdkc" path="res://_globals/components/health_comp.gd" id="3_uxov2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxedw"]
 radius = 32.0
 height = 118.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uxov2"]
+radius = 33.0
+height = 120.0
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
@@ -20,6 +25,16 @@ region_rect = Rect2(78, 1754, 147, 229)
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_bxedw")
 
-[node name="Interact" type="Area2D" parent="."]
+[node name="HealthComp" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("3_uxov2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComp"]
+shape = SubResource("CapsuleShape2D_uxov2")
+
+[node name="Buffer" type="Timer" parent="HealthComp"]
+one_shot = true
+
+[connection signal="damaged" from="HealthComp" to="." method="_on_health_comp_damaged"]
+[connection signal="dead" from="HealthComp" to="." method="_on_health_comp_dead"]
