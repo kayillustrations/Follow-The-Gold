@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://dygl2hdg36k82"]
+
+[ext_resource type="Script" uid="uid://cnncd8lmunlto" path="res://_globals/components/interact_player.gd" id="1_wpiu0"]
+[ext_resource type="Texture2D" uid="uid://c171f7so0lh8p" path="res://_imported/icon.svg" id="2_xe411"]
+[ext_resource type="PackedScene" uid="uid://bv71w4n5wjtqb" path="res://_globals/components/world_ui_component.tscn" id="4_6mpf0"]
+
+[sub_resource type="GDScript" id="GDScript_ljse4"]
+script/source = "extends InteractObject
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dej5i"]
+size = Vector3(1.26563, 1.27637, 0.001)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ljse4"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5cfki"]
+size = Vector2(50, 50)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_dej5i"]
+
+[node name="test3d" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.931056, -0.364877, 0, 0.364877, 0.931056, 0, -0.048123, 4.22484)
+
+[node name="InteractRaycast" type="Node3D" parent="Camera3D"]
+script = ExtResource("1_wpiu0")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D/InteractRaycast"]
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(3.875, 0, 0, 0, 3.875, 0, 0, 0, 3.875, -2.79989, 1.84953, 0)
+texture = ExtResource("2_xe411")
+
+[node name="Interact" type="Node3D" parent="Sprite3D3"]
+script = SubResource("GDScript_ljse4")
+isTesting = false
+
+[node name="Area3D" type="Area3D" parent="Sprite3D3/Interact"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sprite3D3/Interact/Area3D"]
+shape = SubResource("BoxShape3D_dej5i")
+
+[node name="Billboard" type="Sprite3D" parent="."]
+visible = false
+texture = SubResource("ViewportTexture_ljse4")
+
+[node name="WorldUI Component" parent="Billboard" instance=ExtResource("4_6mpf0")]
+isActive = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.712209, 0)
+mesh = SubResource("PlaneMesh_5cfki")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_dej5i")

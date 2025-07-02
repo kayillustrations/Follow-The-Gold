@@ -1,0 +1,27 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Follow The Gold"
+config/features=PackedStringArray("4.4", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Utils="*res://_globals/autoloads/0.Utils.gd"
+SceneLoader="*res://_globals/autoloads/1.scene_loader.tscn"
+GameSave="*res://_globals/autoloads/2.GameSave.gd"
+SignalBus="*res://_globals/autoloads/3.SignalBus.gd"
+GameManager="*res://_globals/autoloads/4.GameManager.gd"
+
+[rendering]
+
+renderer/rendering_method="mobile"

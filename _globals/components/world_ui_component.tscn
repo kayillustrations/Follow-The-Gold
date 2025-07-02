@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv71w4n5wjtqb"]
+
+[ext_resource type="Script" uid="uid://583mnsq6u4qu" path="res://_globals/components/world_ui.gd" id="1_67gfl"]
+
+[node name="WorldUI Component" type="Node"]
+script = ExtResource("1_67gfl")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(500, 500)
+render_target_update_mode = 4
+
+[node name="Panel" type="Panel" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="SubViewport/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "E"

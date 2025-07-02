@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://boekkw20lfm00"]
+
+[ext_resource type="Script" uid="uid://b40x7j5j8wihv" path="res://_globals/autoloads/SceneLoader.gd" id="1_csm60"]
+[ext_resource type="PackedScene" uid="uid://h3kubo2r2qws" path="res://ui/debug_menu.tscn" id="2_oidld"]
+
+[node name="SceneLoader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_csm60")
+
+[node name="Temp Scenes" type="CanvasLayer" parent="."]
+
+[node name="UI Scenes" type="CanvasLayer" parent="."]
+
+[node name="Debug" parent="UI Scenes" instance=ExtResource("2_oidld")]

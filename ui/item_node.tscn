@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwkbuihjemso0"]
+
+[ext_resource type="Script" path="res://ui/item_node.gd" id="1_8nfym"]
+[ext_resource type="PackedScene" path="res://ui/tooltip.tscn" id="2_8nfym"]
+[ext_resource type="Script" path="res://ui/item_drag_script.gd" id="5_kuvvc"]
+
+[node name="Item Node" type="Panel"]
+custom_minimum_size = Vector2(200, 200)
+script = ExtResource("1_8nfym")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -39.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "1"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="sprite_texture" type="Sprite2D" parent="CenterContainer/Panel"]
+unique_name_in_owner = true
+scale = Vector2(0.25, 0.25)
+
+[node name="Tooltip2" parent="CenterContainer/Panel" instance=ExtResource("2_8nfym")]
+visible = false
+script = null
+
+[node name="MouseTimer" type="Timer" parent="."]
+
+[node name="DragDrop" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_kuvvc")
+
+[connection signal="mouse_entered" from="." to="." method="_on_item_button_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="DragDrop" to="DragDrop" method="_get_drag_data"]

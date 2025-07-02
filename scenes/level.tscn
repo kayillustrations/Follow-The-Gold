@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://camr044y2lsco"]
+
+[ext_resource type="Texture2D" uid="uid://kjceexv2xwig" path="res://_imported/temp art/Background.png" id="1_2q6dc"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Background"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background/Parallax2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D/ParallaxLayer"]
+texture = ExtResource("1_2q6dc")

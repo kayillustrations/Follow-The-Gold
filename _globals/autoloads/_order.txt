@@ -1,0 +1,7 @@
+This is the order from top to bottom of which the globals should be loaded in:
+	Utils
+	SceneLoader
+	GameSave
+	SignalBus
+	GameManager
+	(misc.)
