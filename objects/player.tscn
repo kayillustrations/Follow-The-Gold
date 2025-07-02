@@ -14,7 +14,7 @@ height = 120.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
-y_sort_enabled = true
+z_as_relative = false
 script = ExtResource("1_ykyjo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

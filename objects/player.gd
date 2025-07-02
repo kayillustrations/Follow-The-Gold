@@ -8,6 +8,9 @@ const JUMP_VELOCITY = -400.0
 
 var damaged_color:= Color.INDIAN_RED
 
+func _ready() -> void:
+	GameManager.player = self
+
 func _physics_process(delta: float) -> void:
 
 	## Handle jump.

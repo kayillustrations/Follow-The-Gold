@@ -6,7 +6,7 @@
 
 [node name="Obstacle Base" type="StaticBody2D"]
 z_index = 1
-y_sort_enabled = true
+z_as_relative = false
 script = ExtResource("1_0g2q7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

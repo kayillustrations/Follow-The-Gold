@@ -2,6 +2,7 @@
 extends Node
 
 #-----Player Stats-----
+var player:CharacterBody2D
 var max_health: int = 3
 
 #------Universal------

@@ -31,6 +31,15 @@ normal = Vector2(1, 0)
 
 [node name="Level" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -600
+limit_top = -300
+limit_right = 550
+limit_bottom = 600
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("6_b121j")
+
 [node name="Stationary" type="Node2D" parent="."]
 
 [node name="Background" type="Node2D" parent="Stationary"]
@@ -134,22 +143,17 @@ position = Vector2(-793, 0)
 [node name="CollisionShape2D" parent="Stationary/Despawner" index="0"]
 shape = SubResource("WorldBoundaryShape2D_8c41q")
 
-[node name="Camera2D" type="Camera2D" parent="Stationary"]
-limit_left = -600
-limit_top = -300
-limit_right = 550
-limit_bottom = 600
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
-script = ExtResource("6_b121j")
+[node name="Moving" type="Node2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("7_klq6b")]
+[node name="Player" parent="Moving" instance=ExtResource("7_klq6b")]
 position = Vector2(-508, 108)
 
-[node name="Obstacle Base" parent="." instance=ExtResource("11_t1rx8")]
+[node name="Obstacle Base" parent="Moving" instance=ExtResource("11_t1rx8")]
 position = Vector2(0, 200)
 
-[node name="Coin" parent="." instance=ExtResource("10_olg7q")]
+[node name="Coin" parent="Moving" instance=ExtResource("10_olg7q")]
 position = Vector2(317, -17)
 
 [connection signal="area_entered" from="Stationary/Back Wall/DamagerComp" to="Stationary/Back Wall/DamagerComp" method="_on_area_entered"]
