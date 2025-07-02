@@ -5,27 +5,31 @@
 [ext_resource type="Script" uid="uid://dqvai2dc6pdkc" path="res://_globals/components/health_comp.gd" id="3_uxov2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxedw"]
-radius = 32.0
-height = 118.0
+radius = 31.0
+height = 66.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uxov2"]
 radius = 33.0
 height = 120.0
 
 [node name="Player" type="CharacterBody2D"]
-motion_mode = 1
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_ykyjo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -55.75)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_uxov2")
 region_enabled = true
 region_rect = Rect2(78, 1754, 147, 229)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -30)
 shape = SubResource("CapsuleShape2D_bxedw")
 
 [node name="HealthComp" type="Area2D" parent="."]
+position = Vector2(0, -55.75)
 collision_layer = 2
 collision_mask = 12
 script = ExtResource("3_uxov2")

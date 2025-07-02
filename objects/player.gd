@@ -39,6 +39,7 @@ func sprite_color(isColored:bool):
 	if health_comp.buffer.is_stopped():
 		sprite_2d.modulate = Color.WHITE
 		health_comp.set_deferred("monitorable",true)
+		health_comp.CheckForObstacle()
 	else:
 		sprite_color(!isColored)
 	

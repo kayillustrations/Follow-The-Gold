@@ -17,6 +17,11 @@ func ChangeHealth(damage:int):
 		buffer.start(buffer_time)
 	SignalBus.update_ui.emit()
 
+func CheckForObstacle():
+	var obstacles:Array= get_overlapping_areas()
+	if !obstacles.is_empty():
+		obstacles[0]._on_area_entered(self)
+
 func ApplyEffect(effect):
 	match effect:
 		0: ChangeHealth(1)

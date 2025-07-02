@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=18 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://kjceexv2xwig" path="res://_imported/temp art/Background.png" id="1_2q6dc"]
 [ext_resource type="Texture2D" uid="uid://blo06rafyn3x6" path="res://_imported/temp art/2.png" id="2_ppgk2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://b8ono3hmwbpux" path="res://scenes/camera_2d.gd" id="6_b121j"]
 [ext_resource type="PackedScene" uid="uid://dh2v0600vkess" path="res://objects/player.tscn" id="7_klq6b"]
 [ext_resource type="PackedScene" uid="uid://cpekxessi4apa" path="res://objects/coin.tscn" id="10_olg7q"]
+[ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="11_t1rx8"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_olg7q"]
 normal = Vector2(0, 1)
@@ -143,10 +144,13 @@ position_smoothing_speed = 10.0
 script = ExtResource("6_b121j")
 
 [node name="Player" parent="." instance=ExtResource("7_klq6b")]
-position = Vector2(-419, 98)
-collision_layer = 3
+position = Vector2(-508, 108)
+
+[node name="Obstacle Base" parent="." instance=ExtResource("11_t1rx8")]
+position = Vector2(0, 200)
 
 [node name="Coin" parent="." instance=ExtResource("10_olg7q")]
+position = Vector2(317, -17)
 
 [connection signal="area_entered" from="Stationary/Back Wall/DamagerComp" to="Stationary/Back Wall/DamagerComp" method="_on_area_entered"]
 [connection signal="area_exited" from="Stationary/Back Wall/DamagerComp" to="Stationary/Back Wall/DamagerComp" method="_on_area_exited"]
