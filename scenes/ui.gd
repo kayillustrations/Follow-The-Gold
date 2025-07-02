@@ -15,6 +15,12 @@ var time:Array = [0,0,0] #milliseconds, seconds, minutes
 
 func _ready() -> void:
 	timer.start(.1)
+	SignalBus.update_ui.connect(_update_all)
+
+func _update_all():
+	_update_health()
+	_update_obstacles()
+	_update_coins()
 
 func _update_time(time):
 	if time[0]<10:
@@ -28,16 +34,16 @@ func _update_time(time):
 	else: min.text = str(time[2])
 	pass
 
-func _update_health(health):
+func _update_health():
 	health.text = str(GameManager.current_health)
 	pass
 
-func _update_obstacles(obstacles):
+func _update_obstacles():
 	hit.text = str(GameManager.obstacles_hit)
 	pass
 
-func _update_coins(coins):
-	coins.text = str(GameManager.coins)
+func _update_coins():
+	coins.text = str(GameManager.coins_collected)
 	pass
 
 
@@ -55,5 +61,5 @@ func CheckTimeArray(current_int):
 
 func _on_restart_pressed() -> void:
 	time = [0,0,0]
-	SceneLoader.load_scene(SceneLoader.level_path)
+	GameManager.ResetLevel()
 	pass # Replace with function body.
