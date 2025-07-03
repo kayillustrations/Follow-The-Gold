@@ -7,7 +7,6 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-var damaged_color:= Color.INDIAN_RED
 var player_position_uv : Vector2
 
 func _ready() -> void:
@@ -36,24 +35,8 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func sprite_color(isColored:bool):
-	var tween:= create_tween()
-	if isColored:
-		tween.tween_property(sprite_2d,"modulate",Color.WHITE,.25)
-	else: tween.tween_property(sprite_2d,"modulate",damaged_color,.25)
-	
-	await tween.finished
-	
-	if health_comp.buffer.is_stopped():
-		sprite_2d.modulate = Color.WHITE
-		health_comp.set_deferred("monitorable",true)
-		health_comp.CheckForObstacle()
-	else:
-		sprite_color(!isColored)
-
 func _on_health_comp_damaged() -> void:
-	sprite_color(false)
-	health_comp.set_deferred("monitorable",false)
+	pass
 
 func _on_health_comp_dead() -> void:
 	pass # Replace with function body.

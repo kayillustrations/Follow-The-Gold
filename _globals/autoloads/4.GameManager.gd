@@ -3,7 +3,7 @@ extends Node
 
 #-----Player Stats-----
 var player:CharacterBody2D
-var max_health: int = 3
+var max_health: int = 5
 
 #------Universal------
 var isPaused: bool = false

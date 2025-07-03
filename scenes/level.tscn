@@ -176,6 +176,7 @@ position = Vector2(0, 200)
 position = Vector2(317, -17)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="Basic Lense" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_64w2a")
