@@ -8,8 +8,6 @@ var player_position_uv : Vector2
 const SPEED = 500.0
 const JUMP_VELOCITY = -400.0
 
-var b_movement:float = -150
-
 func _ready() -> void:
 	GameManager.player = self
 
@@ -36,7 +34,7 @@ func Movement():
 	else:
 		velocity = Vector2(direction_x,direction_y) * SPEED
 
-	velocity.x += b_movement
+	velocity.x += GameManager.b_movement
 
 	move_and_slide()
 

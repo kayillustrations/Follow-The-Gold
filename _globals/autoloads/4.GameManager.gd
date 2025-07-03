@@ -15,7 +15,7 @@ var coins_collected: int
 var coins_spawned: int
 var obstacles_spawned: int
 
-var current_speed: float = 300.0
+var b_movement:float = -150
 
 #--------Data---------
 var data: Dictionary
@@ -35,11 +35,11 @@ func PauseGame(b: bool):
 	pass
 
 func ResetDailyStats():
-	GameManager.current_health = max_health
+	current_health = max_health
 	obstacles_hit = 0
 	coins_collected = 0
 	coins_spawned = 0
 	obstacles_spawned = 0
-	current_speed = 300.0
+	b_movement = -150
 	SignalBus.update_ui.emit()
 	pass
