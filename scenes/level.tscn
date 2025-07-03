@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=22 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://kjceexv2xwig" path="res://_imported/temp art/Background.png" id="1_2q6dc"]
 [ext_resource type="Texture2D" uid="uid://blo06rafyn3x6" path="res://_imported/temp art/2.png" id="2_ppgk2"]
@@ -11,6 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://dh2v0600vkess" path="res://objects/player.tscn" id="7_klq6b"]
 [ext_resource type="PackedScene" uid="uid://cpekxessi4apa" path="res://objects/coin.tscn" id="10_olg7q"]
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="11_t1rx8"]
+[ext_resource type="Shader" uid="uid://cgl1w6eoheebk" path="res://scenes/level.gdshader" id="12_8iemx"]
+[ext_resource type="Shader" uid="uid://dripx6sl0evtn" path="res://scenes/combo.gdshader" id="13_64w2a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8iemx"]
+shader = ExtResource("12_8iemx")
+shader_parameter/effect_amount = 1.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_olg7q"]
 normal = Vector2(0, 1)
@@ -29,9 +35,22 @@ normal = Vector2(-1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8c41q"]
 normal = Vector2(1, 0)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64w2a"]
+shader = ExtResource("13_64w2a")
+shader_parameter/aspect = 0.15
+shader_parameter/distortion = 0.6
+shader_parameter/radius = 1.07
+shader_parameter/alpha = 1.0
+shader_parameter/crop = 0.8
+shader_parameter/crop_color = Color(0.31, 0.144667, 0, 1)
+shader_parameter/crop_feathering = 0.3
+shader_parameter/channel_offset = 0.005
+shader_parameter/noise_strength = 1.0
+
 [node name="Level" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+material = SubResource("ShaderMaterial_8iemx")
 limit_left = -600
 limit_top = -300
 limit_right = 550
@@ -115,7 +134,7 @@ collision_mask = 2
 shape = SubResource("WorldBoundaryShape2D_ppgk2")
 
 [node name="Back Wall" type="StaticBody2D" parent="Stationary"]
-position = Vector2(-600, 0)
+position = Vector2(-554, 3)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stationary/Back Wall"]
@@ -148,13 +167,23 @@ z_index = 1
 y_sort_enabled = true
 
 [node name="Player" parent="Moving" instance=ExtResource("7_klq6b")]
-position = Vector2(-508, 108)
+position = Vector2(0, 117)
 
 [node name="Obstacle Base" parent="Moving" instance=ExtResource("11_t1rx8")]
 position = Vector2(0, 200)
 
 [node name="Coin" parent="Moving" instance=ExtResource("10_olg7q")]
 position = Vector2(317, -17)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Basic Lense" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_64w2a")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="area_entered" from="Stationary/Back Wall/DamagerComp" to="Stationary/Back Wall/DamagerComp" method="_on_area_entered"]
 [connection signal="area_exited" from="Stationary/Back Wall/DamagerComp" to="Stationary/Back Wall/DamagerComp" method="_on_area_exited"]

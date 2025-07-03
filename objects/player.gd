@@ -2,14 +2,19 @@ extends CharacterBody2D
 
 @onready var health_comp: HealthComp = $HealthComp
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var screen_dimensions = Vector2(get_viewport().size)
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 var damaged_color:= Color.INDIAN_RED
+var player_position_uv : Vector2
 
 func _ready() -> void:
 	GameManager.player = self
+
+func _process(delta) -> void:
+	if SignalBus.isBlinded: Blindness()
 
 func _physics_process(delta: float) -> void:
 
@@ -45,12 +50,16 @@ func sprite_color(isColored:bool):
 		health_comp.CheckForObstacle()
 	else:
 		sprite_color(!isColored)
-	
 
 func _on_health_comp_damaged() -> void:
 	sprite_color(false)
 	health_comp.set_deferred("monitorable",false)
 
-
 func _on_health_comp_dead() -> void:
 	pass # Replace with function body.
+
+func Blindness():
+	# convert player position to UV position
+	player_position_uv = global_position / screen_dimensions
+	# Set shader to player position
+	%Vignette.material.set_shader_parameter("player_position",player_position_uv)
