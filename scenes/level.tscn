@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=29 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
 [ext_resource type="PackedScene" uid="uid://iqtxh4ptoq52" path="res://objects/despawner.tscn" id="6_2r41h"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dh2v0600vkess" path="res://objects/player.tscn" id="7_klq6b"]
 [ext_resource type="Texture2D" uid="uid://h45vksl6ip44" path="res://_imported/temp art/Gold Bars.jpg" id="8_fpun6"]
 [ext_resource type="PackedScene" uid="uid://cpekxessi4apa" path="res://objects/coin.tscn" id="10_olg7q"]
+[ext_resource type="Shader" uid="uid://frv8bfx0u2r3" path="res://scenes/smoke.gdshader" id="11_8iemx"]
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="11_t1rx8"]
 [ext_resource type="Shader" uid="uid://cgl1w6eoheebk" path="res://scenes/level.gdshader" id="12_8iemx"]
 [ext_resource type="Shader" uid="uid://dripx6sl0evtn" path="res://scenes/combo.gdshader" id="13_64w2a"]
@@ -14,6 +15,18 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8iemx"]
 shader = ExtResource("12_8iemx")
 shader_parameter/effect_amount = 1.0
+
+[sub_resource type="Gradient" id="Gradient_t1rx8"]
+colors = PackedColorArray(0.0594, 0.12573, 0.18, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8iemx"]
+gradient = SubResource("Gradient_t1rx8")
+
+[sub_resource type="Gradient" id="Gradient_olg7q"]
+colors = PackedColorArray(0.79, 0.204083, 0.0869, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t1rx8"]
+gradient = SubResource("Gradient_olg7q")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_olg7q"]
 normal = Vector2(0, 1)
@@ -38,19 +51,45 @@ shader_parameter/aspect = 0.15
 shader_parameter/distortion = 0.6
 shader_parameter/radius = 3.0
 shader_parameter/alpha = 1.0
-shader_parameter/crop = 2.0
+shader_parameter/crop = 5.0
 shader_parameter/crop_color = Color(0.31, 0.144667, 0, 1)
 shader_parameter/crop_feathering = 0.5
 shader_parameter/channel_offset = 0.005
 shader_parameter/noise_strength = 1.0
 
+[sub_resource type="Gradient" id="Gradient_8iemx"]
+colors = PackedColorArray(0.945892, 0.830859, 0.812417, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_t1rx8"]
+noise_type = 3
+seed = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8iemx"]
+seamless = true
+color_ramp = SubResource("Gradient_8iemx")
+noise = SubResource("FastNoiseLite_t1rx8")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_64w2a"]
+seamless = true
+color_ramp = SubResource("Gradient_8iemx")
+noise = SubResource("FastNoiseLite_t1rx8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fpun6"]
+shader = ExtResource("11_8iemx")
+shader_parameter/base_color = Color(0.73, 0.64459, 0.5986, 1)
+shader_parameter/pos = Vector2(0, 0)
+shader_parameter/textureResolution = 1280.0
+shader_parameter/moveDir = Vector2(1, -2)
+shader_parameter/noise = SubResource("NoiseTexture2D_8iemx")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_64w2a")
+
 [node name="Level" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 material = SubResource("ShaderMaterial_8iemx")
-limit_left = -600
+limit_left = -650
 limit_top = -300
-limit_right = 550
+limit_right = 650
 limit_bottom = 600
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
@@ -70,6 +109,7 @@ limit_begin = Vector2(0, 0)
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Stationary/Parallax/Parallax2D"]
+modulate = Color(0.862, 0.77, 1, 1)
 texture = ExtResource("8_fpun6")
 
 [node name="Top" type="Sprite2D" parent="Stationary"]
@@ -81,9 +121,34 @@ texture = ExtResource("4_klq6b")
 
 [node name="Bottom" type="Sprite2D" parent="Stationary"]
 modulate = Color(0.62, 0.28768, 0.2046, 1)
+z_index = 100
 position = Vector2(0, 350)
 scale = Vector2(4, 4)
 texture = ExtResource("4_klq6b")
+
+[node name="Brown Gradient" type="Sprite2D" parent="Stationary"]
+modulate = Color(0.62, 0.28768, 0.2046, 1)
+z_index = 100
+position = Vector2(0, -248)
+rotation = 1.5708
+scale = Vector2(4, 22.783)
+texture = SubResource("GradientTexture2D_8iemx")
+
+[node name="Red Gradient" type="Sprite2D" parent="Stationary"]
+modulate = Color(0.62, 0.28768, 0.2046, 1)
+z_index = 100
+position = Vector2(0, -216)
+rotation = 1.5708
+scale = Vector2(4, 22.783)
+texture = SubResource("GradientTexture2D_t1rx8")
+
+[node name="Brown Gradient2" type="Sprite2D" parent="Stationary"]
+modulate = Color(0.62, 0.28768, 0.2046, 1)
+z_index = 100
+position = Vector2(-2, 496)
+rotation = -1.5708
+scale = Vector2(4, 22.783)
+texture = SubResource("GradientTexture2D_8iemx")
 
 [node name="Walls" type="Node2D" parent="Stationary"]
 
@@ -151,6 +216,20 @@ material = SubResource("ShaderMaterial_64w2a")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Fog" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_fpun6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = -1.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 
