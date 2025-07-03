@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxedw"]
 radius = 31.0
-height = 66.0
+height = 114.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uxov2"]
 radius = 33.0
@@ -25,7 +25,7 @@ region_enabled = true
 region_rect = Rect2(78, 1754, 147, 229)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -30)
+position = Vector2(0, -57)
 shape = SubResource("CapsuleShape2D_bxedw")
 
 [node name="HealthComp" type="Area2D" parent="."]
