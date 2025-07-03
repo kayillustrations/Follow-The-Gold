@@ -1,14 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=19 format=3 uid="uid://camr044y2lsco"]
 
-[ext_resource type="Texture2D" uid="uid://kjceexv2xwig" path="res://_imported/temp art/Background.png" id="1_2q6dc"]
-[ext_resource type="Texture2D" uid="uid://blo06rafyn3x6" path="res://_imported/temp art/2.png" id="2_ppgk2"]
-[ext_resource type="Texture2D" uid="uid://dmid0seqdloba" path="res://_imported/temp art/5.png" id="3_2r41h"]
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
-[ext_resource type="Texture2D" uid="uid://bvufnpfy68ynm" path="res://_imported/temp art/6.png" id="5_b121j"]
 [ext_resource type="PackedScene" uid="uid://iqtxh4ptoq52" path="res://objects/despawner.tscn" id="6_2r41h"]
 [ext_resource type="Script" uid="uid://dhu2arpfxq6j5" path="res://_globals/components/damager_comp.gd" id="6_8c41q"]
 [ext_resource type="Script" uid="uid://b8ono3hmwbpux" path="res://scenes/camera_2d.gd" id="6_b121j"]
 [ext_resource type="PackedScene" uid="uid://dh2v0600vkess" path="res://objects/player.tscn" id="7_klq6b"]
+[ext_resource type="Texture2D" uid="uid://h45vksl6ip44" path="res://_imported/temp art/Gold Bars.jpg" id="8_fpun6"]
 [ext_resource type="PackedScene" uid="uid://cpekxessi4apa" path="res://objects/coin.tscn" id="10_olg7q"]
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="11_t1rx8"]
 [ext_resource type="Shader" uid="uid://cgl1w6eoheebk" path="res://scenes/level.gdshader" id="12_8iemx"]
@@ -61,73 +58,42 @@ script = ExtResource("6_b121j")
 
 [node name="Stationary" type="Node2D" parent="."]
 
-[node name="Background" type="Node2D" parent="Stationary"]
-position = Vector2(954, -166.21)
-scale = Vector2(2, 2)
+[node name="Vert" type="Node2D" parent="Stationary"]
+position = Vector2(0, 330)
 
-[node name="Parallax2D" type="Parallax2D" parent="Stationary/Background"]
-repeat_size = Vector2(320, 0)
-repeat_times = 5
+[node name="Parallax2D" type="Parallax2D" parent="Stationary/Vert"]
+scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(294, 294)
+autoscroll = Vector2(0, -150)
+repeat_times = 8
+limit_begin = Vector2(0, 0)
+follow_viewport = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Stationary/Background/Parallax2D"]
-texture = ExtResource("1_2q6dc")
+[node name="Sprite2D" type="Sprite2D" parent="Stationary/Vert/Parallax2D"]
+texture = ExtResource("8_fpun6")
 
-[node name="Parallax2D2" type="Parallax2D" parent="Stationary/Background"]
-repeat_size = Vector2(320, 0)
-autoscroll = Vector2(-25, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Stationary/Background/Parallax2D2"]
-texture = ExtResource("2_ppgk2")
-
-[node name="Parallax2D3" type="Parallax2D" parent="Stationary/Background"]
-repeat_size = Vector2(320, 0)
-autoscroll = Vector2(-50, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Stationary/Background/Parallax2D3"]
-texture = ExtResource("3_2r41h")
-
-[node name="Parallax2D4" type="Parallax2D" parent="Stationary/Background"]
-repeat_size = Vector2(320, 0)
-autoscroll = Vector2(-75, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Stationary/Background/Parallax2D4"]
+[node name="Top" type="Sprite2D" parent="Stationary"]
+modulate = Color(0.62, 0.28768, 0.2046, 1)
+position = Vector2(0, -41)
+rotation = 3.14159
+scale = Vector2(4, 4)
 texture = ExtResource("4_klq6b")
 
-[node name="Parallax2D5" type="Parallax2D" parent="Stationary/Background"]
-repeat_size = Vector2(320, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Stationary/Background/Parallax2D5"]
-position = Vector2(0, -1053.41)
-scale = Vector2(1, 12.905)
+[node name="Bottom" type="Sprite2D" parent="Stationary"]
+modulate = Color(0.62, 0.28768, 0.2046, 1)
+position = Vector2(0, 350)
+scale = Vector2(4, 4)
 texture = ExtResource("4_klq6b")
-offset = Vector2(0, 100)
-region_enabled = true
-region_rect = Rect2(0, 156.25, 320, 23.75)
-
-[node name="Parallax2D6" type="Parallax2D" parent="Stationary/Background"]
-z_index = 100
-scroll_offset = Vector2(0, 154.105)
-repeat_size = Vector2(320, 0)
-autoscroll = Vector2(-75, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Stationary/Background/Parallax2D6"]
-texture = ExtResource("5_b121j")
-offset = Vector2(0, 179.73)
 
 [node name="Top Wall" type="StaticBody2D" parent="Stationary"]
-position = Vector2(0, -60)
+position = Vector2(2, -361)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stationary/Top Wall"]
 shape = SubResource("WorldBoundaryShape2D_olg7q")
 
 [node name="Bottom Wall" type="StaticBody2D" parent="Stationary"]
-position = Vector2(0, 575)
+position = Vector2(0, 607)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stationary/Bottom Wall"]

@@ -34,7 +34,7 @@ func Movement():
 	else:
 		velocity = Vector2(direction_x,direction_y) * SPEED
 
-	velocity.x += GameManager.b_movement
+	velocity.y += GameManager.b_movement
 
 	move_and_slide()
 

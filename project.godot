@@ -25,7 +25,7 @@ GameManager="*res://_globals/autoloads/4.GameManager.gd"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 
 [input]
 
