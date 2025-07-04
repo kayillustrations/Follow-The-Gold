@@ -3,7 +3,7 @@ class_name HealthComp
 
 signal dead
 
-@export var buffer_time: float = 1
+@export var buffer_damage: float = 1
 
 @onready var sprite_2d: Sprite2D = get_parent().find_child("Sprite2D")
 @onready var buffer_timer: Timer = $Buffer
@@ -18,8 +18,6 @@ func ChangeHealth(damage:int):
 		sprite_2d.modulate = Color.DIM_GRAY
 	else: 
 		SignalBus.isDamaged.emit(false)
-		buffer_timer.start(buffer_time)
-		sprite_color(false)
 
 func CheckForObstacle():
 	var obstacles:Array= get_overlapping_areas()
@@ -30,16 +28,22 @@ func ApplyEffect(effect):
 	var effect_timer:= Timer.new()
 	add_child(effect_timer)
 	set_deferred("monitorable",false)
+	buffer_timer.start(buffer_damage)
 	match effect:
 		SignalBus.Effects.DAMAGE:
+			sprite_color(false,damaged_color)
 			ChangeHealth(1)
 		SignalBus.Effects.SLOWNESS:
+			sprite_color(false,Color.SKY_BLUE)
 			Slowness(effect_timer)
 		SignalBus.Effects.DISORIENT:
+			sprite_color(false,Color.PINK)
 			Disorient(effect_timer)
 		SignalBus.Effects.STUN:
+			sprite_color(false,Color.YELLOW)
 			Stun(effect_timer)
 		SignalBus.Effects.BLINDED:
+			sprite_color(false,Color.GRAY)
 			Blind(effect_timer)
 	SignalBus.update_ui.emit()
 	await buffer_timer.timeout
@@ -47,7 +51,7 @@ func ApplyEffect(effect):
 	CheckForObstacle()
 	pass
 
-func sprite_color(isColored:bool):
+func sprite_color(isColored:bool,color:Color):
 	var tween:= create_tween()
 	if isColored:
 		tween.tween_property(sprite_2d,"modulate",Color.WHITE,.25)
@@ -59,11 +63,10 @@ func sprite_color(isColored:bool):
 		sprite_2d.modulate = Color.WHITE
 		SignalBus.isDamaged.emit(false)
 	else:
-		sprite_color(!isColored)
+		sprite_color(!isColored,color)
 
 func Slowness(timer:Timer):
 	SignalBus.isSlowed.emit(true)
-	GameManager.player_speed *= .75
 	timer.start(1)
 	
 	await timer.timeout
@@ -88,8 +91,9 @@ func Stun(timer:Timer):
 	timer.queue_free()
 
 func Blind (timer:Timer):
+	print("Blind")
 	SignalBus.isBlinded.emit(true)
-	timer.start(1)
+	timer.start(1.5)
 	
 	await timer.timeout
 	SignalBus.isBlinded.emit(false)

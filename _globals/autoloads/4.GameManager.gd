@@ -13,6 +13,7 @@ var isPaused: bool = false
 var current_health: int
 var obstacles_hit: int
 var coins_collected: int
+var current_time: Array = [0,0,0] #milliseconds, seconds, minutes
 
 var coins_spawned: int
 var obstacles_spawned: int
@@ -37,6 +38,7 @@ func PauseGame(b: bool):
 	pass
 
 func ResetDailyStats():
+	current_time = [0,0,0]
 	current_health = max_health
 	obstacles_hit = 0
 	coins_collected = 0

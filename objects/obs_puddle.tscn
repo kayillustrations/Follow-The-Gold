@@ -10,6 +10,9 @@ height = 52.0
 [node name="Puddle" instance=ExtResource("1_2yiwk")]
 script = ExtResource("2_j2rvv")
 
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.215686, 1, 1, 1)
+
 [node name="Area2D" parent="." index="3"]
 effect = 1
 

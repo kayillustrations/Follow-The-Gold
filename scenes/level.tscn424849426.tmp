@@ -1,11 +1,13 @@
-[gd_scene load_steps=34 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=35 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
 [ext_resource type="PackedScene" uid="uid://iqtxh4ptoq52" path="res://objects/despawner.tscn" id="6_2r41h"]
 [ext_resource type="Script" uid="uid://dhu2arpfxq6j5" path="res://_globals/components/damager_comp.gd" id="6_8c41q"]
 [ext_resource type="Script" uid="uid://b8ono3hmwbpux" path="res://scenes/camera_2d.gd" id="6_b121j"]
 [ext_resource type="PackedScene" uid="uid://dh2v0600vkess" path="res://objects/player.tscn" id="7_klq6b"]
+[ext_resource type="PackedScene" uid="uid://dnebyvwvdm3kw" path="res://objects/obs_sewer.tscn" id="8_64w2a"]
 [ext_resource type="Texture2D" uid="uid://h45vksl6ip44" path="res://_imported/temp art/Gold Bars.jpg" id="8_fpun6"]
+[ext_resource type="PackedScene" uid="uid://n1u4mdpwh8rw" path="res://objects/obs_puddle.tscn" id="9_fpun6"]
 [ext_resource type="Script" uid="uid://b7cdrgv8fyx1" path="res://scenes/spawning_manager.gd" id="10_fpun6"]
 [ext_resource type="Shader" uid="uid://frv8bfx0u2r3" path="res://scenes/smoke.gdshader" id="11_8iemx"]
 [ext_resource type="Shader" uid="uid://cgl1w6eoheebk" path="res://scenes/level.gdshader" id="12_8iemx"]
@@ -50,10 +52,7 @@ size = Vector2(1382, 20)
 size = Vector2(126, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arp2o"]
-size = Vector2(957, 50)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8iemx"]
-size = Vector2(20, 100)
+size = Vector2(978, 50)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_64w2a"]
 shader = ExtResource("13_64w2a")
@@ -234,8 +233,13 @@ y_sort_enabled = true
 [node name="Player" parent="Moving" instance=ExtResource("7_klq6b")]
 position = Vector2(0, 117)
 
+[node name="Sewer" parent="Moving" instance=ExtResource("8_64w2a")]
+position = Vector2(-181, 806)
+
+[node name="Puddle" parent="Moving" instance=ExtResource("9_fpun6")]
+position = Vector2(-442, 272)
+
 [node name="Spawning Manager" type="Node2D" parent="."]
-position = Vector2(0, 650)
 script = ExtResource("10_fpun6")
 
 [node name="Sidewalks" type="Node2D" parent="Spawning Manager"]
@@ -248,6 +252,11 @@ shape = SubResource("RectangleShape2D_wc255")
 position = Vector2(426, 0)
 shape = SubResource("RectangleShape2D_wc255")
 
+[node name="Inside Bounds" type="Node2D" parent="Spawning Manager"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawning Manager/Inside Bounds"]
+shape = SubResource("RectangleShape2D_arp2o")
+
 [node name="Sewers" type="Node2D" parent="Spawning Manager"]
 
 [node name="Marker2D" type="Marker2D" parent="Spawning Manager/Sewers"]
@@ -257,27 +266,6 @@ position = Vector2(-363, 0)
 
 [node name="Marker2D3" type="Marker2D" parent="Spawning Manager/Sewers"]
 position = Vector2(363, 0)
-
-[node name="Inside Bounds" type="Node2D" parent="Spawning Manager"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawning Manager/Inside Bounds"]
-shape = SubResource("RectangleShape2D_arp2o")
-
-[node name="Outside Bounds" type="Node2D" parent="Spawning Manager"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawning Manager/Outside Bounds"]
-position = Vector2(-550, 0)
-shape = SubResource("RectangleShape2D_8iemx")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Spawning Manager/Outside Bounds"]
-position = Vector2(550, 0)
-shape = SubResource("RectangleShape2D_8iemx")
-
-[node name="Coin Timer" type="Timer" parent="Spawning Manager"]
-
-[node name="Obs Timer" type="Timer" parent="Spawning Manager"]
-
-[node name="Sewer Timer" type="Timer" parent="Spawning Manager"]
 
 [node name="Shaders" type="CanvasLayer" parent="."]
 layer = 0
@@ -322,6 +310,3 @@ grow_vertical = 2
 
 [connection signal="area_entered" from="Stationary/DamagerComp" to="Stationary/DamagerComp" method="_on_area_entered"]
 [connection signal="area_exited" from="Stationary/DamagerComp" to="Stationary/DamagerComp" method="_on_area_exited"]
-[connection signal="timeout" from="Spawning Manager/Coin Timer" to="Spawning Manager" method="_on_coin_timer_timeout"]
-[connection signal="timeout" from="Spawning Manager/Obs Timer" to="Spawning Manager" method="_on_obs_timer_timeout"]
-[connection signal="timeout" from="Spawning Manager/Sewer Timer" to="Spawning Manager" method="_on_sewer_timer_timeout"]

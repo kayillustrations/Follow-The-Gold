@@ -40,7 +40,4 @@ shape = SubResource("CapsuleShape2D_uxov2")
 [node name="Buffer" type="Timer" parent="HealthComp"]
 one_shot = true
 
-[node name="Effect" type="Timer" parent="HealthComp"]
-one_shot = true
-
 [connection signal="dead" from="HealthComp" to="." method="_on_health_comp_dead"]
