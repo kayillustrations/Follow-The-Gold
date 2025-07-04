@@ -99,16 +99,4 @@ text = "#"
 wait_time = 0.1
 one_shot = true
 
-[node name="Restart" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -4.0
-offset_right = 4.0
-offset_bottom = 8.0
-grow_horizontal = 2
-text = "Restart"
-
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

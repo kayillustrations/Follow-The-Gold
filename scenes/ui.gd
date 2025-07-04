@@ -1,7 +1,6 @@
 extends Control
 
 @onready var timer: Timer = $Timer
-@onready var restart: Button = $Restart
 
 @onready var min: Label = $ColorRect/VBoxContainer/HBox/Min
 @onready var sec: Label = $ColorRect/VBoxContainer/HBox/Sec
@@ -13,7 +12,6 @@ extends Control
 
 
 func _ready() -> void:
-	timer.start(.1)
 	SignalBus.update_ui.connect(_update_all)
 
 func _update_all():
@@ -59,4 +57,4 @@ func CheckTimeArray(current_int):
 
 
 func _on_restart_pressed() -> void:
-	GameManager.ResetLevel()
+	SceneLoader.LoadGame()

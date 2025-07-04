@@ -25,6 +25,9 @@ func _ready() -> void:
 	SignalBus.isSlowed.connect(edit_isSlowed)
 
 func _process(delta) -> void:
+	if !GameManager.isPaused:
+		position = GameManager.player.global_position
+	
 	if Input.is_action_just_pressed("ui_up"):
 		if direction_y != 1:
 			direction_y += 1
@@ -79,10 +82,8 @@ func Boost(activated:bool):
 		boost.start(.5)
 		tween.tween_property(self,"velocity",velocity*2,.1)
 		isBoosted = true
-		print("is")
 	else:
 		isBoosted = false
-		print("notboosted")
 		tween.tween_property(self,"velocity",Vector2(0,0),.25)
 
 func Movement():

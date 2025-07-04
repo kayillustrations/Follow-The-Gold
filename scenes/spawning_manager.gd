@@ -17,11 +17,14 @@ var obstacle_wait: Array[float]
 var sewer_wait = 2
 
 func _ready() -> void:
+	SignalBus.GameStarted.connect(StartTimers)
+	pass
+
+func StartTimers():
 	ObstacleRate()
 	obs_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1]))
 	coin_timer.start(randf_range(coin_wait[0],coin_wait[1]))
 	sewer_timer.start(sewer_wait)
-	pass
 
 func ObstacleRate():
 	if GameManager.current_time[2] > 1: #over 1min

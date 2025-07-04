@@ -9,6 +9,7 @@ var max_health: int = 5
  
 #------Universal------
 var isPaused: bool = false
+var isStarted: bool = false
 
 var current_health: int
 var obstacles_hit: int
@@ -25,12 +26,12 @@ var data: Dictionary
 var all_items: Array
 #---------------------
 func _ready() -> void:
-	ResetDailyStats()
 	pass
 
-func ResetLevel():
-	ResetDailyStats()
-	SceneLoader.load_scene(SceneLoader.level_path)
+func Start():
+	PauseGame(false)
+	SceneLoader.ui.timer.start(.1)
+	SignalBus.GameStarted.emit()
 
 func PauseGame(b: bool):
 	isPaused = b

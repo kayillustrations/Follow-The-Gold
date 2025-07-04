@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Follow The Gold"
-run/main_scene="uid://camr044y2lsco"
+run/main_scene="uid://ig6ukabxwwgl"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -28,6 +28,10 @@ GameManager="*res://_globals/autoloads/4.GameManager.gd"
 window/size/viewport_width=1200
 window/size/viewport_height=900
 window/stretch/mode="viewport"
+
+[gui]
+
+theme/custom_font="uid://do6g4q03tl1gj"
 
 [input]
 

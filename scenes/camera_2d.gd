@@ -5,6 +5,8 @@ extends Camera2D
 @onready var distortion: ColorRect = $"../Shaders/Distortion"
 @onready var pink: ColorRect = $"../Shaders/Pink"
 
+@onready var parallaxes = $"../Stationary/Parallax".get_children()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,12 +16,25 @@ func _ready() -> void:
 	pink.visible = false
 	SignalBus.isDisoriented.connect(Disorient)
 	SignalBus.isBlinded.connect(Blind)
+	SignalBus.GamePaused.connect(Parallax)
+	SignalBus.GameStarted.connect(DeleteControls)
+	Parallax(!GameManager.isStarted)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position = GameManager.player.global_position
-	pass
+	if !GameManager.isPaused:
+		position = GameManager.player.global_position
+
+func DeleteControls():
+	$"../Controls".visible = false
+
+func Parallax(b:bool):
+	var scroll_speed
+	if b: scroll_speed = 0
+	else: scroll_speed = -150
+	for i in parallaxes.size():
+		parallaxes[i].autoscroll.y = scroll_speed
 
 func Disorient(activate): 
 	FadeShader(distortion,activate)

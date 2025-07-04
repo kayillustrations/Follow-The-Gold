@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=35 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
 [ext_resource type="PackedScene" uid="uid://iqtxh4ptoq52" path="res://objects/despawner.tscn" id="6_2r41h"]
@@ -12,6 +12,7 @@
 [ext_resource type="Shader" uid="uid://cm7eenu2xyfsl" path="res://scenes/distort.gdshader" id="12_64w2a"]
 [ext_resource type="Shader" uid="uid://dripx6sl0evtn" path="res://scenes/combo.gdshader" id="13_64w2a"]
 [ext_resource type="Shader" uid="uid://navimjo5ay51" path="res://scenes/pink.gdshader" id="13_fpun6"]
+[ext_resource type="PackedScene" uid="uid://28qgr4itx81d" path="res://ui/controls.tscn" id="13_wc255"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8iemx"]
 shader = ExtResource("12_8iemx")
@@ -232,7 +233,7 @@ z_index = 1
 y_sort_enabled = true
 
 [node name="Player" parent="Moving" instance=ExtResource("7_klq6b")]
-position = Vector2(0, 117)
+position = Vector2(0, 158)
 
 [node name="Spawning Manager" type="Node2D" parent="."]
 position = Vector2(0, 650)
@@ -321,6 +322,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Controls" parent="." instance=ExtResource("13_wc255")]
 
 [connection signal="area_entered" from="Stationary/DamagerComp" to="Stationary/DamagerComp" method="_on_area_entered"]
 [connection signal="area_exited" from="Stationary/DamagerComp" to="Stationary/DamagerComp" method="_on_area_exited"]

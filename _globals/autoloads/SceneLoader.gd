@@ -6,6 +6,8 @@
 extends Control
 
 @onready var pause_menu: PackedScene = preload("res://ui/pause_menu.tscn")
+@onready var option_menu: PackedScene = preload("res://ui/option_menu.tscn")
+@onready var controls: PackedScene = preload("res://ui/controls.tscn")
 @onready var ui: Control = $"UI Scenes/UI"
 
 
@@ -14,7 +16,7 @@ extends Control
 @onready var debug_menu: Control = $"UI Scenes/Debug"
 
 var level_path: String = "res://scenes/level.tscn"
-var menu_path: String = ""
+var menu_path: String = "res://scenes/main_menu.tscn"
 
 var inTempScene: bool
 var inMenu: bool
@@ -23,14 +25,18 @@ var current_scene_path: String
 var new_scene_path: String
 
 func _ready() -> void:
-	debug_menu.visible = false
+	UISceneActivate(ui)
+	UISceneActivate(debug_menu)
 	print(current_scene_path)
 
 func _process(_delta: float) -> void:
+	if !GameManager.isStarted:
+		if Input.is_anything_pressed():
+			GameManager.Start()
 	if Input.is_action_just_pressed("debug") && GameSave.debug_mode:
 		UISceneActivate(debug_menu)
 	if Input.is_action_just_pressed("exit"):
-		if currentTemp != null:
+		if currentTemp:
 			DeleteTempScene(currentTemp)
 		else: AddTempScene(pause_menu)
 
@@ -50,13 +56,17 @@ func load_scene(path_name: String):
 	pass
 
 func LoadGame():
-	if GameSave.newGame:
-		GameSave.SaveGame()
-		pass
-	else: GameSave.LoadGame()
+	#if GameSave.newGame:
+		#GameSave.SaveGame()
+		#pass
+	#else: GameSave.LoadGame()
 	load_scene(level_path)
+	DeleteAllTemp()
 	GameManager.ResetDailyStats()
-	#SceneLoader.UISceneActivate(SceneLoader.ui)
+	if !GameManager.isPaused:
+		GameManager.PauseGame(true)
+	if !SceneLoader.ui.visible:
+		SceneLoader.UISceneActivate(SceneLoader.ui)
 	pass
 
 func UISceneActivate(scene_node: Control):
@@ -76,19 +86,20 @@ func AddTempScene(scene:PackedScene):
 	inTempScene = true
 	currentTemp = scene_instance
 	temp_parent.layer = 2
+	print(temp_parent.get_child_count())
 	return scene_instance
 
 func DeleteTempScene(scene_self:Node):
-	if scene_self != null:
-		scene_self.queue_free()
-	if temp_parent.get_child_count(true) > 1:
-		currentTemp = temp_parent.get_child(temp_parent.get_child_count()-1)
+	scene_self.queue_free()
+	var children = temp_parent.get_children()
+	if children.size() > 0:
+		currentTemp = children[0]
 	else: 
 		inTempScene = false
 		temp_parent.layer = 1
 		currentTemp = null
-		
 		GameManager.PauseGame(false)
+	print(currentTemp)
 
 func DeleteAllTemp():
 	var scenes = temp_parent.get_children()
