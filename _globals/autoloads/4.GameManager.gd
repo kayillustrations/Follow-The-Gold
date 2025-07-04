@@ -3,6 +3,7 @@ extends Node
 
 #-----Player Stats-----
 var player:CharacterBody2D
+var player_speed: float = 400
 var max_health: int = 5
 
 #------Universal------
@@ -40,6 +41,5 @@ func ResetDailyStats():
 	coins_collected = 0
 	coins_spawned = 0
 	obstacles_spawned = 0
-	b_movement = -150
 	SignalBus.update_ui.emit()
 	pass

@@ -5,7 +5,6 @@ extends CharacterBody2D
 @onready var screen_dimensions = Vector2(get_viewport().size)
 var player_position_uv : Vector2
 
-const SPEED = 500.0
 const JUMP_VELOCITY = -400.0
 
 func _ready() -> void:
@@ -27,12 +26,12 @@ func Movement():
 	var direction_y := Input.get_axis("ui_up","ui_down")
 	var direction_x := Input.get_axis("ui_left", "ui_right")
 	if !direction_x && !direction_y:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, GameManager.player_speed)
+		velocity.y = move_toward(velocity.y, 0, GameManager.player_speed)
 	elif direction_x && direction_y:
-		velocity = Vector2(direction_x,direction_y) * SPEED/1.5
+		velocity = Vector2(direction_x,direction_y) * GameManager.player_speed/1.5
 	else:
-		velocity = Vector2(direction_x,direction_y) * SPEED
+		velocity = Vector2(direction_x,direction_y) * GameManager.player_speed
 
 	velocity.y += GameManager.b_movement
 

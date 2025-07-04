@@ -43,10 +43,10 @@ normal = Vector2(1, 0)
 normal = Vector2(-1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olg7q"]
-size = Vector2(1000, 20)
+size = Vector2(1382, 20)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8c41q"]
-normal = Vector2(1, 0)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64w2a"]
+size = Vector2(66, 20)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_64w2a"]
 shader = ExtResource("13_64w2a")
@@ -206,11 +206,16 @@ script = ExtResource("6_8c41q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stationary/DamagerComp"]
 shape = SubResource("RectangleShape2D_olg7q")
 
-[node name="Despawner L" parent="Stationary" instance=ExtResource("6_2r41h")]
-position = Vector2(-793, 0)
+[node name="Despawner T" parent="Stationary" instance=ExtResource("6_2r41h")]
+position = Vector2(-3, -522)
 
-[node name="CollisionShape2D" parent="Stationary/Despawner L" index="0"]
-shape = SubResource("WorldBoundaryShape2D_8c41q")
+[node name="Despawner T2" parent="Stationary" instance=ExtResource("6_2r41h")]
+position = Vector2(750, 0)
+rotation = 1.5708
+
+[node name="Despawner T3" parent="Stationary" instance=ExtResource("6_2r41h")]
+position = Vector2(-750, 0)
+rotation = -1.5708
 
 [node name="Moving" type="Node2D" parent="."]
 z_index = 1
@@ -222,11 +227,16 @@ position = Vector2(0, 117)
 [node name="Obstacle Base" parent="Moving" instance=ExtResource("11_t1rx8")]
 position = Vector2(0, 200)
 
+[node name="CollisionShape3D" parent="Moving/Obstacle Base/Area2D" index="0"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_64w2a")
+
 [node name="Coin" parent="Moving" instance=ExtResource("10_olg7q")]
 position = Vector2(317, -17)
 
 [node name="Shaders" type="CanvasLayer" parent="."]
 layer = 0
+visible = false
 
 [node name="Basic Lense" type="ColorRect" parent="Shaders"]
 material = SubResource("ShaderMaterial_64w2a")
@@ -271,4 +281,4 @@ grow_vertical = 2
 [connection signal="area_entered" from="Stationary/DamagerComp" to="Stationary/DamagerComp" method="_on_area_entered"]
 [connection signal="area_exited" from="Stationary/DamagerComp" to="Stationary/DamagerComp" method="_on_area_exited"]
 
-[editable path="Stationary/Despawner L"]
+[editable path="Moving/Obstacle Base"]
