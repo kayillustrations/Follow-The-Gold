@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=33 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
 [ext_resource type="PackedScene" uid="uid://iqtxh4ptoq52" path="res://objects/despawner.tscn" id="6_2r41h"]
@@ -10,11 +10,14 @@
 [ext_resource type="Shader" uid="uid://frv8bfx0u2r3" path="res://scenes/smoke.gdshader" id="11_8iemx"]
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="11_t1rx8"]
 [ext_resource type="Shader" uid="uid://cgl1w6eoheebk" path="res://scenes/level.gdshader" id="12_8iemx"]
+[ext_resource type="Shader" uid="uid://cm7eenu2xyfsl" path="res://scenes/distort.gdshader" id="12_64w2a"]
 [ext_resource type="Shader" uid="uid://dripx6sl0evtn" path="res://scenes/combo.gdshader" id="13_64w2a"]
+[ext_resource type="Shader" uid="uid://navimjo5ay51" path="res://scenes/pink.gdshader" id="13_fpun6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8iemx"]
 shader = ExtResource("12_8iemx")
-shader_parameter/effect_amount = 1.0
+shader_parameter/distortion_strength = 0.5
+shader_parameter/distortion_radius = 1.0
 
 [sub_resource type="Gradient" id="Gradient_t1rx8"]
 colors = PackedColorArray(0.0594, 0.12573, 0.18, 1, 1, 1, 1, 0)
@@ -82,6 +85,20 @@ shader_parameter/textureResolution = 1280.0
 shader_parameter/moveDir = Vector2(1, -2)
 shader_parameter/noise = SubResource("NoiseTexture2D_8iemx")
 shader_parameter/noise2 = SubResource("NoiseTexture2D_64w2a")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wc255"]
+shader = ExtResource("12_64w2a")
+shader_parameter/wave_count = 20.0
+shader_parameter/speed = 1.0
+shader_parameter/height = 0.02
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_arp2o"]
+shader = ExtResource("13_fpun6")
+shader_parameter/stretch = 1.0
+shader_parameter/thing1 = 1.0
+shader_parameter/thing2 = 0.6
+shader_parameter/thing3 = 1.0
+shader_parameter/scale = 2.0
 
 [node name="Level" type="Node2D"]
 
@@ -208,10 +225,10 @@ position = Vector2(0, 200)
 [node name="Coin" parent="Moving" instance=ExtResource("10_olg7q")]
 position = Vector2(317, -17)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Shaders" type="CanvasLayer" parent="."]
 layer = 0
 
-[node name="Basic Lense" type="ColorRect" parent="CanvasLayer"]
+[node name="Basic Lense" type="ColorRect" parent="Shaders"]
 material = SubResource("ShaderMaterial_64w2a")
 anchors_preset = 15
 anchor_right = 1.0
@@ -220,7 +237,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Fog" type="ColorRect" parent="CanvasLayer"]
+[node name="Fog" type="ColorRect" parent="Shaders"]
 visible = false
 material = SubResource("ShaderMaterial_fpun6")
 anchors_preset = 15
@@ -230,6 +247,24 @@ offset_left = -1.0
 offset_top = 2.0
 offset_right = -1.0
 offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Distortion" type="ColorRect" parent="Shaders"]
+visible = false
+material = SubResource("ShaderMaterial_wc255")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pink" type="ColorRect" parent="Shaders/Distortion"]
+material = SubResource("ShaderMaterial_arp2o")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 

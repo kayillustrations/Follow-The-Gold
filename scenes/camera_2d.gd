@@ -1,6 +1,6 @@
 extends Camera2D
 
-@onready var canvas_layer: CanvasLayer = $"../CanvasLayer"
+@onready var canvas_layer: CanvasLayer = $"../Shaders"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
