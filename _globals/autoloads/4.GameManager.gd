@@ -3,8 +3,8 @@ extends Node
 
 #-----Player Stats-----
 var player:CharacterBody2D
-var player_speed: float = 300
-var max_current_speed: float = 300
+var player_speed: float = 200
+var max_current_speed: float = 200
 var max_health: int = 5
  
 #------Universal------

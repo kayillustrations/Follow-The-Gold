@@ -88,17 +88,19 @@ func _on_coin_timer_timeout() -> void:
 	Spawn(SignalBus.Obstacles.COIN)
 	coin_timer.start(randf_range(coin_wait[0],coin_wait[1]))
 
-func _on_obs_timer_timeout() -> void:
-	Spawn(randi_range(3,4))
-	ObstacleRate()
-	obs_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1]))
-	pass # Replace with function body.
-
 func _on_sewer_timer_timeout() -> void:
 	Spawn(SignalBus.Obstacles.SEWER)
 	sewer_timer.start(sewer_wait)
 	pass # Replace with function body.
 
+func _on_obs_timer_timeout() -> void:
+	Spawn(randi_range(SignalBus.Obstacles.PUDDLE,SignalBus.Obstacles.POPPY))
+	ObstacleRate()
+	obs_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1]))
+	pass # Replace with function body.
 
 func _on_enemy_timer_timeout() -> void:
+	Spawn(randi_range(SignalBus.Obstacles.RAT,SignalBus.Obstacles.CROW))
+	EnemyRate()
+	obs_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1]))
 	pass # Replace with function body.

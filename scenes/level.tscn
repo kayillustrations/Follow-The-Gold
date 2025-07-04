@@ -279,6 +279,8 @@ shape = SubResource("RectangleShape2D_8iemx")
 
 [node name="Sewer Timer" type="Timer" parent="Spawning Manager"]
 
+[node name="Enemy Timer" type="Timer" parent="Spawning Manager"]
+
 [node name="Shaders" type="CanvasLayer" parent="."]
 layer = 0
 visible = false
@@ -325,3 +327,4 @@ grow_vertical = 2
 [connection signal="timeout" from="Spawning Manager/Coin Timer" to="Spawning Manager" method="_on_coin_timer_timeout"]
 [connection signal="timeout" from="Spawning Manager/Obs Timer" to="Spawning Manager" method="_on_obs_timer_timeout"]
 [connection signal="timeout" from="Spawning Manager/Sewer Timer" to="Spawning Manager" method="_on_sewer_timer_timeout"]
+[connection signal="timeout" from="Spawning Manager/Enemy Timer" to="Spawning Manager" method="_on_enemy_timer_timeout"]

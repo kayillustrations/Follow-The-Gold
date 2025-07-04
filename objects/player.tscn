@@ -40,4 +40,10 @@ shape = SubResource("CapsuleShape2D_uxov2")
 [node name="Buffer" type="Timer" parent="HealthComp"]
 one_shot = true
 
+[node name="Boost" type="Timer" parent="."]
+
+[node name="Cooldown" type="Timer" parent="."]
+
 [connection signal="dead" from="HealthComp" to="." method="_on_health_comp_dead"]
+[connection signal="timeout" from="Boost" to="." method="_on_boost_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
