@@ -7,14 +7,34 @@ var player_position_uv : Vector2
 
 const JUMP_VELOCITY = -400.0
 
+var direction: float = 0.0
+
 func _ready() -> void:
 	GameManager.player = self
 
 func _process(delta) -> void:
-	if SignalBus.isBlinded: Blindness()
+	if Input.is_action_just_pressed("ui_right"):
+		if direction != 1:
+			direction += .5
+	if Input.is_action_just_pressed("ui_left"):
+		if direction != -1:
+			direction -= .5
 
 func _physics_process(delta: float) -> void:
 	Movement()
+	pass
+
+func AxisMovement():
+	if direction == 0: #forward
+		velocity.x = move_toward(velocity.x, 0, GameManager.player_speed)
+	elif abs(direction) < 1:
+		velocity.x = direction * GameManager.player_speed*.75
+		velocity.y = GameManager.b_movement*.75
+	else: #right/left
+		velocity.x = direction * GameManager.player_speed
+		velocity.y = GameManager.b_movement
+	
+	move_and_slide()
 
 func Movement():
 	## Handle jump.
@@ -37,14 +57,5 @@ func Movement():
 
 	move_and_slide()
 
-func _on_health_comp_damaged() -> void:
-	pass
-
 func _on_health_comp_dead() -> void:
 	pass # Replace with function body.
-
-func Blindness():
-	# convert player position to UV position
-	player_position_uv = global_position / screen_dimensions
-	# Set shader to player position
-	%Vignette.material.set_shader_parameter("player_position",player_position_uv)

@@ -25,6 +25,8 @@ GameManager="*res://_globals/autoloads/4.GameManager.gd"
 
 [display]
 
+window/size/viewport_width=1200
+window/size/viewport_height=900
 window/stretch/mode="viewport"
 
 [input]

@@ -2,6 +2,8 @@ shader_type canvas_item;
 // from: https://www.shadertoy.com/view/tdG3Rd
 //uniform float iResolution = (1.0 / SCREEN_PIXEL_SIZE);
 
+uniform float alpha: hint_range(0.0, 1, 0.1);
+
 /* Effects for mat2 */
 uniform float stretch : hint_range(0.0, 100.0, 0.1) = 0.8;
 uniform float thing1 : hint_range(0.0, 100.0, 0.1) = 0.6;
@@ -108,4 +110,5 @@ void fragment()
     vec2 uv = FRAGCOORD.xy / (scale / SCREEN_PIXEL_SIZE).y;
 	float shade = pattern(uv);
     COLOR = vec4(colormap(shade).rgb, shade);
+	COLOR.a *= alpha;
 }

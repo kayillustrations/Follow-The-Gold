@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=31 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
 [ext_resource type="PackedScene" uid="uid://iqtxh4ptoq52" path="res://objects/despawner.tscn" id="6_2r41h"]
@@ -6,9 +6,8 @@
 [ext_resource type="Script" uid="uid://b8ono3hmwbpux" path="res://scenes/camera_2d.gd" id="6_b121j"]
 [ext_resource type="PackedScene" uid="uid://dh2v0600vkess" path="res://objects/player.tscn" id="7_klq6b"]
 [ext_resource type="Texture2D" uid="uid://h45vksl6ip44" path="res://_imported/temp art/Gold Bars.jpg" id="8_fpun6"]
-[ext_resource type="PackedScene" uid="uid://cpekxessi4apa" path="res://objects/coin.tscn" id="10_olg7q"]
 [ext_resource type="Shader" uid="uid://frv8bfx0u2r3" path="res://scenes/smoke.gdshader" id="11_8iemx"]
-[ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="11_t1rx8"]
+[ext_resource type="PackedScene" uid="uid://b7jfb875f8a2f" path="res://objects/obs_poppy.tscn" id="11_arp2o"]
 [ext_resource type="Shader" uid="uid://cgl1w6eoheebk" path="res://scenes/level.gdshader" id="12_8iemx"]
 [ext_resource type="Shader" uid="uid://cm7eenu2xyfsl" path="res://scenes/distort.gdshader" id="12_64w2a"]
 [ext_resource type="Shader" uid="uid://dripx6sl0evtn" path="res://scenes/combo.gdshader" id="13_64w2a"]
@@ -19,17 +18,19 @@ shader = ExtResource("12_8iemx")
 shader_parameter/distortion_strength = 0.5
 shader_parameter/distortion_radius = 1.0
 
-[sub_resource type="Gradient" id="Gradient_t1rx8"]
-colors = PackedColorArray(0.0594, 0.12573, 0.18, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8iemx"]
-gradient = SubResource("Gradient_t1rx8")
-
 [sub_resource type="Gradient" id="Gradient_olg7q"]
+offsets = PackedFloat32Array(0.112554, 1)
 colors = PackedColorArray(0.79, 0.204083, 0.0869, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_t1rx8"]
 gradient = SubResource("Gradient_olg7q")
+
+[sub_resource type="Gradient" id="Gradient_t1rx8"]
+offsets = PackedFloat32Array(0.021645, 1)
+colors = PackedColorArray(0, 0.18, 0.18, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8iemx"]
+gradient = SubResource("Gradient_t1rx8")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_olg7q"]
 normal = Vector2(0, 1)
@@ -44,9 +45,6 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olg7q"]
 size = Vector2(1382, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_64w2a"]
-size = Vector2(66, 20)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_64w2a"]
 shader = ExtResource("13_64w2a")
@@ -79,6 +77,7 @@ noise = SubResource("FastNoiseLite_t1rx8")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fpun6"]
 shader = ExtResource("11_8iemx")
+shader_parameter/alpha = 1.0
 shader_parameter/base_color = Color(0.73, 0.64459, 0.5986, 1)
 shader_parameter/pos = Vector2(0, 0)
 shader_parameter/textureResolution = 1280.0
@@ -88,12 +87,14 @@ shader_parameter/noise2 = SubResource("NoiseTexture2D_64w2a")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wc255"]
 shader = ExtResource("12_64w2a")
+shader_parameter/alpha = 1.0
 shader_parameter/wave_count = 20.0
 shader_parameter/speed = 1.0
 shader_parameter/height = 0.02
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_arp2o"]
 shader = ExtResource("13_fpun6")
+shader_parameter/alpha = 1.0
 shader_parameter/stretch = 1.0
 shader_parameter/thing1 = 1.0
 shader_parameter/thing2 = 0.6
@@ -104,9 +105,9 @@ shader_parameter/scale = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 material = SubResource("ShaderMaterial_8iemx")
-limit_left = -650
+limit_left = -600
 limit_top = -300
-limit_right = 650
+limit_right = 600
 limit_bottom = 600
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
@@ -143,14 +144,6 @@ position = Vector2(0, 350)
 scale = Vector2(4, 4)
 texture = ExtResource("4_klq6b")
 
-[node name="Brown Gradient" type="Sprite2D" parent="Stationary"]
-modulate = Color(0.62, 0.28768, 0.2046, 1)
-z_index = 100
-position = Vector2(0, -248)
-rotation = 1.5708
-scale = Vector2(4, 22.783)
-texture = SubResource("GradientTexture2D_8iemx")
-
 [node name="Red Gradient" type="Sprite2D" parent="Stationary"]
 modulate = Color(0.62, 0.28768, 0.2046, 1)
 z_index = 100
@@ -158,6 +151,14 @@ position = Vector2(0, -216)
 rotation = 1.5708
 scale = Vector2(4, 22.783)
 texture = SubResource("GradientTexture2D_t1rx8")
+
+[node name="Brown Gradient" type="Sprite2D" parent="Stationary"]
+modulate = Color(0.62, 0.28768, 0.2046, 1)
+z_index = 100
+position = Vector2(0, -248)
+rotation = 1.5708
+scale = Vector2(4, 22.783)
+texture = SubResource("GradientTexture2D_8iemx")
 
 [node name="Brown Gradient2" type="Sprite2D" parent="Stationary"]
 modulate = Color(0.62, 0.28768, 0.2046, 1)
@@ -170,35 +171,35 @@ texture = SubResource("GradientTexture2D_8iemx")
 [node name="Walls" type="Node2D" parent="Stationary"]
 
 [node name="Top Wall" type="StaticBody2D" parent="Stationary/Walls"]
-position = Vector2(2, -361)
+position = Vector2(2, -300)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stationary/Walls/Top Wall"]
 shape = SubResource("WorldBoundaryShape2D_olg7q")
 
 [node name="Bottom Wall" type="StaticBody2D" parent="Stationary/Walls"]
-position = Vector2(0, 607)
+position = Vector2(0, 600)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stationary/Walls/Bottom Wall"]
 shape = SubResource("WorldBoundaryShape2D_ppgk2")
 
-[node name="Back Wall" type="StaticBody2D" parent="Stationary/Walls"]
-position = Vector2(-554, 3)
+[node name="Left Wall" type="StaticBody2D" parent="Stationary/Walls"]
+position = Vector2(-500, 3)
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stationary/Walls/Back Wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stationary/Walls/Left Wall"]
 shape = SubResource("WorldBoundaryShape2D_klq6b")
 
-[node name="Front Wall" type="StaticBody2D" parent="Stationary/Walls"]
-position = Vector2(550, 0)
+[node name="Right Wall" type="StaticBody2D" parent="Stationary/Walls"]
+position = Vector2(500, 0)
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stationary/Walls/Front Wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stationary/Walls/Right Wall"]
 shape = SubResource("WorldBoundaryShape2D_b121j")
 
 [node name="DamagerComp" type="Area2D" parent="Stationary"]
-position = Vector2(2, -361)
+position = Vector2(2, -300)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("6_8c41q")
@@ -224,19 +225,11 @@ y_sort_enabled = true
 [node name="Player" parent="Moving" instance=ExtResource("7_klq6b")]
 position = Vector2(0, 117)
 
-[node name="Obstacle Base" parent="Moving" instance=ExtResource("11_t1rx8")]
-position = Vector2(0, 200)
-
-[node name="CollisionShape3D" parent="Moving/Obstacle Base/Area2D" index="0"]
-position = Vector2(0, -9)
-shape = SubResource("RectangleShape2D_64w2a")
-
-[node name="Coin" parent="Moving" instance=ExtResource("10_olg7q")]
-position = Vector2(317, -17)
+[node name="Poppy" parent="Moving" instance=ExtResource("11_arp2o")]
+position = Vector2(164, 422)
 
 [node name="Shaders" type="CanvasLayer" parent="."]
 layer = 0
-visible = false
 
 [node name="Basic Lense" type="ColorRect" parent="Shaders"]
 material = SubResource("ShaderMaterial_64w2a")
@@ -248,7 +241,6 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Fog" type="ColorRect" parent="Shaders"]
-visible = false
 material = SubResource("ShaderMaterial_fpun6")
 anchors_preset = 15
 anchor_right = 1.0
@@ -261,7 +253,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Distortion" type="ColorRect" parent="Shaders"]
-visible = false
 material = SubResource("ShaderMaterial_wc255")
 anchors_preset = 15
 anchor_right = 1.0
@@ -269,9 +260,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Pink" type="ColorRect" parent="Shaders/Distortion"]
+[node name="Pink" type="ColorRect" parent="Shaders"]
 material = SubResource("ShaderMaterial_arp2o")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -280,5 +270,3 @@ grow_vertical = 2
 
 [connection signal="area_entered" from="Stationary/DamagerComp" to="Stationary/DamagerComp" method="_on_area_entered"]
 [connection signal="area_exited" from="Stationary/DamagerComp" to="Stationary/DamagerComp" method="_on_area_exited"]
-
-[editable path="Moving/Obstacle Base"]

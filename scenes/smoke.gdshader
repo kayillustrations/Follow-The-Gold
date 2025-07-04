@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+uniform float alpha: hint_range(0.0, 1, 0.1);
+
 // Fog shader by Big Boy Games (Jesse)
 uniform vec4 base_color: source_color = vec4(1,1,1,1);
 uniform vec2 pos = vec2(0,0);
@@ -29,4 +31,5 @@ void fragment() {
 	col2.a = sin_range(col2.a/1.1, col2.a, TIME*4.0);
 	
 	COLOR = mix(col1, col2, col2.a)*col;
+	COLOR.a *= alpha;
 }

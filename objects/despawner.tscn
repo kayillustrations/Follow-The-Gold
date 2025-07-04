@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://raquiifoywe5" path="res://objects/despawner.gd" id="1_etx64"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oe2js"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_etx64"]
+size = Vector2(1200, 5)
 
 [node name="Despawner" type="Area2D"]
 collision_layer = 0
@@ -10,6 +11,6 @@ collision_mask = 20
 script = ExtResource("1_etx64")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("WorldBoundaryShape2D_oe2js")
+shape = SubResource("RectangleShape2D_etx64")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

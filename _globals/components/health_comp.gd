@@ -1,12 +1,12 @@
 extends Area2D
 class_name HealthComp
 
-signal damaged
 signal dead
 
-@onready var sprite_2d: Sprite2D = get_parent().find_child("Sprite2D")
-@onready var buffer: Timer = $Buffer
 @export var buffer_time: float = 1
+
+@onready var sprite_2d: Sprite2D = get_parent().find_child("Sprite2D")
+@onready var buffer_timer: Timer = $Buffer
 
 var damaged_color:= Color.INDIAN_RED
 
@@ -17,11 +17,9 @@ func ChangeHealth(damage:int):
 		dead.emit()
 		sprite_2d.modulate = Color.DIM_GRAY
 	else: 
-		damaged.emit()
-		buffer.start(buffer_time)
+		SignalBus.isDamaged.emit(false)
+		buffer_timer.start(buffer_time)
 		sprite_color(false)
-	set_deferred("monitorable",false)
-	SignalBus.update_ui.emit()
 
 func CheckForObstacle():
 	var obstacles:Array= get_overlapping_areas()
@@ -29,11 +27,24 @@ func CheckForObstacle():
 		obstacles[0]._on_area_entered(self)
 
 func ApplyEffect(effect):
+	var effect_timer:= Timer.new()
+	add_child(effect_timer)
+	set_deferred("monitorable",false)
 	match effect:
-		0: ChangeHealth(1)
-		1:pass
-		2:pass
-		3:pass
+		SignalBus.Effects.DAMAGE:
+			ChangeHealth(1)
+		SignalBus.Effects.SLOWNESS:
+			Slowness(effect_timer)
+		SignalBus.Effects.DISORIENT:
+			Disorient(effect_timer)
+		SignalBus.Effects.STUN:
+			Stun(effect_timer)
+		SignalBus.Effects.BLINDED:
+			Blind(effect_timer)
+	SignalBus.update_ui.emit()
+	await buffer_timer.timeout
+	set_deferred("monitorable",true)
+	CheckForObstacle()
 	pass
 
 func sprite_color(isColored:bool):
@@ -44,9 +55,42 @@ func sprite_color(isColored:bool):
 	
 	await tween.finished
 	
-	if buffer.is_stopped():
+	if buffer_timer.is_stopped():
 		sprite_2d.modulate = Color.WHITE
-		set_deferred("monitorable",true)
-		CheckForObstacle()
+		SignalBus.isDamaged.emit(false)
 	else:
 		sprite_color(!isColored)
+
+func Slowness(timer:Timer):
+	SignalBus.isSlowed.emit(true)
+	GameManager.player_speed *= .75
+	timer.start(1)
+	
+	await timer.timeout
+	SignalBus.isSlowed.emit(false)
+	GameManager.player_speed = GameManager.max_current_speed
+	timer.queue_free()
+
+func Disorient(timer:Timer):
+	SignalBus.isDisoriented.emit(true)
+	timer.start(1.5)
+	
+	await timer.timeout
+	SignalBus.isDisoriented.emit(false)
+	timer.queue_free()
+
+func Stun(timer:Timer):
+	SignalBus.isStunned.emit(true)
+	timer.start(.5)
+	
+	await timer.timeout
+	SignalBus.isStunned.emit(false)
+	timer.queue_free()
+
+func Blind (timer:Timer):
+	SignalBus.isBlinded.emit(true)
+	timer.start(1)
+	
+	await timer.timeout
+	SignalBus.isBlinded.emit(false)
+	timer.queue_free()
