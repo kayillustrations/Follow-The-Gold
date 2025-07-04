@@ -1,6 +1,5 @@
 extends Area2D
 
-
 @export var effect: SignalBus.Effects
 @onready var parent:=get_parent()
 

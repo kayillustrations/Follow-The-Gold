@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7jfb875f8a2f"]
+
+[ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_i24vo"]
+[ext_resource type="Script" uid="uid://eve848u1a0tk" path="res://objects/obs_poppy.gd" id="2_c4wqy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7c8k3"]
+
+[node name="Poppy" instance=ExtResource("1_i24vo")]
+script = ExtResource("2_c4wqy")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -14)
+scale = Vector2(0.25, 0.258)
+region_rect = Rect2(1834.19, 2611.23, 68.3776, 105.322)
+
+[node name="Area2D" parent="." index="3"]
+effect = 2
+
+[node name="CollisionShape3D" parent="Area2D" index="0"]
+position = Vector2(1, -14)
+shape = SubResource("CapsuleShape2D_7c8k3")

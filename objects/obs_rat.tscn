@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjvaeesg11ow8"]
+
+[ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_roogu"]
+[ext_resource type="Script" uid="uid://b7cf0jrk81444" path="res://objects/obs_rat.gd" id="2_al31q"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yg17f"]
+
+[node name="Rat" instance=ExtResource("1_roogu")]
+script = ExtResource("2_al31q")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.25, 0.258)
+region_rect = Rect2(1406.49, 2347.6, 124.01, 96.8455)
+
+[node name="CollisionShape3D" parent="Area2D" index="0"]
+position = Vector2(-1, -7)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yg17f")
