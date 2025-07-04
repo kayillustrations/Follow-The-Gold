@@ -29,6 +29,10 @@ window/size/viewport_width=1200
 window/size/viewport_height=900
 window/stretch/mode="viewport"
 
+[dotnet]
+
+project/assembly_name="Follow The Gold"
+
 [input]
 
 debug={
