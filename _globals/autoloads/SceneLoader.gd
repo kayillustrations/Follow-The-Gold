@@ -46,7 +46,7 @@ func load_scene(path_name: String):
 		#return 1
 	#transition fade in
 	#await transition_ended
-	get_tree().change_scene_to_file(new_scene_path)
+	get_tree().change_scene_to_file(path_name)
 	current_scene_path = new_scene_path
 	#transition fade out
 	#await transition_ended
@@ -60,9 +60,9 @@ func LoadGame():
 	#else: GameSave.LoadGame()
 	load_scene(level_path)
 	DeleteAllTemp()
+	GameManager.isStarted = false
+	GameManager.PauseGame(true)
 	GameManager.ResetDailyStats()
-	if !GameManager.isPaused:
-		GameManager.PauseGame(true)
 	if !SceneLoader.ui.visible:
 		SceneLoader.UISceneActivate(SceneLoader.ui)
 	pass

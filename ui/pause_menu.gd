@@ -7,12 +7,11 @@ func _on_options_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	SceneLoader.load_scene(SceneLoader.menu_path)
-	SceneLoader.UISceneActivate(SceneLoader.ui)
-	SceneLoader.DeleteAllTemp()
 	pass # Replace with function body.
 
 func _on_restart_pressed() -> void:
 	SceneLoader.LoadGame()
+	GameManager.ResetDailyStats()
 	SceneLoader.DeleteTempScene(self)
 	pass # Replace with function body.
 

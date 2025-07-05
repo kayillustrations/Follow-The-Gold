@@ -25,8 +25,6 @@ var b_movement:float = -150
 var data: Dictionary
 var all_items: Array
 #---------------------
-func _ready() -> void:
-	pass
 
 func Start():
 	PauseGame(false)
@@ -40,7 +38,7 @@ func PauseGame(b: bool):
 	pass
 
 func ResetDailyStats():
-	current_time = [0,0,0]
+	SceneLoader.ui.ClearTimer()
 	current_health = max_health
 	obstacles_hit = 0
 	coins_collected = 0

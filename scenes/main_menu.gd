@@ -1,5 +1,10 @@
 extends Control
 
+func _ready() -> void:
+	if SceneLoader.ui.visible:
+		SceneLoader.UISceneActivate(SceneLoader.ui)
+		SceneLoader.ui.timer.stop()
+	SceneLoader.DeleteAllTemp()
 
 func _on_start_pressed() -> void:
 	SceneLoader.LoadGame()

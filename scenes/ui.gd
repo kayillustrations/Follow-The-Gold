@@ -44,6 +44,10 @@ func _update_coins():
 	coins.text = str(GameManager.coins_collected)
 	pass
 
+func ClearTimer():
+	GameManager.current_time = [0,0,0]
+	timer.stop()
+	_update_time()
 
 func PauseTimer(isPaused:bool):
 	timer.paused = isPaused
@@ -58,6 +62,3 @@ func CheckTimeArray(current_int):
 		CheckTimeArray(current_int+1)
 	_update_time()
 	timer.start(.1)
-
-func _on_restart_pressed() -> void:
-	SceneLoader.LoadGame()
