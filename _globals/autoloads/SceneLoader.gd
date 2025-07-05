@@ -39,11 +39,11 @@ func _process(_delta: float) -> void:
 		else: AddTempScene(pause_menu)
 
 func load_scene(path_name: String):
-	if FileAccess.file_exists(path_name):
-		new_scene_path = path_name
-	else:
-		printerr("scene not found")
-		return 1
+	#if FileAccess.file_exists(path_name):
+		#new_scene_path = path_name
+	#else:
+		#printerr("scene not found")
+		#return 1
 	#transition fade in
 	#await transition_ended
 	get_tree().change_scene_to_file(new_scene_path)
@@ -58,7 +58,7 @@ func LoadGame():
 		#GameSave.SaveGame()
 		#pass
 	#else: GameSave.LoadGame()
-	get_tree().change_scene_to_file(level_path)
+	load_scene(level_path)
 	DeleteAllTemp()
 	GameManager.ResetDailyStats()
 	if !GameManager.isPaused:
