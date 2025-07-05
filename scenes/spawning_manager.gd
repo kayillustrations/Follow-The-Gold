@@ -16,8 +16,11 @@ var obstacle_wait: Array[float]
 @onready var sewer_timer: Timer = $"Sewer Timer"
 var sewer_wait = 2
 
+@onready var enemy_timer: Timer = $"Enemy Timer"
+
 func _ready() -> void:
 	SignalBus.GameStarted.connect(StartTimers)
+	SignalBus.GamePaused.connect(PauseTimers)
 	pass
 
 func StartTimers():
@@ -25,6 +28,14 @@ func StartTimers():
 	obs_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1]))
 	coin_timer.start(randf_range(coin_wait[0],coin_wait[1]))
 	sewer_timer.start(sewer_wait)
+	#enemy_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1]))
+	
+
+func PauseTimers(isPaused:bool):
+	obs_timer.paused = isPaused
+	coin_timer.paused = isPaused
+	sewer_timer.paused = isPaused
+	#enemy_timer.paused = isPaused
 
 func ObstacleRate():
 	if GameManager.current_time[2] > 1: #over 1min
@@ -105,5 +116,5 @@ func _on_obs_timer_timeout() -> void:
 func _on_enemy_timer_timeout() -> void:
 	Spawn(randi_range(SignalBus.Obstacles.RAT,SignalBus.Obstacles.CROW))
 	EnemyRate()
-	obs_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1]))
+	enemy_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1]))
 	pass # Replace with function body.

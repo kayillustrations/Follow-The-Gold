@@ -34,7 +34,7 @@ func ApplyEffect(effect):
 			sprite_color(false,damaged_color)
 			ChangeHealth(1)
 		SignalBus.Effects.SLOWNESS:
-			sprite_color(false,Color.SKY_BLUE)
+			sprite_color(false,Color.CADET_BLUE)
 			Slowness(effect_timer)
 		SignalBus.Effects.DISORIENT:
 			sprite_color(false,Color.PINK)
@@ -55,7 +55,7 @@ func sprite_color(isColored:bool,color:Color):
 	var tween:= create_tween()
 	if isColored:
 		tween.tween_property(sprite_2d,"modulate",Color.WHITE,.25)
-	else: tween.tween_property(sprite_2d,"modulate",damaged_color,.25)
+	else: tween.tween_property(sprite_2d,"modulate",color,.25)
 	
 	await tween.finished
 	

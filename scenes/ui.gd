@@ -13,6 +13,7 @@ extends Control
 
 func _ready() -> void:
 	SignalBus.update_ui.connect(_update_all)
+	SignalBus.GamePaused.connect(PauseTimer)
 
 func _update_all():
 	_update_health()
@@ -44,6 +45,9 @@ func _update_coins():
 	pass
 
 
+func PauseTimer(isPaused:bool):
+	timer.paused = isPaused
+
 func _on_timer_timeout() -> void:
 	CheckTimeArray(0)
 
@@ -54,7 +58,6 @@ func CheckTimeArray(current_int):
 		CheckTimeArray(current_int+1)
 	_update_time()
 	timer.start(.1)
-
 
 func _on_restart_pressed() -> void:
 	SceneLoader.LoadGame()

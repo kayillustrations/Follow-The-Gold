@@ -10,7 +10,6 @@ extends Control
 @onready var controls: PackedScene = preload("res://ui/controls.tscn")
 @onready var ui: Control = $"UI Scenes/UI"
 
-
 @onready var ui_parent: CanvasLayer = $"UI Scenes"
 @onready var temp_parent: CanvasLayer = $"Temp Scenes"
 @onready var debug_menu: Control = $"UI Scenes/Debug"
@@ -31,8 +30,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if !GameManager.isStarted:
-		if Input.is_anything_pressed():
-			GameManager.Start()
+		return
 	if Input.is_action_just_pressed("debug") && GameSave.debug_mode:
 		UISceneActivate(debug_menu)
 	if Input.is_action_just_pressed("exit"):
@@ -60,7 +58,7 @@ func LoadGame():
 		#GameSave.SaveGame()
 		#pass
 	#else: GameSave.LoadGame()
-	load_scene(level_path)
+	get_tree().change_scene_to_file(level_path)
 	DeleteAllTemp()
 	GameManager.ResetDailyStats()
 	if !GameManager.isPaused:
@@ -90,15 +88,17 @@ func AddTempScene(scene:PackedScene):
 	return scene_instance
 
 func DeleteTempScene(scene_self:Node):
-	scene_self.queue_free()
-	var children = temp_parent.get_children()
-	if children.size() > 0:
-		currentTemp = children[0]
-	else: 
+	if scene_self.name == "Pause":
 		inTempScene = false
 		temp_parent.layer = 1
 		currentTemp = null
 		GameManager.PauseGame(false)
+	else:
+		var children = temp_parent.get_children()
+		if children.size() > 0:
+			currentTemp = children[children.size()-2]
+	
+	scene_self.queue_free()
 	print(currentTemp)
 
 func DeleteAllTemp():

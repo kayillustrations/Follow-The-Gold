@@ -32,6 +32,7 @@ func Start():
 	PauseGame(false)
 	SceneLoader.ui.timer.start(.1)
 	SignalBus.GameStarted.emit()
+	isStarted = true
 
 func PauseGame(b: bool):
 	isPaused = b

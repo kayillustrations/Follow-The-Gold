@@ -23,6 +23,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if !GameManager.isStarted:
+		if Input.is_anything_pressed():
+			GameManager.Start()
 	if !GameManager.isPaused:
 		position = GameManager.player.global_position
 

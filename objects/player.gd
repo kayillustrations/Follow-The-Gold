@@ -25,19 +25,19 @@ func _ready() -> void:
 	SignalBus.isSlowed.connect(edit_isSlowed)
 
 func _process(delta) -> void:
-	if !GameManager.isPaused:
-		position = GameManager.player.global_position
+	if GameManager.isPaused:
+		return
 	
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("up"):
 		if direction_y != 1:
 			direction_y += 1
-	if Input.is_action_just_pressed("ui_down"):
+	if Input.is_action_just_pressed("down"):
 		if direction_y != -1:
 			direction_y -= 1
-	if Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("right"):
 		if direction_x != 1:
 			direction_x += .5
-	if Input.is_action_just_pressed("ui_left"):
+	if Input.is_action_just_pressed("left"):
 		if direction_x != -1:
 			direction_x -= .5
 	if Input.is_action_just_pressed("Boost"):
@@ -46,7 +46,8 @@ func _process(delta) -> void:
 			cooldown.start(1)
 
 func _physics_process(delta: float) -> void:
-	
+	if GameManager.isPaused:
+		return
 	AxisMovement()
 	pass
 
