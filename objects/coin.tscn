@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpekxessi4apa"]
+[gd_scene load_steps=6 format=3 uid="uid://cpekxessi4apa"]
 
 [ext_resource type="Script" uid="uid://blmdpjw4smksr" path="res://scenes/coin_pickup.gd" id="1_je4cw"]
 [ext_resource type="Texture2D" uid="uid://bl1cvj2ygnhgj" path="res://_imported/temp art/coin.png" id="2_1o7s2"]
+[ext_resource type="Script" uid="uid://crb10ba5tswnq" path="res://objects/area_2d.gd" id="3_1o7s2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_64w2a"]
 
@@ -25,8 +26,10 @@ shape = SubResource("CircleShape2D_64w2a")
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 2
+script = ExtResource("3_1o7s2")
 
 [node name="CollisionShape3D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_fpun6")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

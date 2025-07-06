@@ -91,7 +91,6 @@ func Stun(timer:Timer):
 	timer.queue_free()
 
 func Blind (timer:Timer):
-	print("Blind")
 	SignalBus.isBlinded.emit(true)
 	timer.start(1.5)
 	

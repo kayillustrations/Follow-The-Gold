@@ -1,18 +1,77 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjvaeesg11ow8"]
+[gd_scene load_steps=6 format=3 uid="uid://cjvaeesg11ow8"]
 
-[ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_roogu"]
 [ext_resource type="Script" uid="uid://b7cf0jrk81444" path="res://objects/obs_rat.gd" id="2_al31q"]
+[ext_resource type="Texture2D" uid="uid://rl4qhoiwaal" path="res://_imported/temp art/particles.png" id="3_1xfot"]
+[ext_resource type="Script" uid="uid://dhu2arpfxq6j5" path="res://_globals/components/damager_comp.gd" id="3_tfsen"]
+
+[sub_resource type="Curve2D" id="Curve2D_3xmd1"]
+_data = {
+"points": PackedVector2Array(-1672.52, 51.9799, 1672.52, -51.9799, 0, 0, 49.8285, 361.322, -49.8285, -361.322, 2323.33, -520, 274.939, 717.629, -274.939, -717.629, 330, -1050, -680.86, 51.1821, 680.86, -51.1821, 2073.33, -2013.33)
+}
+point_count = 4
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yg17f"]
 
-[node name="Rat" instance=ExtResource("1_roogu")]
+[node name="Rat" type="StaticBody2D"]
+z_index = 1
+z_as_relative = false
+scale = Vector2(0.3, 0.3)
 script = ExtResource("2_al31q")
 
-[node name="Sprite2D" parent="." index="0"]
-scale = Vector2(0.25, 0.258)
-region_rect = Rect2(1406.49, 2347.6, 124.01, 96.8455)
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_3xmd1")
 
-[node name="CollisionShape3D" parent="Area2D" index="0"]
-position = Vector2(-1, -7)
-rotation = 1.5708
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = -0.0310688
+loop = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+unique_name_in_owner = true
+rotation = 1.64934
+scale = Vector2(2, 2)
+skew = -0.0238584
+texture = ExtResource("3_1xfot")
+region_enabled = true
+region_rect = Rect2(-4.08563, 101.914, 42.4493, 61.6078)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Path2D/PathFollow2D"]
+unique_name_in_owner = true
+position = Vector2(-3.01164, 2.53922)
+rotation = 1.04028
+scale = Vector2(8.5511, 8.75746)
+skew = 0.0361742
+emitting = false
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
+unique_name_in_owner = true
+position = Vector2(-3.01164, 2.53922)
+rotation = 1.04028
+scale = Vector2(8.5511, 8.75746)
+skew = 0.0361742
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_tfsen")
+
+[node name="CollisionShape3D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
+rotation = 0.71733
 shape = SubResource("CapsuleShape2D_yg17f")
+
+[node name="Area2D2" type="Area2D" parent="Path2D/PathFollow2D"]
+unique_name_in_owner = true
+position = Vector2(-3.01164, 2.53922)
+rotation = 1.04028
+scale = Vector2(8.5511, 8.75746)
+skew = 0.0361742
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_tfsen")
+effect = 3
+
+[node name="CollisionShape3D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D2"]
+rotation = 0.71733
+shape = SubResource("CapsuleShape2D_yg17f")
+
+[connection signal="area_entered" from="Path2D/PathFollow2D/Area2D" to="Path2D/PathFollow2D/Area2D" method="_on_area_entered"]
+[connection signal="area_exited" from="Path2D/PathFollow2D/Area2D" to="Path2D/PathFollow2D/Area2D" method="_on_area_exited"]
+[connection signal="area_entered" from="Path2D/PathFollow2D/Area2D2" to="Path2D/PathFollow2D/Area2D2" method="_on_area_entered"]
+[connection signal="area_exited" from="Path2D/PathFollow2D/Area2D2" to="Path2D/PathFollow2D/Area2D2" method="_on_area_exited"]

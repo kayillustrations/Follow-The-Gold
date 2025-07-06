@@ -9,6 +9,7 @@ z_as_relative = false
 scale = Vector2(2, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, -7)
 scale = Vector2(0.122677, 0.127273)
 texture = ExtResource("2_0g2q7")
@@ -18,9 +19,11 @@ region_rect = Rect2(315, 1609, 538, 110.979)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
 emitting = false
 
 [node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("3_eehvm")

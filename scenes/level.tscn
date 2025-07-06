@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=35 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
 [ext_resource type="PackedScene" uid="uid://iqtxh4ptoq52" path="res://objects/despawner.tscn" id="6_2r41h"]
@@ -49,13 +49,10 @@ normal = Vector2(-1, 0)
 size = Vector2(1382, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wc255"]
-size = Vector2(126, 20)
+size = Vector2(126, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arp2o"]
-size = Vector2(957, 50)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8iemx"]
-size = Vector2(20, 100)
+size = Vector2(900, 50)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_64w2a"]
 shader = ExtResource("13_64w2a")
@@ -243,11 +240,7 @@ script = ExtResource("10_fpun6")
 [node name="Sidewalks" type="Node2D" parent="Spawning Manager"]
 
 [node name="Left" type="CollisionShape2D" parent="Spawning Manager/Sidewalks"]
-position = Vector2(-425, 0)
-shape = SubResource("RectangleShape2D_wc255")
-
-[node name="Right" type="CollisionShape2D" parent="Spawning Manager/Sidewalks"]
-position = Vector2(426, 0)
+position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_wc255")
 
 [node name="Sewers" type="Node2D" parent="Spawning Manager"]
@@ -255,10 +248,10 @@ shape = SubResource("RectangleShape2D_wc255")
 [node name="Marker2D" type="Marker2D" parent="Spawning Manager/Sewers"]
 
 [node name="Marker2D2" type="Marker2D" parent="Spawning Manager/Sewers"]
-position = Vector2(-363, 0)
+position = Vector2(-325, 0)
 
 [node name="Marker2D3" type="Marker2D" parent="Spawning Manager/Sewers"]
-position = Vector2(363, 0)
+position = Vector2(325, 0)
 
 [node name="Inside Bounds" type="Node2D" parent="Spawning Manager"]
 
@@ -267,13 +260,11 @@ shape = SubResource("RectangleShape2D_arp2o")
 
 [node name="Outside Bounds" type="Node2D" parent="Spawning Manager"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawning Manager/Outside Bounds"]
-position = Vector2(-550, 0)
-shape = SubResource("RectangleShape2D_8iemx")
+[node name="Marker2D" type="Marker2D" parent="Spawning Manager/Outside Bounds"]
+position = Vector2(-500, 0)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Spawning Manager/Outside Bounds"]
-position = Vector2(550, 0)
-shape = SubResource("RectangleShape2D_8iemx")
+[node name="Marker2D2" type="Marker2D" parent="Spawning Manager/Outside Bounds"]
+position = Vector2(500, 0)
 
 [node name="Coin Timer" type="Timer" parent="Spawning Manager"]
 

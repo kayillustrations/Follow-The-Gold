@@ -16,6 +16,9 @@ var obstacle_wait: Array[float]
 @onready var sewer_timer: Timer = $"Sewer Timer"
 var sewer_wait = 2
 
+var offset:= Vector2(900/2,0)
+var last_marker:Marker2D
+
 @onready var enemy_timer: Timer = $"Enemy Timer"
 
 func _ready() -> void:
@@ -28,14 +31,14 @@ func StartTimers():
 	obs_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1]))
 	coin_timer.start(randf_range(coin_wait[0],coin_wait[1]))
 	sewer_timer.start(sewer_wait)
-	#enemy_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1]))
+	enemy_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1]))
 	
 
 func PauseTimers(isPaused:bool):
 	obs_timer.paused = isPaused
 	coin_timer.paused = isPaused
 	sewer_timer.paused = isPaused
-	#enemy_timer.paused = isPaused
+	enemy_timer.paused = isPaused
 
 func ObstacleRate():
 	if GameManager.current_time[2] > 1: #over 1min
@@ -60,32 +63,33 @@ func Spawn(obstacle:int):
 	var instance:PackedScene
 	match obstacle:
 		SignalBus.Obstacles.COIN:
-			location = ChooseChild(inside_bounds)
+			location = ChooseChild(inside_bounds) - offset
 			instance = preload("res://objects/coin.tscn")
 		SignalBus.Obstacles.PUDDLE:
-			location = ChooseChild(inside_bounds)
+			location = ChooseChild(inside_bounds) - offset
 			instance = preload("res://objects/obs_puddle.tscn")
 		SignalBus.Obstacles.SEWER:
 			location = ChooseChild(sewers)
 			instance = preload("res://objects/obs_sewer.tscn")
 		SignalBus.Obstacles.POPPY:
-			location = ChooseChild(sidewalks)
+			location = ChooseChild(sidewalks) + Vector2((350 * [-1,1].pick_random()),0)
 			instance = preload("res://objects/obs_poppy.tscn")
 		SignalBus.Obstacles.RAT:
-			location = ChooseChild(outside_bounds)
+			location = outside_bounds.get_children().pick_random().position
 			instance = preload("res://objects/obs_rat.tscn")
 		SignalBus.Obstacles.CROW:
+			location = ChooseChild(inside_bounds) - offset
 			instance = preload("res://objects/obs_crow.tscn")
-			location = ChooseChild(inside_bounds)
 	location.y += position.y
-	
-	var temp_obs = instance.instantiate()
+	var temp_obs:Node2D = instance.instantiate()
 	temp_obs.position = location
 	moving.add_child(temp_obs)
-	pass
+	if temp_obs.get_child(0).name == "Path2D" && location.x > 0: 
+		temp_obs.scale.x *= -1
+		print("right")
 
 func ChooseInsideShape(shape:CollisionShape2D):
-	var rand_x = randf_range(0, shape.shape.size.x) - (957.0/2)
+	var rand_x = randf_range(0, shape.shape.size.x)
 	var rand_y = randf_range(0, shape.shape.size.y)
 	return Vector2(rand_x,rand_y)
 
@@ -93,6 +97,9 @@ func ChooseChild(parent):
 	var children:Array = parent.get_children()
 	var chosen = children.pick_random()
 	if chosen.is_class("Marker2D"):
+		while chosen == last_marker:
+			chosen = children.pick_random()
+		last_marker = chosen
 		return chosen.position
 	else: 
 		return ChooseInsideShape(chosen)
@@ -116,5 +123,5 @@ func _on_obs_timer_timeout() -> void:
 func _on_enemy_timer_timeout() -> void:
 	Spawn(randi_range(SignalBus.Obstacles.RAT,SignalBus.Obstacles.CROW))
 	EnemyRate()
-	enemy_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1]))
+	enemy_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1])*2)
 	pass # Replace with function body.

@@ -1,17 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://bj06xa2kbeinh"]
+[gd_scene load_steps=6 format=3 uid="uid://bj06xa2kbeinh"]
 
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_q3604"]
 [ext_resource type="Script" uid="uid://s7j7gjthofv5" path="res://objects/obs_crow.gd" id="2_0tqeh"]
 [ext_resource type="Texture2D" uid="uid://rl4qhoiwaal" path="res://_imported/temp art/particles.png" id="2_yfxm3"]
+[ext_resource type="Script" uid="uid://dhu2arpfxq6j5" path="res://_globals/components/damager_comp.gd" id="4_lfxj6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_346rs"]
-size = Vector2(8, 17)
+size = Vector2(13, 31)
 
 [node name="Crow" instance=ExtResource("1_q3604")]
 script = ExtResource("2_0tqeh")
 
 [node name="Sprite2D" parent="." index="0"]
-rotation = 3.14159
+position = Vector2(-1.5, -7)
+rotation = 2.96706
+scale = Vector2(0.25, 0.258)
 texture = ExtResource("2_yfxm3")
 region_rect = Rect2(165.668, -2.13332, 73.3335, 130.534)
 
@@ -19,5 +22,17 @@ region_rect = Rect2(165.668, -2.13332, 73.3335, 130.534)
 effect = 3
 
 [node name="CollisionShape3D" parent="Area2D" index="0"]
-position = Vector2(0, -7.5)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_346rs")
+
+[node name="Area2D2" type="Area2D" parent="." index="4"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("4_lfxj6")
+
+[node name="CollisionShape3D" type="CollisionShape2D" parent="Area2D2" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_346rs")
+
+[connection signal="area_entered" from="Area2D2" to="Area2D2" method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D2" to="Area2D2" method="_on_area_exited"]
