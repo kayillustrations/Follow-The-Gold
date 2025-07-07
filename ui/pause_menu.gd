@@ -10,9 +10,8 @@ func _on_quit_pressed() -> void:
 	pass # Replace with function body.
 
 func _on_restart_pressed() -> void:
-	SceneLoader.LoadGame()
-	GameManager.ResetDailyStats()
-	SceneLoader.DeleteTempScene(self)
+	SceneLoader.DeleteAllTemp()
+	GameManager.ResetGame()
 	pass # Replace with function body.
 
 func _on_button_pressed() -> void:

@@ -60,9 +60,7 @@ func LoadGame():
 	#else: GameSave.LoadGame()
 	load_scene(level_path)
 	DeleteAllTemp()
-	GameManager.isStarted = false
-	GameManager.PauseGame(true)
-	GameManager.ResetDailyStats()
+	GameManager.ResetGame()
 	if !SceneLoader.ui.visible:
 		SceneLoader.UISceneActivate(SceneLoader.ui)
 	pass

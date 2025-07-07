@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var screen_dimensions = Vector2(get_viewport().size)
 var player_position_uv : Vector2
+var player_starting_position : Vector2
 
 const JUMP_VELOCITY = -400.0
 
@@ -21,6 +22,7 @@ var isBoosted:bool = false
 
 func _ready() -> void:
 	GameManager.player = self
+	player_starting_position = position
 	SignalBus.isStunned.connect(edit_canMove)
 	SignalBus.isSlowed.connect(edit_isSlowed)
 
@@ -50,6 +52,12 @@ func _physics_process(delta: float) -> void:
 		return
 	AxisMovement()
 	pass
+
+func ResetPlayer():
+	direction_x = 0
+	direction_y = 0
+	position = player_starting_position
+	velocity = Vector2.ZERO
 
 func AxisMovement():
 	if direction_x == 0:

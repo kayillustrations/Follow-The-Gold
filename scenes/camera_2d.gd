@@ -10,31 +10,33 @@ extends Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	shaders.visible = true
-	fog.visible = false
-	distortion.visible = false
-	pink.visible = false
 	SignalBus.isDisoriented.connect(Disorient)
 	SignalBus.isBlinded.connect(Blind)
 	SignalBus.GamePaused.connect(Parallax)
-	SignalBus.GameStarted.connect(DeleteControls)
-	Parallax(!GameManager.isStarted)
-	pass # Replace with function body.
+	SignalBus.GameStarted.connect(Controls)
+	TurnOffShaders()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !GameManager.isStarted:
 		if Input.is_anything_pressed():
-			GameManager.Start()
+			GameManager.StartedGame(true)
 	if !GameManager.isPaused:
 		position = GameManager.player.global_position
 
-func DeleteControls():
-	$"../Controls".visible = false
+func TurnOffShaders():
+	shaders.visible = true
+	fog.visible = false
+	distortion.visible = false
+	pink.visible = false
+	Parallax(true)
 
-func Parallax(b:bool):
+func Controls(b:bool):
+	$"../Controls".visible = !b
+
+func Parallax(isPaused:bool):
 	var scroll_speed
-	if b: scroll_speed = 0
+	if isPaused: scroll_speed = 0
 	else: scroll_speed = -150
 	for i in parallaxes.size():
 		parallaxes[i].autoscroll.y = scroll_speed

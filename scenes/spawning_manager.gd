@@ -26,7 +26,14 @@ func _ready() -> void:
 	SignalBus.GamePaused.connect(PauseTimers)
 	pass
 
-func StartTimers():
+func StartTimers(isStarted:bool):
+	if !isStarted:
+		GameManager.player.ResetPlayer()
+		var children = moving.get_children()
+		for i in children.size():
+			if !children[i].name == "Player":
+				children[i].queue_free()
+		return
 	ObstacleRate()
 	obs_timer.start(randf_range(obstacle_wait[0],obstacle_wait[1]))
 	coin_timer.start(randf_range(coin_wait[0],coin_wait[1]))

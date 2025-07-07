@@ -46,7 +46,7 @@ func _update_coins():
 
 func ClearTimer():
 	GameManager.current_time = [0,0,0]
-	timer.stop()
+	timer.start(.1)
 	_update_time()
 
 func PauseTimer(isPaused:bool):

@@ -26,23 +26,24 @@ var data: Dictionary
 var all_items: Array
 #---------------------
 
-func Start():
-	PauseGame(false)
-	SceneLoader.ui.timer.start(.1)
-	SignalBus.GameStarted.emit()
-	isStarted = true
+
+func StartedGame(b:bool):
+	isStarted = b
+	SignalBus.GameStarted.emit(b)
+	PauseGame(!b)
 
 func PauseGame(b: bool):
 	isPaused = b
 	SignalBus.GamePaused.emit(b)
 	pass
 
-func ResetDailyStats():
-	SceneLoader.ui.ClearTimer()
+func ResetGame():
 	current_health = max_health
 	obstacles_hit = 0
 	coins_collected = 0
 	coins_spawned = 0
 	obstacles_spawned = 0
+	SceneLoader.ui.ClearTimer()
 	SignalBus.update_ui.emit()
+	StartedGame(false)
 	pass
