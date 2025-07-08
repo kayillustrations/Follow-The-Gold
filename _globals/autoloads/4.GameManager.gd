@@ -15,6 +15,7 @@ var current_health: int
 var obstacles_hit: int
 var coins_collected: int
 var current_time: Array = [0,0,0] #milliseconds, seconds, minutes
+var total_time_milli: int
 
 var coins_spawned: int
 var obstacles_spawned: int
@@ -50,6 +51,7 @@ func ResetGame():
 	coins_collected = 0
 	coins_spawned = 0
 	obstacles_spawned = 0
+	total_time_milli = 0
 	SceneLoader.ui.ClearTimer()
 	SignalBus.update_ui.emit()
 	StartedGame(false)

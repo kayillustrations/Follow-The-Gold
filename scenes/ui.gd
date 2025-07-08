@@ -53,6 +53,7 @@ func PauseTimer(isPaused:bool):
 	timer.paused = isPaused
 
 func _on_timer_timeout() -> void:
+	GameManager.total_time_milli += 1
 	CheckTimeArray(0)
 
 func CheckTimeArray(current_int):

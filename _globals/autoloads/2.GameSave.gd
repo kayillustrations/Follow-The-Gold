@@ -10,6 +10,8 @@ var settings_config:ConfigFile = ConfigFile.new()
 var volume_music:float = 1
 var volume_sfx:float = 1
 
+var highscore: int = 0
+
 #------Settings------
 var debug_mode:bool = true
 var newGame: bool = false
@@ -22,10 +24,13 @@ func _ready() -> void:
 		SaveSettings()
 	if !CheckSaveFolder("save"): #if no game save(s), disable load
 		newGame = true
+		SaveGame()
+	LoadGame()
 	LoadSettings()
 
 func SaveGame(): #may be able to add multiple loads/saves in the future
 	##SAVE: game_config.set_value("category",variable", variable)
+	game_config.set_value("0","highscore",highscore)
 	
 	game_config.save(SCENE_SAVE_FOLDER+"save.cfg")
 	pass
@@ -34,9 +39,10 @@ func LoadGame():
 	var err = game_config.load(SCENE_SAVE_FOLDER+"save.cfg")
 	if err == OK:
 		##LOAD: variable = config.get_value("category","variable")
+		highscore = game_config.get_value("0","highscore")
 		pass
 	
-	ConfigInventory()
+	#ConfigInventory()
 	#configure game
 
 func SaveSettings():
