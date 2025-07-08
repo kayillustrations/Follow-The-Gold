@@ -34,6 +34,7 @@ func _ready() -> void:
 
 func _process(delta) -> void:
 	if GameManager.isPaused:
+		PauseWalk(true)
 		return
 	
 	if Input.is_action_just_pressed("up"):
