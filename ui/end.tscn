@@ -1,0 +1,186 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxbdyufawa35i"]
+
+[ext_resource type="Script" uid="uid://bxw8ttkp2klyr" path="res://ui/end.gd" id="1_0ot1k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_km5i3"]
+bg_color = Color(0.54, 0.29304, 0.2754, 1)
+
+[node name="End" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ot1k")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 151.0
+offset_top = 107.0
+offset_right = -151.0
+offset_bottom = -107.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.68, 0.424433, 0.4012, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -152.0
+offset_right = 250.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Stats" type="Panel" parent="ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_km5i3")
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/VBoxContainer/Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Labels" type="VBoxContainer" parent="ColorRect/VBoxContainer/Stats/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Time" type="Label" parent="ColorRect/VBoxContainer/Stats/MarginContainer/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Time:"
+horizontal_alignment = 2
+
+[node name="Coins" type="Label" parent="ColorRect/VBoxContainer/Stats/MarginContainer/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Coins:"
+horizontal_alignment = 2
+
+[node name="Obstacles" type="Label" parent="ColorRect/VBoxContainer/Stats/MarginContainer/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Objects Hit:"
+horizontal_alignment = 2
+
+[node name="Values" type="VBoxContainer" parent="ColorRect/VBoxContainer/Stats/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Time" type="Label" parent="ColorRect/VBoxContainer/Stats/MarginContainer/Values"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "####"
+horizontal_alignment = 2
+
+[node name="Coins" type="Label" parent="ColorRect/VBoxContainer/Stats/MarginContainer/Values"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "####"
+horizontal_alignment = 2
+
+[node name="Obstacles" type="Label" parent="ColorRect/VBoxContainer/Stats/MarginContainer/Values"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "####"
+horizontal_alignment = 2
+
+[node name="Scores" type="Panel" parent="ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(500, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_km5i3")
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/VBoxContainer/Scores"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Labels" type="VBoxContainer" parent="ColorRect/VBoxContainer/Scores/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Score" type="Label" parent="ColorRect/VBoxContainer/Scores/MarginContainer/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Score:"
+horizontal_alignment = 2
+
+[node name="Highscore" type="Label" parent="ColorRect/VBoxContainer/Scores/MarginContainer/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Highscore:"
+horizontal_alignment = 2
+
+[node name="Values" type="VBoxContainer" parent="ColorRect/VBoxContainer/Scores/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Score" type="Label" parent="ColorRect/VBoxContainer/Scores/MarginContainer/Values"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "####"
+horizontal_alignment = 2
+
+[node name="Highscore" type="Label" parent="ColorRect/VBoxContainer/Scores/MarginContainer/Values"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "####"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Restart" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Restart"
+
+[node name="Quit" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]

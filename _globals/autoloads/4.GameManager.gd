@@ -5,7 +5,7 @@ extends Node
 var player:CharacterBody2D
 var player_speed: float = 200
 var max_current_speed: float = 200
-var max_health: int = 5
+var max_health: int = 2
  
 #------Universal------
 var isPaused: bool = false
@@ -26,6 +26,13 @@ var data: Dictionary
 var all_items: Array
 #---------------------
 
+func _ready() -> void:
+	SignalBus.dead.connect(EndGame)
+
+func EndGame():
+	var end_scene = SceneLoader.AddTempScene(SceneLoader.end_menu)
+	end_scene.Config()
+	pass
 
 func StartedGame(b:bool):
 	isStarted = b

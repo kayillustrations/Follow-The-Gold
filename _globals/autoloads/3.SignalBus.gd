@@ -14,3 +14,5 @@ signal isBlinded(b:bool)
 signal isSlowed(b:bool)
 signal isDisoriented(b:bool)
 signal isStunned(b:bool)
+
+signal dead

@@ -8,6 +8,7 @@ extends Control
 @onready var pause_menu: PackedScene = preload("res://ui/pause_menu.tscn")
 @onready var option_menu: PackedScene = preload("res://ui/option_menu.tscn")
 @onready var controls: PackedScene = preload("res://ui/controls.tscn")
+@onready var end_menu: PackedScene = preload("res://ui/end.tscn")
 @onready var ui: Control = $"UI Scenes/UI"
 
 @onready var ui_parent: CanvasLayer = $"UI Scenes"

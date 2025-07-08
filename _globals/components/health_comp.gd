@@ -1,8 +1,6 @@
 extends Area2D
 class_name HealthComp
 
-signal dead
-
 @export var buffer_damage: float = 1
 
 @onready var sprite_2d: Sprite2D = get_parent().find_child("Sprite2D")
@@ -14,12 +12,14 @@ func ChangeHealth(damage:int):
 	GameManager.current_health -= damage
 	if GameManager.current_health <= 0:
 		GameManager.current_health = 0
-		dead.emit()
+		SignalBus.dead.emit()
 		sprite_2d.modulate = Color.DIM_GRAY
 	else: 
 		SignalBus.isDamaged.emit(false)
 
 func CheckForObstacle():
+	if GameManager.current_health <= 0:
+		return
 	var obstacles:Array= get_overlapping_areas()
 	if !obstacles.is_empty():
 		obstacles[0]._on_area_entered(self)
