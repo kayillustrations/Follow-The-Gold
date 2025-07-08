@@ -77,7 +77,7 @@ func UISceneActivate(scene_node: Control):
 func AddTempScene(scene:PackedScene):
 	var scene_instance = scene.instantiate()
 	temp_parent.add_child(scene_instance)
-	
+	ConnectButtons(scene_instance)
 	GameManager.PauseGame(true)
 	
 	inTempScene = true
@@ -109,3 +109,14 @@ func DeleteAllTemp():
 	currentTemp = null
 	
 	GameManager.PauseGame(false)
+
+func ConnectButtons(node:Control):
+	var children = node.find_children("","Button",true)
+	for i in children.size():
+		children[i].connect("pressed",ButtonClick)
+		children[i].connect("mouse_entered",ButtonHover)
+
+func ButtonHover():
+	$Hover.play()
+func ButtonClick():
+	$Click.play()

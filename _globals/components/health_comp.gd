@@ -7,6 +7,7 @@ class_name HealthComp
 @onready var buffer_timer: Timer = $Buffer
 
 var damaged_color:= Color.INDIAN_RED
+var isAffected: bool = false
 
 func ChangeHealth(damage:int):
 	GameManager.current_health -= damage
@@ -28,22 +29,27 @@ func ApplyEffect(effect):
 	var effect_timer:= Timer.new()
 	add_child(effect_timer)
 	set_deferred("monitorable",false)
+	SignalBus.isAffected.emit(true)
 	buffer_timer.start(buffer_damage)
 	match effect:
 		SignalBus.Effects.DAMAGE:
 			sprite_color(false,damaged_color)
+			$"../Audio_damage".play()
 			ChangeHealth(1)
 		SignalBus.Effects.SLOWNESS:
 			sprite_color(false,Color.CADET_BLUE)
+			$"../Audio_slow".play()
 			Slowness(effect_timer)
 		SignalBus.Effects.DISORIENT:
 			sprite_color(false,Color.PINK)
+			$"../Audio_disorient".play()
 			Disorient(effect_timer)
 		SignalBus.Effects.STUN:
 			sprite_color(false,Color.YELLOW)
 			Stun(effect_timer)
 		SignalBus.Effects.BLINDED:
 			sprite_color(false,Color.GRAY)
+			$"../Audio_vision".play()
 			Blind(effect_timer)
 	SignalBus.update_ui.emit()
 	await buffer_timer.timeout
@@ -71,6 +77,7 @@ func Slowness(timer:Timer):
 	
 	await timer.timeout
 	SignalBus.isSlowed.emit(false)
+	SignalBus.isAffected.emit(false)
 	GameManager.player_speed = GameManager.max_current_speed
 	timer.queue_free()
 
@@ -80,6 +87,7 @@ func Disorient(timer:Timer):
 	
 	await timer.timeout
 	SignalBus.isDisoriented.emit(false)
+	SignalBus.isAffected.emit(false)
 	timer.queue_free()
 
 func Stun(timer:Timer):
@@ -87,6 +95,7 @@ func Stun(timer:Timer):
 	timer.start(.5)
 	
 	await timer.timeout
+	SignalBus.isAffected.emit(false)
 	SignalBus.isStunned.emit(false)
 	timer.queue_free()
 
@@ -95,5 +104,6 @@ func Blind (timer:Timer):
 	timer.start(1.5)
 	
 	await timer.timeout
+	SignalBus.isAffected.emit(false)
 	SignalBus.isBlinded.emit(false)
 	timer.queue_free()

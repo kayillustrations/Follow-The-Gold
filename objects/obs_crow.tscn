@@ -1,17 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://bj06xa2kbeinh"]
+[gd_scene load_steps=11 format=3 uid="uid://bj06xa2kbeinh"]
 
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_q3604"]
 [ext_resource type="Script" uid="uid://s7j7gjthofv5" path="res://objects/obs_crow.gd" id="2_0tqeh"]
 [ext_resource type="Texture2D" uid="uid://rl4qhoiwaal" path="res://_imported/temp art/particles.png" id="2_yfxm3"]
 [ext_resource type="Script" uid="uid://dhu2arpfxq6j5" path="res://_globals/components/damager_comp.gd" id="4_lfxj6"]
+[ext_resource type="AudioStream" uid="uid://djrvnfgx6jdx8" path="res://sound/sfx/sfx_obstacles/sfx_wingflaps/wingflapVar1.wav" id="5_mkg1d"]
+[ext_resource type="AudioStream" uid="uid://cu0p5fx0bqrg" path="res://sound/sfx/sfx_obstacles/squacksfx.wav" id="6_aq32w"]
+[ext_resource type="AudioStream" uid="uid://dxdxb86dkpe3g" path="res://sound/sfx/sfx_obstacles/sfx_wingflaps/wingflapVar2.wav" id="6_stpov"]
+[ext_resource type="AudioStream" uid="uid://x8huxqe2mh1n" path="res://sound/sfx/sfx_obstacles/sfx_wingflaps/wingflapVar3.wav" id="7_umgv5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_346rs"]
 size = Vector2(13, 31)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lfxj6"]
+streams_count = 3
+stream_0/stream = ExtResource("5_mkg1d")
+stream_1/stream = ExtResource("6_stpov")
+stream_2/stream = ExtResource("7_umgv5")
 
 [node name="Crow" instance=ExtResource("1_q3604")]
 script = ExtResource("2_0tqeh")
 
 [node name="Sprite2D" parent="." index="0"]
+z_index = 50
 position = Vector2(-1.5, -7)
 rotation = 2.96706
 scale = Vector2(0.25, 0.258)
@@ -34,5 +45,21 @@ script = ExtResource("4_lfxj6")
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_346rs")
 
+[node name="Wings" type="AudioStreamPlayer2D" parent="." index="5"]
+stream = SubResource("AudioStreamRandomizer_lfxj6")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="Caw" type="AudioStreamPlayer2D" parent="." index="6"]
+stream = ExtResource("6_aq32w")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="." index="7"]
+wait_time = 0.25
+one_shot = true
+autostart = true
+
 [connection signal="area_entered" from="Area2D2" to="Area2D2" method="_on_area_entered"]
 [connection signal="area_exited" from="Area2D2" to="Area2D2" method="_on_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
