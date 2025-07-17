@@ -13,7 +13,7 @@
 [ext_resource type="Shader" uid="uid://dripx6sl0evtn" path="res://scenes/combo.gdshader" id="13_64w2a"]
 [ext_resource type="Shader" uid="uid://navimjo5ay51" path="res://scenes/pink.gdshader" id="13_fpun6"]
 [ext_resource type="PackedScene" uid="uid://28qgr4itx81d" path="res://ui/controls.tscn" id="13_wc255"]
-[ext_resource type="AudioStream" uid="uid://dt1ih83d6kvnp" path="res://sound/music/titlescreenloop_v1_wrappedloop.ogg" id="14_fpun6"]
+[ext_resource type="AudioStream" uid="uid://dagmq4sit34mw" path="res://sound/music/mainlevel_v1_wrappedloop.ogg" id="14_fpun6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8iemx"]
 shader = ExtResource("12_8iemx")
@@ -319,6 +319,7 @@ grow_vertical = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_fpun6")
+volume_db = -5.0
 autoplay = true
 bus = &"Music"
 
