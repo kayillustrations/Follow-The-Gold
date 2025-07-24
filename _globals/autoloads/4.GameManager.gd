@@ -53,6 +53,7 @@ func ResetGame():
 	obstacles_spawned = 0
 	total_time_milli = 0
 	SceneLoader.ui.ClearTimer()
+	SceneLoader.ui.ResetHealth()
 	SignalBus.update_ui.emit()
 	StartedGame(false)
 	pass

@@ -4,7 +4,9 @@ extends CharacterBody2D
 @onready var cooldown: Timer = $Cooldown
 
 @onready var health_comp: HealthComp = $HealthComp
-@onready var sprite_2d: Sprite2D = $Sprite2D
+#@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
 
 var player_starting_position : Vector2
 
@@ -59,6 +61,7 @@ func _physics_process(delta: float) -> void:
 		return
 	AxisMovement()
 	CheckState()
+	GetAnimated()
 	pass
 
 func ResetPlayer():
@@ -112,6 +115,21 @@ func AxisMovement():
 		velocity.y = GameManager.b_movement
 	
 	move_and_slide()
+
+func GetAnimated():
+	if direction_x > 0:animated_sprite_2d.flip_h = true
+	else: animated_sprite_2d.flip_h = false
+	if direction_y > 0: animated_sprite_2d.speed_scale = 1.5
+	else: animated_sprite_2d.speed_scale = 1
+	
+	if direction_x == 0 && direction_y > 0:
+		animated_sprite_2d.animation = "idle"
+	elif direction_x == 0:
+		animated_sprite_2d.animation = "forward"
+	elif abs(direction_x) == 1:
+		animated_sprite_2d.animation = "side"
+	else:
+		animated_sprite_2d.animation = "angle"
 
 func Boost(activated:bool):
 	var tween:= create_tween()

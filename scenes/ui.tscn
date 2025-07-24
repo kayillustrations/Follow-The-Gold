@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbxdll7jkkq64"]
+[gd_scene load_steps=4 format=3 uid="uid://bbxdll7jkkq64"]
 
 [ext_resource type="Script" uid="uid://dsxi4lmrd2q8t" path="res://scenes/ui.gd" id="1_nt7q6"]
+[ext_resource type="Texture2D" uid="uid://dqx6624xb3kmq" path="res://art/ui.png" id="2_x4jx1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm3ai"]
+atlas = ExtResource("2_x4jx1")
+region = Rect2(1303, 217, 96, 101)
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -12,6 +17,7 @@ grow_vertical = 2
 script = ExtResource("1_nt7q6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
@@ -98,5 +104,105 @@ text = "#"
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="Health" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 22.0
+offset_top = 26.0
+offset_right = 62.0
+offset_bottom = 66.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Health"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Time" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -54.0
+offset_top = 19.0
+offset_right = -14.0
+offset_bottom = 59.0
+grow_horizontal = 0
+
+[node name="HBox" type="HBoxContainer" parent="Time"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -130.0
+offset_bottom = 17.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="Label" type="Label" parent="Time/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Time:"
+
+[node name="Min" type="Label" parent="Time/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "00"
+
+[node name="_" type="Label" parent="Time/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = ":"
+
+[node name="Sec" type="Label" parent="Time/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "00"
+
+[node name="_2" type="Label" parent="Time/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = ":"
+
+[node name="Millisec" type="Label" parent="Time/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "00"
+
+[node name="Coins" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 59.0
+offset_bottom = 99.0
+grow_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Coins"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -107.0
+offset_right = 107.0
+offset_bottom = 101.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = 15
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Coins/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_wm3ai")
+
+[node name="Coins" type="Label" parent="Coins/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "###"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

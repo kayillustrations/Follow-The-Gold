@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cjvaeesg11ow8"]
 
+[ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="2_8cnln"]
 [ext_resource type="Script" uid="uid://b7cf0jrk81444" path="res://objects/obs_rat.gd" id="2_al31q"]
-[ext_resource type="Texture2D" uid="uid://rl4qhoiwaal" path="res://_imported/temp art/particles.png" id="3_1xfot"]
 [ext_resource type="Script" uid="uid://dhu2arpfxq6j5" path="res://_globals/components/damager_comp.gd" id="3_tfsen"]
 [ext_resource type="AudioStream" uid="uid://2yg770bir0wt" path="res://sound/sfx/sfx_player/sfx_footsteps/footstep1.wav" id="4_q2xi3"]
 [ext_resource type="AudioStream" uid="uid://co1ngce5gppwk" path="res://sound/sfx/sfx_obstacles/ratsqueaksfx.wav" id="4_tfsen"]
@@ -50,9 +50,9 @@ unique_name_in_owner = true
 rotation = 1.64934
 scale = Vector2(2, 2)
 skew = -0.0238584
-texture = ExtResource("3_1xfot")
+texture = ExtResource("2_8cnln")
 region_enabled = true
-region_rect = Rect2(-4.08563, 101.914, 42.4493, 61.6078)
+region_rect = Rect2(878, 820, 51, 132)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Path2D/PathFollow2D"]
 unique_name_in_owner = true

@@ -1,10 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://du1xnqjuweym8"]
+[gd_scene load_steps=8 format=3 uid="uid://du1xnqjuweym8"]
 
 [ext_resource type="Script" uid="uid://d2tymwi1n3xsv" path="res://ui/option_menu.gd" id="1_72h1j"]
 [ext_resource type="FontFile" uid="uid://do6g4q03tl1gj" path="res://_imported/Fonts/Schrödinger.ttf" id="2_vtq1k"]
+[ext_resource type="Texture2D" uid="uid://dqx6624xb3kmq" path="res://art/ui.png" id="3_vtq1k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtq1k"]
 bg_color = Color(0.32, 0.1792, 0.1792, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wds6"]
+atlas = ExtResource("3_vtq1k")
+region = Rect2(35, 365, 1360, 683)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hc438"]
+atlas = ExtResource("3_vtq1k")
+region = Rect2(1303, 217, 96, 101)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6jpam"]
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -69,16 +80,6 @@ theme_override_font_sizes/font_size = 25
 text = "SFX"
 horizontal_alignment = 2
 
-[node name="SFX_Slider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 1
-max_value = 1.0
-step = 0.001
-value = 1.0
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -91,24 +92,72 @@ theme_override_font_sizes/font_size = 25
 text = "Music"
 horizontal_alignment = 2
 
-[node name="Music_Slider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 1
-max_value = 1.0
-step = 0.001
-value = 1.0
-
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 1
 offset_right = 53.0
 offset_bottom = 36.0
 text = "esc"
 
-[connection signal="drag_ended" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/SFX_Slider" to="." method="_on_sfx_slider_drag_ended"]
-[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/SFX_Slider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="drag_ended" from="Panel/MarginContainer/VBoxContainer/HBoxContainer2/Music_Slider" to="." method="_on_music_slider_drag_ended"]
-[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer2/Music_Slider" to="." method="_on_music_slider_value_changed"]
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+self_modulate = Color(0.71, 0.40967, 0.3266, 1)
+layout_mode = 1
+offset_left = -312.0
+offset_top = -165.0
+offset_right = 1048.0
+offset_bottom = 518.0
+scale = Vector2(0.479999, 0.479999)
+texture = SubResource("AtlasTexture_0wds6")
+
+[node name="SFX_Slider" type="HSlider" parent="Control/TextureRect"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+offset_left = 443.751
+offset_top = 291.667
+offset_right = 1243.75
+offset_bottom = 392.667
+size_flags_horizontal = 10
+size_flags_vertical = 1
+theme_override_icons/grabber = SubResource("AtlasTexture_hc438")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_hc438")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_6jpam")
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="Music_Slider" type="HSlider" parent="Control/TextureRect"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+offset_left = 443.751
+offset_top = 406.251
+offset_right = 1243.75
+offset_bottom = 507.251
+size_flags_horizontal = 10
+size_flags_vertical = 1
+theme_override_icons/grabber = SubResource("AtlasTexture_hc438")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_hc438")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_6jpam")
+max_value = 1.0
+step = 0.001
+value = 1.0
+
 [connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="drag_ended" from="Control/TextureRect/SFX_Slider" to="." method="_on_sfx_slider_drag_ended"]
+[connection signal="value_changed" from="Control/TextureRect/SFX_Slider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="drag_ended" from="Control/TextureRect/Music_Slider" to="." method="_on_music_slider_drag_ended"]
+[connection signal="value_changed" from="Control/TextureRect/Music_Slider" to="." method="_on_music_slider_value_changed"]

@@ -9,7 +9,6 @@ func _ready() -> void:
 	isObstacle = get_collision_layer_value(3)
 	if parent.name == "PathFollow2D":
 		parent = $"../../.."
-		print(parent.name)
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.name == "HealthComp":

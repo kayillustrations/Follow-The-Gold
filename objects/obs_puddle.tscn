@@ -1,22 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://n1u4mdpwh8rw"]
+[gd_scene load_steps=5 format=3 uid="uid://n1u4mdpwh8rw"]
 
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_2yiwk"]
 [ext_resource type="Script" uid="uid://dv0xfi3owvx2d" path="res://objects/obs_puddle.gd" id="2_j2rvv"]
+[ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="3_1vs7u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbo80"]
-radius = 8.0
-height = 52.0
+radius = 15.5
+height = 33.0
 
 [node name="Puddle" instance=ExtResource("1_2yiwk")]
 script = ExtResource("2_j2rvv")
 
 [node name="Sprite2D" parent="." index="0"]
-modulate = Color(0.215686, 1, 1, 1)
+position = Vector2(0, 15)
+scale = Vector2(0.2452, 0.254386)
+texture = ExtResource("3_1vs7u")
+region_rect = Rect2(1010, 244, 134, 114)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 22)
+
+[node name="CPUParticles2D" parent="." index="2"]
+position = Vector2(0, 22)
 
 [node name="Area2D" parent="." index="3"]
+position = Vector2(0, 22)
 effect = 1
 
 [node name="CollisionShape3D" parent="Area2D" index="0"]
-position = Vector2(0, -6)
+position = Vector2(0, -6.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sbo80")

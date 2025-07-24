@@ -1,5 +1,7 @@
 extends Control
 
+const HEART = preload("res://ui/heart.tscn")
+
 @onready var timer: Timer = $Timer
 
 @onready var min: Label = $ColorRect/VBoxContainer/HBox/Min
@@ -10,30 +12,42 @@ extends Control
 @onready var hit: Label = $ColorRect/VBoxContainer/HBox3/Hit
 @onready var coins: Label = $ColorRect/VBoxContainer/HBox4/Coins
 
+@onready var hearts = $Health/HBoxContainer
+
 
 func _ready() -> void:
 	SignalBus.update_ui.connect(_update_all)
 	SignalBus.GamePaused.connect(PauseTimer)
+	SignalBus.isDamaged.connect(_update_health)
 
 func _update_all():
-	_update_health()
 	_update_obstacles()
 	_update_coins()
 
 func _update_time():
 	if GameManager.current_time[0]<10:
-		millisec.text = "0" + str(GameManager.current_time[0])
-	else: millisec.text = str(GameManager.current_time[0])
+		%Millisec.text = "0" + str(GameManager.current_time[0])
+	else: %Millisec.text = str(GameManager.current_time[0])
 	if GameManager.current_time[1]<10:
-		sec.text = "0" + str(GameManager.current_time[1])
-	else: sec.text = str(GameManager.current_time[1])
+		%Sec.text = "0" + str(GameManager.current_time[1])
+	else: %Sec.text = str(GameManager.current_time[1])
 	if GameManager.current_time[2]<10:
-		min.text = "0" + str(GameManager.current_time[2])
-	else: min.text = str(GameManager.current_time[2])
+		%Min.text = "0" + str(GameManager.current_time[2])
+	else: %Min.text = str(GameManager.current_time[2])
 	pass
 
-func _update_health():
+func ResetHealth():
+	var current_hearts:int = 0 
+	current_hearts = hearts.get_child_count()
+	while current_hearts < 3:
+		var temp = HEART.instantiate()
+		hearts.add_child(temp)
+		current_hearts += 1
+
+func _update_health(b:bool):
+	if !b:return
 	health.text = str(GameManager.current_health)
+	hearts.get_children().pick_random().queue_free()
 	pass
 
 func _update_obstacles():
@@ -41,7 +55,7 @@ func _update_obstacles():
 	pass
 
 func _update_coins():
-	coins.text = str(GameManager.coins_collected)
+	%Coins.text = str(GameManager.coins_collected)
 	pass
 
 func ClearTimer():

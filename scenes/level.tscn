@@ -1,6 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=40 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
+[ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="4_wc255"]
 [ext_resource type="PackedScene" uid="uid://iqtxh4ptoq52" path="res://objects/despawner.tscn" id="6_2r41h"]
 [ext_resource type="Script" uid="uid://dhu2arpfxq6j5" path="res://_globals/components/damager_comp.gd" id="6_8c41q"]
 [ext_resource type="Script" uid="uid://b8ono3hmwbpux" path="res://scenes/camera_2d.gd" id="6_b121j"]
@@ -19,6 +20,24 @@
 shader = ExtResource("12_8iemx")
 shader_parameter/distortion_strength = 0.5
 shader_parameter/distortion_radius = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ux5qa"]
+
+[sub_resource type="Gradient" id="Gradient_82cfe"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.480519)
+colors = PackedColorArray(0.526102, 0.461896, 0.423135, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gunhw"]
+gradient = SubResource("Gradient_82cfe")
+width = 624
+height = 1089
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arp2o"]
+atlas = ExtResource("4_wc255")
+region = Rect2(0, 0, 227.036, 1080)
 
 [sub_resource type="Gradient" id="Gradient_olg7q"]
 offsets = PackedFloat32Array(0.112554, 1)
@@ -113,9 +132,9 @@ shader_parameter/scale = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 material = SubResource("ShaderMaterial_8iemx")
-limit_left = -600
+limit_left = -700
 limit_top = -300
-limit_right = 600
+limit_right = 700
 limit_bottom = 600
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
@@ -137,6 +156,38 @@ follow_viewport = false
 [node name="Sprite2D" type="Sprite2D" parent="Stationary/Parallax/Parallax2D"]
 modulate = Color(0.862, 0.77, 1, 1)
 texture = ExtResource("8_fpun6")
+
+[node name="Parallax2D4" type="Parallax2D" parent="Stationary/Parallax"]
+scroll_offset = Vector2(-6, -358)
+repeat_size = Vector2(0, 1080)
+autoscroll = Vector2(0, -150)
+limit_begin = Vector2(0, 0)
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Stationary/Parallax/Parallax2D4"]
+material = SubResource("ShaderMaterial_ux5qa")
+texture = SubResource("GradientTexture2D_gunhw")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Stationary/Parallax"]
+scroll_offset = Vector2(-595, -179)
+repeat_size = Vector2(0, 1080)
+autoscroll = Vector2(0, -150)
+limit_begin = Vector2(0, 0)
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Stationary/Parallax/Parallax2D2"]
+texture = SubResource("AtlasTexture_arp2o")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Stationary/Parallax"]
+scale = Vector2(-1, 1)
+scroll_offset = Vector2(599, -1543)
+repeat_size = Vector2(0, 1080)
+autoscroll = Vector2(0, -150)
+limit_begin = Vector2(0, 0)
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Stationary/Parallax/Parallax2D3"]
+texture = SubResource("AtlasTexture_arp2o")
 
 [node name="Top" type="Sprite2D" parent="Stationary"]
 modulate = Color(0.62, 0.28768, 0.2046, 1)

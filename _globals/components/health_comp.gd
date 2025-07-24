@@ -35,6 +35,7 @@ func ApplyEffect(effect):
 		SignalBus.Effects.DAMAGE:
 			sprite_color(false,damaged_color)
 			$"../Audio_damage".play()
+			SignalBus.isDamaged.emit(true)
 			ChangeHealth(1)
 		SignalBus.Effects.SLOWNESS:
 			sprite_color(false,Color.CADET_BLUE)

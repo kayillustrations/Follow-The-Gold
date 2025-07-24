@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_q3604"]
 [ext_resource type="Script" uid="uid://s7j7gjthofv5" path="res://objects/obs_crow.gd" id="2_0tqeh"]
-[ext_resource type="Texture2D" uid="uid://rl4qhoiwaal" path="res://_imported/temp art/particles.png" id="2_yfxm3"]
+[ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="3_stpov"]
 [ext_resource type="Script" uid="uid://dhu2arpfxq6j5" path="res://_globals/components/damager_comp.gd" id="4_lfxj6"]
 [ext_resource type="AudioStream" uid="uid://djrvnfgx6jdx8" path="res://sound/sfx/sfx_obstacles/sfx_wingflaps/wingflapVar1.wav" id="5_mkg1d"]
 [ext_resource type="AudioStream" uid="uid://cu0p5fx0bqrg" path="res://sound/sfx/sfx_obstacles/squacksfx.wav" id="6_aq32w"]
@@ -23,11 +23,10 @@ script = ExtResource("2_0tqeh")
 
 [node name="Sprite2D" parent="." index="0"]
 z_index = 50
-position = Vector2(-1.5, -7)
-rotation = 2.96706
+position = Vector2(1, -7)
 scale = Vector2(0.25, 0.258)
-texture = ExtResource("2_yfxm3")
-region_rect = Rect2(165.668, -2.13332, 73.3335, 130.534)
+texture = ExtResource("3_stpov")
+region_rect = Rect2(337, 721, 250, 197)
 
 [node name="Area2D" parent="." index="3"]
 effect = 3
