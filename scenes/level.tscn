@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=43 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
 [ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="4_wc255"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b8ono3hmwbpux" path="res://scenes/camera_2d.gd" id="6_b121j"]
 [ext_resource type="PackedScene" uid="uid://dh2v0600vkess" path="res://objects/player.tscn" id="7_klq6b"]
 [ext_resource type="Texture2D" uid="uid://h45vksl6ip44" path="res://_imported/temp art/Gold Bars.jpg" id="8_fpun6"]
+[ext_resource type="Texture2D" uid="uid://beumplmf04lnt" path="res://art/test color.png" id="9_arp2o"]
 [ext_resource type="Script" uid="uid://b7cdrgv8fyx1" path="res://scenes/spawning_manager.gd" id="10_fpun6"]
 [ext_resource type="Shader" uid="uid://frv8bfx0u2r3" path="res://scenes/smoke.gdshader" id="11_8iemx"]
 [ext_resource type="Shader" uid="uid://cgl1w6eoheebk" path="res://scenes/level.gdshader" id="12_8iemx"]
@@ -26,7 +27,7 @@ shader_parameter/distortion_radius = 1.0
 [sub_resource type="Gradient" id="Gradient_82cfe"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.50974)
-colors = PackedColorArray(0.62, 0.467067, 0.3906, 1)
+colors = PackedColorArray(0.72, 0.53352, 0.4536, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_gunhw"]
 gradient = SubResource("Gradient_82cfe")
@@ -54,7 +55,7 @@ colors = PackedColorArray(0, 0.18, 0.18, 1, 1, 1, 1, 0)
 gradient = SubResource("Gradient_t1rx8")
 
 [sub_resource type="Gradient" id="Gradient_wc255"]
-colors = PackedColorArray(1, 0.566667, 0, 1, 1, 0.966667, 0.6, 0)
+colors = PackedColorArray(1, 0.784, 0.19, 1, 1, 0.958333, 0.5, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_arp2o"]
 gradient = SubResource("Gradient_wc255")
@@ -203,9 +204,9 @@ scale = Vector2(4, 4)
 texture = ExtResource("4_klq6b")
 
 [node name="Bottom" type="Sprite2D" parent="Stationary"]
-modulate = Color(0.62, 0.28768, 0.2046, 1)
+modulate = Color(1, 0.45, 0.45, 1)
 z_index = 100
-position = Vector2(0, 350)
+position = Vector2(0, 335)
 scale = Vector2(4, 4)
 texture = ExtResource("4_klq6b")
 
@@ -225,7 +226,7 @@ rotation = 1.5708
 scale = Vector2(4, 22.783)
 texture = SubResource("GradientTexture2D_8iemx")
 
-[node name="Brown Gradient2" type="Sprite2D" parent="Stationary"]
+[node name="Yellow Gradient" type="Sprite2D" parent="Stationary"]
 z_index = 100
 position = Vector2(-2, 496)
 rotation = -1.5708
@@ -288,6 +289,11 @@ y_sort_enabled = true
 
 [node name="Player" parent="Moving" instance=ExtResource("7_klq6b")]
 position = Vector2(0, 158)
+
+[node name="Sprite2D" type="Sprite2D" parent="Moving/Player"]
+position = Vector2(2, -54)
+scale = Vector2(0.356, 0.356)
+texture = ExtResource("9_arp2o")
 
 [node name="Spawning Manager" type="Node2D" parent="."]
 position = Vector2(0, 650)

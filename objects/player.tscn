@@ -166,12 +166,6 @@ shape = SubResource("CapsuleShape2D_uxov2")
 [node name="Buffer" type="Timer" parent="HealthComp"]
 one_shot = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -55.75)
-scale = Vector2(0.5, 0.5)
-region_enabled = true
-region_rect = Rect2(78, 1754, 147, 229)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4.76837e-07, -56)
 scale = Vector2(0.362667, 0.362667)
@@ -184,7 +178,7 @@ autoplay = "idle"
 [node name="Cooldown" type="Timer" parent="."]
 
 [node name="move" type="Timer" parent="."]
-wait_time = 0.001
+wait_time = 0.05
 one_shot = true
 autostart = true
 
