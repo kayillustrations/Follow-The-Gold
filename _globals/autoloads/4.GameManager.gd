@@ -5,7 +5,7 @@ extends Node
 var player:CharacterBody2D
 var player_speed: float = 200
 var max_current_speed: float = 200
-var max_health: int = 2
+var max_health: int = 3
  
 #------Universal------
 var isPaused: bool = false

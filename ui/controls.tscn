@@ -29,12 +29,14 @@ theme_override_constants/separation = 75
 
 [node name="Movement" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.980392, 0.784314, 0.65098, 1)
 theme_override_font_sizes/font_size = 30
 text = "Movement"
 horizontal_alignment = 1
 
 [node name="Boost" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.980392, 0.784314, 0.65098, 1)
 theme_override_font_sizes/font_size = 30
 text = "Boost"
 horizontal_alignment = 1
@@ -74,6 +76,7 @@ alignment = 1
 [node name="ColorRect" type="ColorRect" parent="WASD/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+color = Color(0.980392, 0.784314, 0.65098, 1)
 
 [node name="Label" type="Label" parent="WASD/VBoxContainer/HBoxContainer/ColorRect"]
 layout_mode = 1
@@ -86,7 +89,7 @@ offset_left = -37.0
 offset_top = -50.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.423529, 0.211765, 0.266667, 1)
 theme_override_font_sizes/font_size = 50
 text = "W"
 
@@ -97,6 +100,7 @@ alignment = 1
 [node name="ColorRect" type="ColorRect" parent="WASD/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+color = Color(0.980392, 0.784314, 0.65098, 1)
 
 [node name="Label" type="Label" parent="WASD/VBoxContainer/HBoxContainer2/ColorRect"]
 layout_mode = 1
@@ -109,13 +113,14 @@ offset_left = -37.0
 offset_top = -50.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.423529, 0.211765, 0.266667, 1)
 theme_override_font_sizes/font_size = 50
 text = "A"
 
 [node name="ColorRect2" type="ColorRect" parent="WASD/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+color = Color(0.980392, 0.784314, 0.65098, 1)
 
 [node name="Label" type="Label" parent="WASD/VBoxContainer/HBoxContainer2/ColorRect2"]
 layout_mode = 1
@@ -128,13 +133,14 @@ offset_left = -37.0
 offset_top = -50.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.423529, 0.211765, 0.266667, 1)
 theme_override_font_sizes/font_size = 50
 text = "S"
 
 [node name="ColorRect3" type="ColorRect" parent="WASD/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+color = Color(0.980392, 0.784314, 0.65098, 1)
 
 [node name="Label" type="Label" parent="WASD/VBoxContainer/HBoxContainer2/ColorRect3"]
 layout_mode = 1
@@ -147,7 +153,7 @@ offset_left = -37.0
 offset_top = -50.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.423529, 0.211765, 0.266667, 1)
 theme_override_font_sizes/font_size = 50
 text = "D"
 
@@ -182,6 +188,7 @@ alignment = 1
 [node name="ColorRect" type="ColorRect" parent="Arrows/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+color = Color(0.980392, 0.784314, 0.65098, 1)
 
 [node name="Label" type="Label" parent="Arrows/VBoxContainer/HBoxContainer/ColorRect"]
 layout_mode = 1
@@ -190,13 +197,16 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -37.0
-offset_top = -50.0
+offset_left = -48.0
+offset_top = -22.0
+offset_right = -11.0
+offset_bottom = 28.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+rotation = -1.56714
+theme_override_colors/font_color = Color(0.423529, 0.211765, 0.266667, 1)
 theme_override_font_sizes/font_size = 50
-text = "↑"
+text = ">"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Arrows/VBoxContainer"]
 layout_mode = 2
@@ -205,6 +215,7 @@ alignment = 1
 [node name="ColorRect" type="ColorRect" parent="Arrows/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+color = Color(0.980392, 0.784314, 0.65098, 1)
 
 [node name="Label" type="Label" parent="Arrows/VBoxContainer/HBoxContainer2/ColorRect"]
 layout_mode = 1
@@ -213,37 +224,43 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -50.0
-offset_top = -67.0
+offset_left = -40.0
+offset_top = -48.0
+offset_right = -2.0
+offset_bottom = 2.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.423529, 0.211765, 0.266667, 1)
 theme_override_font_sizes/font_size = 50
-text = "←"
+text = "<"
 
 [node name="ColorRect2" type="ColorRect" parent="Arrows/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+color = Color(0.980392, 0.784314, 0.65098, 1)
 
-[node name="Label" type="Label" parent="Arrows/VBoxContainer/HBoxContainer2/ColorRect2"]
+[node name="Label2" type="Label" parent="Arrows/VBoxContainer/HBoxContainer2/ColorRect2"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -37.0
-offset_top = -60.0
-offset_bottom = 7.0
+offset_left = -2.0
+offset_top = -26.0
+offset_right = 35.0
+offset_bottom = 24.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+rotation = 1.57423
+theme_override_colors/font_color = Color(0.423529, 0.211765, 0.266667, 1)
 theme_override_font_sizes/font_size = 50
-text = "↓"
+text = ">"
 
 [node name="ColorRect3" type="ColorRect" parent="Arrows/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+color = Color(0.980392, 0.784314, 0.65098, 1)
 
 [node name="Label" type="Label" parent="Arrows/VBoxContainer/HBoxContainer2/ColorRect3"]
 layout_mode = 1
@@ -252,13 +269,15 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -37.0
-offset_top = -50.0
+offset_left = -30.0
+offset_top = -48.0
+offset_right = 7.0
+offset_bottom = 2.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.423529, 0.211765, 0.266667, 1)
 theme_override_font_sizes/font_size = 50
-text = "→"
+text = ">"
 
 [node name="Space" type="Panel" parent="."]
 layout_mode = 1
@@ -285,6 +304,7 @@ alignment = 1
 [node name="ColorRect" type="ColorRect" parent="Space/VBoxContainer"]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
+color = Color(0.980392, 0.784314, 0.65098, 1)
 
 [node name="Label" type="Label" parent="Space/VBoxContainer/ColorRect"]
 layout_mode = 1
@@ -293,7 +313,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.419608, 0.207843, 0.262745, 1)
 theme_override_font_sizes/font_size = 50
 text = "Space"
 horizontal_alignment = 1
@@ -312,6 +332,7 @@ offset_right = 192.0
 offset_bottom = 204.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.980006, 0.785951, 0.650623, 1)
 theme_override_font_sizes/font_size = 30
 text = "PRESS ANY KEY TO START"
 horizontal_alignment = 1

@@ -107,10 +107,10 @@ one_shot = true
 
 [node name="Health" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 60.0
-offset_top = 60.0
-offset_right = 100.0
-offset_bottom = 100.0
+offset_left = 55.0
+offset_top = 39.0
+offset_right = 95.0
+offset_bottom = 79.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Health"]
 layout_mode = 0
@@ -123,10 +123,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -90.0
-offset_top = 60.0
-offset_right = -50.0
-offset_bottom = 100.0
+offset_left = -101.0
+offset_top = 39.0
+offset_right = -61.0
+offset_bottom = 79.0
 grow_horizontal = 0
 
 [node name="HBox" type="HBoxContainer" parent="Time"]
@@ -141,34 +141,40 @@ alignment = 2
 
 [node name="Label" type="Label" parent="Time/HBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87, 0.74, 1)
 theme_override_font_sizes/font_size = 30
-text = "Time:"
+text = "Time: "
 
 [node name="Min" type="Label" parent="Time/HBox"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87, 0.74, 1)
 theme_override_font_sizes/font_size = 30
 text = "00"
 
 [node name="_" type="Label" parent="Time/HBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87, 0.74, 1)
 theme_override_font_sizes/font_size = 30
 text = ":"
 
 [node name="Sec" type="Label" parent="Time/HBox"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87, 0.74, 1)
 theme_override_font_sizes/font_size = 30
 text = "00"
 
 [node name="_2" type="Label" parent="Time/HBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87, 0.74, 1)
 theme_override_font_sizes/font_size = 30
 text = ":"
 
 [node name="Millisec" type="Label" parent="Time/HBox"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87, 0.74, 1)
 theme_override_font_sizes/font_size = 30
 text = "00"
 
@@ -177,10 +183,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -70.0
-offset_top = 98.0
-offset_right = -30.0
-offset_bottom = 138.0
+offset_left = -81.0
+offset_top = 77.0
+offset_right = -41.0
+offset_bottom = 117.0
 grow_horizontal = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Coins"]
@@ -188,9 +194,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -107.0
-offset_right = 107.0
-offset_bottom = 101.0
+offset_left = -109.5
+offset_top = -8.0
+offset_right = 109.5
+offset_bottom = 93.0
 grow_horizontal = 2
 scale = Vector2(0.5, 0.5)
 theme_override_constants/separation = 15
@@ -203,6 +210,7 @@ texture = SubResource("AtlasTexture_wm3ai")
 [node name="Coins" type="Label" parent="Coins/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87, 0.74, 1)
 theme_override_font_sizes/font_size = 60
 text = "###"
 

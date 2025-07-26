@@ -5,6 +5,8 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if SceneLoader.inMenu:
+		$ColorRect.visible = true
 	%SFX_Slider.value = GameSave.volume_sfx
 	%Music_Slider.value = GameSave.volume_music
 	pass # Replace with function body.

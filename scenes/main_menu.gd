@@ -4,10 +4,12 @@ func _ready() -> void:
 	if SceneLoader.ui.visible:
 		SceneLoader.UISceneActivate(SceneLoader.ui)
 		SceneLoader.ui.timer.stop()
+	SceneLoader.inMenu = true
 	SceneLoader.ConnectButtons(self)
 	SceneLoader.DeleteAllTemp()
 
 func _on_start_pressed() -> void:
+	SceneLoader.inMenu = false
 	SceneLoader.LoadGame()
 
 
@@ -18,3 +20,7 @@ func _on_options_pressed() -> void:
 
 func _on_credits_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_reload_pressed() -> void:
+	get_tree().reload_current_scene()

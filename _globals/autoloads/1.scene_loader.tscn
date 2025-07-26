@@ -21,12 +21,12 @@ script = ExtResource("1_csm60")
 [node name="UI" parent="UI Scenes" instance=ExtResource("2_0hl77")]
 
 [node name="Debug" parent="UI Scenes" instance=ExtResource("2_oidld")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -249.0
-offset_right = 0.0
-grow_horizontal = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -124.5
+offset_right = 124.5
+grow_horizontal = 2
 
 [node name="Hover" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_cijvv")
