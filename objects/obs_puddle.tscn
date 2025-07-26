@@ -9,6 +9,7 @@ radius = 15.5
 height = 33.0
 
 [node name="Puddle" instance=ExtResource("1_2yiwk")]
+scale = Vector2(4, 4)
 script = ExtResource("2_j2rvv")
 
 [node name="Sprite2D" parent="." index="0"]

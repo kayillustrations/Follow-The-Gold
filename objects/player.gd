@@ -81,13 +81,6 @@ func CheckState():
 		return true
 	else: return false
 
-func PlayAnim(anim):
-	if anim == null:
-		#match movement
-		pass
-	else: #play anim
-		pass
-	pass
 
 func AxisMovement():
 	if direction_x == 0:
@@ -109,7 +102,9 @@ func AxisMovement():
 		walk_mod = 1/4
 	elif isBoosted:
 		velocity *=2
-	else: Boost(false)
+	else: 
+		Boost(false)
+		walk_mod = .9
 	
 	if !canMove: 
 		velocity.y = GameManager.b_movement
@@ -119,8 +114,8 @@ func AxisMovement():
 func GetAnimated():
 	if direction_x > 0:animated_sprite_2d.flip_h = true
 	else: animated_sprite_2d.flip_h = false
-	if direction_y > 0: animated_sprite_2d.speed_scale = 1.5
-	else: animated_sprite_2d.speed_scale = 1
+	if direction_y < 0: animated_sprite_2d.speed_scale = 1.75
+	else: animated_sprite_2d.speed_scale = 1.15
 	
 	if direction_x == 0 && direction_y > 0:
 		animated_sprite_2d.animation = "idle"

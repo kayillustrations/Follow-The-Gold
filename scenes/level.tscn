@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=42 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
 [ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="4_wc255"]
@@ -25,8 +25,8 @@ shader_parameter/distortion_radius = 1.0
 
 [sub_resource type="Gradient" id="Gradient_82cfe"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.480519)
-colors = PackedColorArray(0.526102, 0.461896, 0.423135, 1)
+offsets = PackedFloat32Array(0.50974)
+colors = PackedColorArray(0.62, 0.467067, 0.3906, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_gunhw"]
 gradient = SubResource("Gradient_82cfe")
@@ -53,6 +53,12 @@ colors = PackedColorArray(0, 0.18, 0.18, 1, 1, 1, 1, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8iemx"]
 gradient = SubResource("Gradient_t1rx8")
 
+[sub_resource type="Gradient" id="Gradient_wc255"]
+colors = PackedColorArray(1, 0.566667, 0, 1, 1, 0.966667, 0.6, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_arp2o"]
+gradient = SubResource("Gradient_wc255")
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_olg7q"]
 normal = Vector2(0, 1)
 
@@ -68,7 +74,7 @@ normal = Vector2(-1, 0)
 size = Vector2(1382, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wc255"]
-size = Vector2(126, 43)
+size = Vector2(150, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arp2o"]
 size = Vector2(900, 50)
@@ -143,7 +149,7 @@ script = ExtResource("6_b121j")
 [node name="Stationary" type="Node2D" parent="."]
 
 [node name="Parallax" type="Node2D" parent="Stationary"]
-position = Vector2(0, 330)
+position = Vector2(0, 244)
 
 [node name="Parallax2D" type="Parallax2D" parent="Stationary/Parallax"]
 scale = Vector2(0.5, 0.5)
@@ -158,7 +164,7 @@ modulate = Color(0.862, 0.77, 1, 1)
 texture = ExtResource("8_fpun6")
 
 [node name="Parallax2D4" type="Parallax2D" parent="Stationary/Parallax"]
-scroll_offset = Vector2(-6, -358)
+scroll_offset = Vector2(0, -360)
 repeat_size = Vector2(0, 1080)
 autoscroll = Vector2(0, -150)
 limit_begin = Vector2(0, 0)
@@ -220,12 +226,11 @@ scale = Vector2(4, 22.783)
 texture = SubResource("GradientTexture2D_8iemx")
 
 [node name="Brown Gradient2" type="Sprite2D" parent="Stationary"]
-modulate = Color(0.62, 0.28768, 0.2046, 1)
 z_index = 100
 position = Vector2(-2, 496)
 rotation = -1.5708
 scale = Vector2(4, 22.783)
-texture = SubResource("GradientTexture2D_8iemx")
+texture = SubResource("GradientTexture2D_arp2o")
 
 [node name="Walls" type="Node2D" parent="Stationary"]
 

@@ -79,7 +79,7 @@ func Spawn(obstacle:int):
 			location = ChooseChild(sewers)
 			instance = preload("res://objects/obs_sewer.tscn")
 		SignalBus.Obstacles.POPPY:
-			location = ChooseChild(sidewalks) + Vector2((350 * [-1,1].pick_random()),0)
+			location = ChooseChild(sidewalks) + Vector2((400 * [-1,1].pick_random()),0)
 			instance = preload("res://objects/obs_poppy.tscn")
 		SignalBus.Obstacles.RAT:
 			location = outside_bounds.get_children().pick_random().position
