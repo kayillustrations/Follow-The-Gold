@@ -3,7 +3,7 @@ class_name HealthComp
 
 @export var buffer_damage: float = 1
 
-@onready var sprite_2d: Sprite2D = get_parent().find_child("Sprite2D")
+@onready var sprite_2d: AnimatedSprite2D = get_parent().find_child("AnimatedSprite2D")
 @onready var buffer_timer: Timer = $Buffer
 
 var damaged_color:= Color.INDIAN_RED
@@ -46,7 +46,6 @@ func ApplyEffect(effect):
 			$"../Audio_disorient".play()
 			Disorient(effect_timer)
 		SignalBus.Effects.STUN:
-			sprite_color(false,Color.YELLOW)
 			Stun(effect_timer)
 		SignalBus.Effects.BLINDED:
 			sprite_color(false,Color.GRAY)
