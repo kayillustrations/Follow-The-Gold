@@ -9,7 +9,7 @@ extends Control
 var calculated_score
 
 func Config():
-	time.text = SceneLoader.ui.min.text + ":" + SceneLoader.ui.sec.text + ":" + SceneLoader.ui.millisec.text
+	time.text = str(GameManager.current_time[2]) + ":" + str(GameManager.current_time[1]) + ":" + str(GameManager.current_time[0])
 	coins.text = str(GameManager.coins_collected) + "/" + str(GameManager.coins_spawned)
 	obstacles.text = str(GameManager.obstacles_hit)
 	Score()
