@@ -15,7 +15,6 @@ func _ready() -> void:
 	SignalBus.isBlinded.connect(Blind)
 	SignalBus.GamePaused.connect(Parallax)
 	SignalBus.GameStarted.connect(Controls)
-	MusicManager._switchmusic("res://sound/music/mainlevel_v2_cutloop.ogg", "res://sound/music/mainlevel_v2_wrappedloop.ogg", -10)
 	eq_effect = AudioServer.get_bus_effect(1,0)
 	TurnOffShaders()
 

@@ -8,10 +8,6 @@ extends Control
 
 var calculated_score
 
-func _ready():
-	null
-	
-
 func Config():
 	time.text = SceneLoader.ui.min.text + ":" + SceneLoader.ui.sec.text + ":" + SceneLoader.ui.millisec.text
 	coins.text = str(GameManager.coins_collected) + "/" + str(GameManager.coins_spawned)

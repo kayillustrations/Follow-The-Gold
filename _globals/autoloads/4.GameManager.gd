@@ -47,6 +47,7 @@ func PauseGame(b: bool):
 	pass
 
 func ResetGame():
+	MusicManager._switchmusic("res://sound/music/mainlevel_v2_cutloop.ogg", "res://sound/music/mainlevel_v2_wrappedloop.ogg", -10)
 	current_health = max_health
 	obstacles_hit = 0
 	coins_collected = 0
