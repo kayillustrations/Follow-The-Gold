@@ -7,6 +7,7 @@ func _ready() -> void:
 	SceneLoader.inMenu = true
 	SceneLoader.ConnectButtons(self)
 	SceneLoader.DeleteAllTemp()
+	MusicManager._switchmusic("res://sound/music/titlescreenloop_v1.ogg", "res://sound/music/titlescreenloop_v1_wrappedloop.ogg", -8)
 
 func _on_start_pressed() -> void:
 	SceneLoader.inMenu = false

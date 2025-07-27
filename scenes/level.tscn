@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=41 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
 [ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="4_wc255"]
@@ -14,7 +14,6 @@
 [ext_resource type="Shader" uid="uid://dripx6sl0evtn" path="res://scenes/combo.gdshader" id="13_64w2a"]
 [ext_resource type="Shader" uid="uid://navimjo5ay51" path="res://scenes/pink.gdshader" id="13_fpun6"]
 [ext_resource type="PackedScene" uid="uid://28qgr4itx81d" path="res://ui/controls.tscn" id="13_wc255"]
-[ext_resource type="AudioStream" uid="uid://dagmq4sit34mw" path="res://sound/music/mainlevel_v1_wrappedloop.ogg" id="14_fpun6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8iemx"]
 shader = ExtResource("12_8iemx")
@@ -372,13 +371,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Controls" parent="." instance=ExtResource("13_wc255")]
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("14_fpun6")
-volume_db = -5.0
-autoplay = true
-panning_strength = 0.0
-bus = &"Music"
 
 [connection signal="area_entered" from="Stationary/DamagerComp" to="Stationary/DamagerComp" method="_on_area_entered"]
 [connection signal="area_exited" from="Stationary/DamagerComp" to="Stationary/DamagerComp" method="_on_area_exited"]

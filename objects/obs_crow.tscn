@@ -49,12 +49,12 @@ shape = SubResource("RectangleShape2D_346rs")
 
 [node name="Wings" type="AudioStreamPlayer2D" parent="." index="5"]
 stream = SubResource("AudioStreamRandomizer_lfxj6")
-volume_db = -10.0
+volume_db = -13.0
 bus = &"SFX"
 
 [node name="Caw" type="AudioStreamPlayer2D" parent="." index="6"]
 stream = ExtResource("6_aq32w")
-volume_db = 10.0
+volume_db = -1.0
 bus = &"SFX"
 
 [node name="Timer" type="Timer" parent="." index="7"]

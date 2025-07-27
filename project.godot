@@ -22,6 +22,7 @@ SceneLoader="*res://_globals/autoloads/1.scene_loader.tscn"
 GameSave="*res://_globals/autoloads/2.GameSave.gd"
 SignalBus="*res://_globals/autoloads/3.SignalBus.gd"
 GameManager="*res://_globals/autoloads/4.GameManager.gd"
+MusicManager="*res://_globals/autoloads/5.music_manager.gd"
 
 [display]
 

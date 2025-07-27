@@ -7,6 +7,7 @@ extends Camera2D
 
 @onready var parallaxes = $"../Stationary/Parallax".get_children()
 
+var eq_effect : AudioEffectEQ10
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,6 +15,8 @@ func _ready() -> void:
 	SignalBus.isBlinded.connect(Blind)
 	SignalBus.GamePaused.connect(Parallax)
 	SignalBus.GameStarted.connect(Controls)
+	MusicManager._switchmusic("res://sound/music/mainlevel_v2_cutloop.ogg", "res://sound/music/mainlevel_v2_wrappedloop.ogg", -10)
+	eq_effect = AudioServer.get_bus_effect(1,0)
 	TurnOffShaders()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,8 +54,19 @@ func Blind(activate):
 func FadeShader(shader:ColorRect,activate:bool):
 	var temp_tween:= create_tween()
 	if activate:
+		eq_effect.set_band_gain_db(9, -80)
+		eq_effect.set_band_gain_db(8, -80)
+		eq_effect.set_band_gain_db(7, -80)
+		eq_effect.set_band_gain_db(6, -80)
+		eq_effect.set_band_gain_db(5, -80)
 		temp_tween.tween_property(shader,"material:shader_parameter/alpha",0,.01)
 		shader.visible = true
 		temp_tween.tween_property(shader,"material:shader_parameter/alpha",1,.25)
 	else: 
+		eq_effect.set_band_gain_db(9, 0)
+		eq_effect.set_band_gain_db(8, 0)
+		eq_effect.set_band_gain_db(7, 0)
+		eq_effect.set_band_gain_db(6, 0)
+		eq_effect.set_band_gain_db(5, 0)
 		temp_tween.tween_property(shader,"material:shader_parameter/alpha",0,.25)
+		

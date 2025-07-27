@@ -24,6 +24,7 @@ var isSlowed: bool = false
 var isBoosted:bool = false
 
 var prev_direction: Array = [0,0]
+var eq_effect : AudioEffectEQ10
 
 func _ready() -> void:
 	GameManager.player = self
@@ -34,6 +35,7 @@ func _ready() -> void:
 	SignalBus.GamePaused.connect(PauseTimers)
 	SignalBus.coinCollected.connect(CoinSFX)
 	SignalBus.dead.connect(_on_health_comp_dead)
+	eq_effect = AudioServer.get_bus_effect(1,0)
 
 func _process(delta) -> void:
 	if GameManager.isPaused:
@@ -137,11 +139,21 @@ func Boost(activated:bool):
 		$Audio_boost.play()
 		tween.tween_property(self,"velocity",velocity*2,.1)
 		isBoosted = true
+		
+		eq_effect.set_band_gain_db(0, -40)
+		eq_effect.set_band_gain_db(1, -20)
+		eq_effect.set_band_gain_db(2, -10)
+		eq_effect.set_band_gain_db(3, -5)
 	else:
 		#PlayAnim(null)
 		$move.paused = false
 		isBoosted = false
 		tween.tween_property(self,"velocity",Vector2(0,0),.25)
+		
+		eq_effect.set_band_gain_db(0, 0)
+		eq_effect.set_band_gain_db(1, 0)
+		eq_effect.set_band_gain_db(2, 0)
+		eq_effect.set_band_gain_db(3, 0)
 func CoinSFX():
 	$Audio_coin.play()
 
