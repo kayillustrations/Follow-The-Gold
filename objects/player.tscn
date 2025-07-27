@@ -72,6 +72,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_bhqug")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("8_f2hc5")
 }, {
 "duration": 1.0,
@@ -170,7 +178,7 @@ one_shot = true
 position = Vector2(-4.76837e-07, -56)
 scale = Vector2(0.362667, 0.362667)
 sprite_frames = SubResource("SpriteFrames_cyhxw")
-animation = &"idle"
+animation = &"dead"
 autoplay = "idle"
 
 [node name="Boost" type="Timer" parent="."]

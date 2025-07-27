@@ -33,6 +33,7 @@ func _ready() -> void:
 	SignalBus.isAffected.connect(PauseWalk)
 	SignalBus.GamePaused.connect(PauseTimers)
 	SignalBus.coinCollected.connect(CoinSFX)
+	SignalBus.dead.connect(_on_health_comp_dead)
 
 func _process(delta) -> void:
 	if GameManager.isPaused:
@@ -193,6 +194,7 @@ func edit_canMove(b:bool):
 func edit_isSlowed(b:bool): isSlowed = b
 
 func _on_health_comp_dead() -> void:
+	animated_sprite_2d.animation = "dead"
 	pass # Replace with function body.
 
 func _on_boost_timeout() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bj06xa2kbeinh"]
+[gd_scene load_steps=12 format=3 uid="uid://bj06xa2kbeinh"]
 
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_q3604"]
 [ext_resource type="Script" uid="uid://s7j7gjthofv5" path="res://objects/obs_crow.gd" id="2_0tqeh"]
@@ -8,6 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://cu0p5fx0bqrg" path="res://sound/sfx/sfx_obstacles/squacksfx.wav" id="6_aq32w"]
 [ext_resource type="AudioStream" uid="uid://dxdxb86dkpe3g" path="res://sound/sfx/sfx_obstacles/sfx_wingflaps/wingflapVar2.wav" id="6_stpov"]
 [ext_resource type="AudioStream" uid="uid://x8huxqe2mh1n" path="res://sound/sfx/sfx_obstacles/sfx_wingflaps/wingflapVar3.wav" id="7_umgv5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_stpov"]
+height = 44.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_346rs"]
 size = Vector2(13, 31)
@@ -33,7 +36,7 @@ effect = 3
 
 [node name="CollisionShape3D" parent="Area2D" index="0"]
 position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_346rs")
+shape = SubResource("CapsuleShape2D_stpov")
 
 [node name="Area2D2" type="Area2D" parent="." index="4"]
 collision_layer = 4

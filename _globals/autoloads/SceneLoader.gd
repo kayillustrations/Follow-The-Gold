@@ -8,6 +8,7 @@ extends Control
 @onready var pause_menu: PackedScene = preload("res://ui/pause_menu.tscn")
 @onready var option_menu: PackedScene = preload("res://ui/option_menu.tscn")
 @onready var controls: PackedScene = preload("res://ui/controls.tscn")
+@onready var credits: PackedScene = preload("res://ui/credit_menu.tscn")
 @onready var end_menu: PackedScene = preload("res://ui/end.tscn")
 @onready var ui: Control = $"UI Scenes/UI"
 
@@ -30,14 +31,14 @@ func _ready() -> void:
 	print(current_scene_path)
 
 func _process(_delta: float) -> void:
-	if !GameManager.isStarted:
-		return
+	
 	if Input.is_action_just_pressed("debug") && GameSave.debug_mode:
 		UISceneActivate(debug_menu)
 	if Input.is_action_just_pressed("exit"):
 		if currentTemp:
 			DeleteTempScene(currentTemp)
-		else: AddTempScene(pause_menu)
+		elif GameManager.isStarted:
+			AddTempScene(pause_menu)
 
 func load_scene(path_name: String):
 	#if FileAccess.file_exists(path_name):

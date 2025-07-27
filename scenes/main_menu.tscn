@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ig6ukabxwwgl"]
+[gd_scene load_steps=14 format=3 uid="uid://ig6ukabxwwgl"]
 
 [ext_resource type="Script" uid="uid://cyumv6ilutkyr" path="res://scenes/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://dqfesnusjaxnr" path="res://art/menu.png" id="2_wu84c"]
@@ -10,8 +10,6 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wu84c"]
 texture = ExtResource("4_8ln24")
 region_rect = Rect2(242, 603, 414, 124)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqqt6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ln24"]
 texture = ExtResource("4_8ln24")
@@ -100,14 +98,12 @@ theme_override_colors/font_pressed_color = Color(1, 0.541176, 0.541176, 1)
 theme_override_constants/outline_size = 21
 theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxTexture_wu84c")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_bqqt6")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_bqqt6")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_wu84c")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_wu84c")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_wu84c")
 theme_override_styles/hover = SubResource("StyleBoxTexture_wu84c")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_bqqt6")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_bqqt6")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_8ln24")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8ln24")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_8ln24")
 theme_override_styles/normal = SubResource("StyleBoxTexture_8ln24")
 text = "Start"
@@ -130,14 +126,12 @@ theme_override_colors/font_pressed_color = Color(1, 0.541176, 0.541176, 1)
 theme_override_constants/outline_size = 21
 theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxTexture_rtw2f")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_bqqt6")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_bqqt6")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_rtw2f")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_rtw2f")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_rtw2f")
 theme_override_styles/hover = SubResource("StyleBoxTexture_rtw2f")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_bqqt6")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_bqqt6")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_8ln24")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8ln24")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_oa1go")
 theme_override_styles/normal = SubResource("StyleBoxTexture_oa1go")
 text = "Options"
@@ -162,14 +156,12 @@ theme_override_colors/font_pressed_color = Color(1, 0.541176, 0.541176, 1)
 theme_override_constants/outline_size = 21
 theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxTexture_wu84c")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_bqqt6")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_bqqt6")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_wu84c")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_wu84c")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_wu84c")
 theme_override_styles/hover = SubResource("StyleBoxTexture_wu84c")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_bqqt6")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_bqqt6")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_8ln24")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8ln24")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_8ln24")
 theme_override_styles/normal = SubResource("StyleBoxTexture_8ln24")
 text = "Credits"

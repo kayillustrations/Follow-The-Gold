@@ -19,6 +19,7 @@ func _on_options_pressed() -> void:
 
 
 func _on_credits_pressed() -> void:
+	SceneLoader.AddTempScene(SceneLoader.credits)
 	pass # Replace with function body.
 
 
