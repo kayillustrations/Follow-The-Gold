@@ -377,6 +377,7 @@ grow_vertical = 2
 stream = ExtResource("14_fpun6")
 volume_db = -5.0
 autoplay = true
+panning_strength = 0.0
 bus = &"Music"
 
 [connection signal="area_entered" from="Stationary/DamagerComp" to="Stationary/DamagerComp" method="_on_area_entered"]
