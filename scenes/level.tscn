@@ -137,9 +137,9 @@ shader_parameter/scale = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 material = SubResource("ShaderMaterial_8iemx")
-limit_left = -700
+limit_left = -820
 limit_top = -300
-limit_right = 700
+limit_right = 820
 limit_bottom = 600
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0

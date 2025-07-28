@@ -13,7 +13,8 @@ config_version=5
 config/name="Follow The Gold"
 run/main_scene="uid://ig6ukabxwwgl"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.407843, 0.188235, 0.243137, 1)
+config/icon="uid://bl1cvj2ygnhgj"
 
 [autoload]
 
@@ -95,3 +96,4 @@ right={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.65098, 0.309804, 0.286275, 1)
