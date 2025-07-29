@@ -56,7 +56,6 @@ func _process(delta) -> void:
 	if GameManager.usingMouse:
 		mouse_pos = get_global_mouse_position()
 		temp_calc = mouse_pos - global_position #diff between clara and mouse
-		print(temp_calc)
 		MouseMovement()
 		return
 	

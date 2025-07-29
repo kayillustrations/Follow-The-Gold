@@ -13,7 +13,7 @@ var volume_sfx:float = 1
 var highscore: int = 0
 
 #------Settings------
-var debug_mode:bool = true
+var debug_mode:bool = false
 var newGame: bool = false
 #--------Stats-------
 var player_stats: Dictionary

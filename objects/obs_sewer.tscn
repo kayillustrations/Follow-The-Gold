@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_xrqpe"]
 [ext_resource type="Script" uid="uid://d4hv7xr8j368x" path="res://objects/obs_sewer.gd" id="2_dwx8m"]
-[ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="3_htohe"]
+[ext_resource type="Texture2D" uid="uid://j6jyr22w6oqa" path="res://art/draft2.png" id="3_htohe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_htohe"]
 atlas = ExtResource("3_htohe")
