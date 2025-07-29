@@ -86,6 +86,7 @@ func ResetPlayer():
 	direction_y = 0
 	position = player_starting_position
 	velocity = Vector2.ZERO
+	get_parent().get_parent().get_child(0).position = Vector2(0,0) #reset camera
 
 func CheckState():
 	if health_comp.isAffected:

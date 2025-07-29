@@ -31,7 +31,6 @@ func _ready() -> void:
 	UISceneActivate(ui)
 	UISceneActivate(debug_menu)
 	Input.set_custom_mouse_cursor(mouse_cursor)
-	print(current_scene_path)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug") && GameSave.debug_mode:

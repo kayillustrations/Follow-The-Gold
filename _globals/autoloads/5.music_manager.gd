@@ -21,7 +21,7 @@ func _ready() -> void:
 	
 	intro_player.volume_db = dbScale
 	loop_player.volume_db = dbScale
-	loop_player.autoplay = false
+	loop_player.autoplay = true
 	set_process(true)
 
 func _switchmusic(tracknameCut : String, tracknameWrapped : String, newVol : float):
@@ -45,7 +45,7 @@ func _switchmusic(tracknameCut : String, tracknameWrapped : String, newVol : flo
 	loop_started = false
 	
 	loop_player.stream = wrappedloop_stream
-	loop_player.volume_db = newVol
+	loop_player.volume_db = newVol - db_offset
 	if get_child_count() <= 1:
 		add_child(loop_player)
 		loop_player.set("parameters/looping", true)
