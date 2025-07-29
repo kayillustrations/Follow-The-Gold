@@ -9,8 +9,15 @@ func _ready() -> void:
 		$ColorRect.visible = true
 	%SFX_Slider.value = GameSave.volume_sfx
 	%Music_Slider.value = GameSave.volume_music
+	
+	Sounds(%SFX_Slider)
+	Sounds(%Music_Slider)
 	pass # Replace with function body.
 
+func Sounds(slider):
+	slider.connect("focus_entered",SceneLoader.ButtonHover)
+	slider.connect("mouse_entered",SceneLoader.ButtonHover)
+	slider.connect("drag_started",SceneLoader.ButtonClick)
 
 func _on_button_pressed() -> void:
 	SceneLoader.DeleteTempScene(self)
@@ -18,6 +25,7 @@ func _on_button_pressed() -> void:
 
 func _on_sfx_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(sfx_index,linear_to_db(value))
+	
 	pass # Replace with function body.
 
 func _on_music_slider_value_changed(value: float) -> void:

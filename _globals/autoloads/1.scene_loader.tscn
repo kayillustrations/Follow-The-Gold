@@ -34,6 +34,6 @@ bus = &"SFX"
 
 [node name="Click" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_cijvv")
-volume_db = 1.0
-pitch_scale = 0.6
+volume_db = 6.0
+pitch_scale = 2.0
 bus = &"SFX"

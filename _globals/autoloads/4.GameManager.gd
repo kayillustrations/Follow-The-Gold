@@ -31,7 +31,7 @@ func _ready() -> void:
 	SignalBus.dead.connect(EndGame)
 
 func EndGame():
-	MusicManager._switchmusic("res://sound/music/gameover_v1_cutloop.ogg", "res://sound/music/gameover_v1_wrappedloop.ogg", -10.2)
+	MusicManager._switchmusic("res://sound/music/gameover_v1_cutloop.ogg", "res://sound/music/gameover_v1_wrappedloop.ogg", -10)
 	var end_scene = SceneLoader.AddTempScene(SceneLoader.end_menu)
 	end_scene.Config()
 	pass

@@ -3,6 +3,7 @@ extends Node
 @export var cutloop_stream: AudioStreamOggVorbis
 @export var wrappedloop_stream: AudioStreamOggVorbis
 @export var dbScale: float = -5.00
+var db_offset: float = 10
 
 var intro_player: AudioStreamPlayer
 var loop_player: AudioStreamPlayer
@@ -39,7 +40,7 @@ func _switchmusic(tracknameCut : String, tracknameWrapped : String, newVol : flo
 		add_child(intro_player)
 		
 	
-	intro_player.volume_db = newVol
+	intro_player.volume_db = newVol - db_offset
 	intro_player.play(0.0)
 	loop_started = false
 	
