@@ -31,7 +31,6 @@ func _ready() -> void:
 	print(current_scene_path)
 
 func _process(_delta: float) -> void:
-	
 	if Input.is_action_just_pressed("debug") && GameSave.debug_mode:
 		UISceneActivate(debug_menu)
 	if Input.is_action_just_pressed("exit"):
@@ -82,6 +81,7 @@ func AddTempScene(scene:PackedScene):
 	GameManager.PauseGame(true)
 	
 	inTempScene = true
+	MouseVisual(true)
 	currentTemp = scene_instance
 	temp_parent.layer = 2
 	print(temp_parent.get_child_count())
@@ -90,6 +90,8 @@ func AddTempScene(scene:PackedScene):
 func DeleteTempScene(scene_self:Node):
 	if scene_self.name == "Pause":
 		inTempScene = false
+		if !GameManager.usingMouse:
+			MouseVisual(false)
 		temp_parent.layer = 1
 		currentTemp = null
 		GameManager.PauseGame(false)
@@ -116,6 +118,12 @@ func ConnectButtons(node:Control):
 	for i in children.size():
 		children[i].connect("pressed",ButtonClick)
 		children[i].connect("mouse_entered",ButtonHover)
+
+func MouseVisual(activate:bool):
+	if !activate: 
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func ButtonHover():
 	$Hover.play()

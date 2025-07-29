@@ -27,8 +27,8 @@ func _process(delta: float) -> void:
 			print(GameManager.usingMouse)
 		elif Input.is_anything_pressed():
 			GameManager.usingMouse = false
+			SceneLoader.MouseVisual(false)
 			GameManager.StartedGame(true)
-			print(GameManager.usingMouse)
 	if !GameManager.isPaused:
 		position = GameManager.player.global_position
 
