@@ -16,7 +16,7 @@ var obstacle_wait: Array[float]
 @onready var sewer_timer: Timer = $"Sewer Timer"
 var sewer_wait = 2
 
-var offset:= Vector2(900/2,0)
+var offset:= Vector2(900.0/2.0,0)
 var last_marker:Marker2D
 
 @onready var enemy_timer: Timer = $"Enemy Timer"

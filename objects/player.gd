@@ -14,6 +14,10 @@ var player_starting_position : Vector2
 
 var walk_mod: float = .9
 
+var mouse_pos:Vector2
+var viewport_size: Vector2
+var temp_calc: Vector2
+
 var direction_x: float = 0.0
 var direction_y: float = 0.0
 
@@ -36,10 +40,24 @@ func _ready() -> void:
 	SignalBus.coinCollected.connect(CoinSFX)
 	SignalBus.dead.connect(_on_health_comp_dead)
 	eq_effect = AudioServer.get_bus_effect(1,0)
+	get_viewport().size_changed.connect(_on_viewport_size_changed)
+	_on_viewport_size_changed()
 
 func _process(delta) -> void:
 	if GameManager.isPaused:
 		PauseWalk(true)
+		return
+	
+	if Input.is_action_just_pressed("Boost"):
+		if canBoost && velocity != Vector2(0,0):
+			Boost(true)
+			cooldown.start(1)
+	
+	if GameManager.usingMouse:
+		mouse_pos = get_global_mouse_position()
+		temp_calc = mouse_pos - global_position #diff between clara and mouse
+		print(temp_calc)
+		MouseMovement()
 		return
 	
 	if Input.is_action_just_pressed("up"):
@@ -54,10 +72,6 @@ func _process(delta) -> void:
 	if Input.is_action_just_pressed("left"):
 		if direction_x != -1:
 			direction_x -= .5
-	if Input.is_action_just_pressed("Boost"):
-		if canBoost && velocity != Vector2(0,0):
-			Boost(true)
-			cooldown.start(1)
 
 func _physics_process(delta: float) -> void:
 	if GameManager.isPaused:
@@ -84,6 +98,19 @@ func CheckState():
 		return true
 	else: return false
 
+func MouseMovement():
+	var abs_calc:Vector2 = abs(temp_calc)
+	var mod: Vector2 = Vector2(1,1)
+	if temp_calc.x < 0:mod.x = -1
+	if temp_calc.y > 0: mod.y = -1
+	
+	if abs_calc.x > 300 : direction_x = mod.x
+	elif abs_calc.x > 100: direction_x = .5 * mod.x
+	else: direction_x = 0
+	
+	if abs_calc.y < 100: direction_y = 0
+	else: direction_y = mod.y
+	pass
 
 func AxisMovement():
 	if direction_x == 0:
@@ -137,6 +164,8 @@ func Boost(activated:bool):
 		#PlayAnim(Boost)
 		$move.paused = true
 		$Audio_boost.play()
+		if abs(direction_x) < 1 && direction_y == 0:
+			tween.tween_property(self,"velocity",velocity*10,.1)
 		tween.tween_property(self,"velocity",velocity*2,.1)
 		isBoosted = true
 		
@@ -227,3 +256,6 @@ func _on_move_timeout() -> void:
 	else: move_timer = .5
 	$move.start(move_timer*walk_mod)
 	pass # Replace with function body.
+
+func _on_viewport_size_changed():
+	viewport_size = get_viewport().size

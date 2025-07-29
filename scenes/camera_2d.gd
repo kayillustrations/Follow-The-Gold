@@ -21,8 +21,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !GameManager.isStarted:
-		if Input.is_anything_pressed():
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) || Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			GameManager.usingMouse = true
 			GameManager.StartedGame(true)
+			print(GameManager.usingMouse)
+		elif Input.is_anything_pressed():
+			GameManager.usingMouse = false
+			GameManager.StartedGame(true)
+			print(GameManager.usingMouse)
 	if !GameManager.isPaused:
 		position = GameManager.player.global_position
 

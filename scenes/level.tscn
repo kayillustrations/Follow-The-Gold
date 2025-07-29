@@ -134,9 +134,9 @@ shader_parameter/scale = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 material = SubResource("ShaderMaterial_8iemx")
-limit_left = -820
+limit_left = -850
 limit_top = -300
-limit_right = 820
+limit_right = 850
 limit_bottom = 600
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
@@ -178,6 +178,8 @@ limit_begin = Vector2(0, 0)
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Stationary/Parallax/Parallax2D2"]
+position = Vector2(-19.75, 0)
+scale = Vector2(1.17401, 1)
 texture = SubResource("AtlasTexture_arp2o")
 
 [node name="Parallax2D3" type="Parallax2D" parent="Stationary/Parallax"]
@@ -189,6 +191,8 @@ limit_begin = Vector2(0, 0)
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Stationary/Parallax/Parallax2D3"]
+position = Vector2(-19.8767, 0)
+scale = Vector2(1.17513, 1)
 texture = SubResource("AtlasTexture_arp2o")
 
 [node name="Top" type="Sprite2D" parent="Stationary"]
@@ -277,6 +281,9 @@ rotation = 1.5708
 [node name="Despawner T3" parent="Stationary" instance=ExtResource("6_2r41h")]
 position = Vector2(-750, 0)
 rotation = -1.5708
+
+[node name="Marker2D" type="Marker2D" parent="Stationary"]
+position = Vector2(150, 2)
 
 [node name="Moving" type="Node2D" parent="."]
 z_index = 1
