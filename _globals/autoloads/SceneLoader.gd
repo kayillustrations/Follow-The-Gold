@@ -16,6 +16,8 @@ extends Control
 @onready var temp_parent: CanvasLayer = $"Temp Scenes"
 @onready var debug_menu: Control = $"UI Scenes/Debug"
 
+@export var mouse_cursor: Texture2D
+
 var level_path: String = "res://scenes/level.tscn"
 var menu_path: String = "res://scenes/main_menu.tscn"
 
@@ -28,6 +30,7 @@ var new_scene_path: String
 func _ready() -> void:
 	UISceneActivate(ui)
 	UISceneActivate(debug_menu)
+	Input.set_custom_mouse_cursor(mouse_cursor)
 	print(current_scene_path)
 
 func _process(_delta: float) -> void:

@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://boekkw20lfm00"]
+[gd_scene load_steps=7 format=3 uid="uid://boekkw20lfm00"]
 
 [ext_resource type="Script" uid="uid://b40x7j5j8wihv" path="res://_globals/autoloads/SceneLoader.gd" id="1_csm60"]
 [ext_resource type="PackedScene" uid="uid://bbxdll7jkkq64" path="res://scenes/ui.tscn" id="2_0hl77"]
+[ext_resource type="Texture2D" uid="uid://dqx6624xb3kmq" path="res://art/ui.png" id="2_cijvv"]
 [ext_resource type="PackedScene" uid="uid://h3kubo2r2qws" path="res://ui/debug_menu.tscn" id="2_oidld"]
 [ext_resource type="AudioStream" uid="uid://db4mip8pub23a" path="res://sound/sfx/sfx_ui/UIbuttonhover.wav" id="4_cijvv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqkuy"]
+atlas = ExtResource("2_cijvv")
+region = Rect2(994, 228, 60, 51)
 
 [node name="SceneLoader" type="Control"]
 layout_mode = 3
@@ -13,6 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_csm60")
+mouse_cursor = SubResource("AtlasTexture_aqkuy")
 
 [node name="Temp Scenes" type="CanvasLayer" parent="."]
 
