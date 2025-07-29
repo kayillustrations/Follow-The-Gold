@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7jfb875f8a2f"]
+[gd_scene load_steps=7 format=3 uid="uid://b7jfb875f8a2f"]
 
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_i24vo"]
 [ext_resource type="Script" uid="uid://eve848u1a0tk" path="res://objects/obs_poppy.gd" id="2_c4wqy"]
 [ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="3_ihaoh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihaoh"]
+atlas = ExtResource("3_ihaoh")
+region = Rect2(473, 302, 107, 139)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qe1os"]
+atlas = ExtResource("3_ihaoh")
+region = Rect2(421, 452, 117, 125)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7c8k3"]
 radius = 11.5
@@ -10,11 +18,14 @@ height = 34.0
 
 [node name="Poppy" instance=ExtResource("1_i24vo")]
 script = ExtResource("2_c4wqy")
+sprites = Array[Texture2D]([SubResource("AtlasTexture_ihaoh"), SubResource("AtlasTexture_qe1os")])
+random_sprite = true
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -14)
 scale = Vector2(0.25, 0.258)
-texture = ExtResource("3_ihaoh")
+texture = SubResource("AtlasTexture_ihaoh")
+region_enabled = false
 region_rect = Rect2(473, 302, 107, 139)
 
 [node name="Area2D" parent="." index="3"]

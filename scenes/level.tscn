@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=40 format=3 uid="uid://camr044y2lsco"]
 
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
 [ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="4_wc255"]
@@ -71,9 +71,6 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olg7q"]
 size = Vector2(1382, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wc255"]
-size = Vector2(150, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arp2o"]
 size = Vector2(900, 50)
@@ -294,19 +291,21 @@ script = ExtResource("10_fpun6")
 
 [node name="Sidewalks" type="Node2D" parent="Spawning Manager"]
 
-[node name="Left" type="CollisionShape2D" parent="Spawning Manager/Sidewalks"]
-position = Vector2(0, 11.5)
-shape = SubResource("RectangleShape2D_wc255")
+[node name="Marker2D" type="Marker2D" parent="Spawning Manager/Sidewalks"]
+position = Vector2(-400, 0)
+
+[node name="Marker2D2" type="Marker2D" parent="Spawning Manager/Sidewalks"]
+position = Vector2(400, 0)
 
 [node name="Sewers" type="Node2D" parent="Spawning Manager"]
 
 [node name="Marker2D" type="Marker2D" parent="Spawning Manager/Sewers"]
 
 [node name="Marker2D2" type="Marker2D" parent="Spawning Manager/Sewers"]
-position = Vector2(-325, 0)
+position = Vector2(-300, 0)
 
 [node name="Marker2D3" type="Marker2D" parent="Spawning Manager/Sewers"]
-position = Vector2(325, 0)
+position = Vector2(300, 0)
 
 [node name="Inside Bounds" type="Node2D" parent="Spawning Manager"]
 

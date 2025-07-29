@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://b04pl3lwnnh5n"]
+[gd_scene load_steps=2 format=3 uid="uid://b04pl3lwnnh5n"]
 
-[ext_resource type="Texture2D" uid="uid://hivd6l8m2h8s" path="res://_imported/temp art/sheet_alley_placeholder.png" id="2_0g2q7"]
 [ext_resource type="Script" uid="uid://dhu2arpfxq6j5" path="res://_globals/components/damager_comp.gd" id="3_eehvm"]
 
 [node name="Obstacle Base" type="StaticBody2D"]
@@ -12,8 +11,6 @@ scale = Vector2(2, 2)
 unique_name_in_owner = true
 position = Vector2(0, -7)
 scale = Vector2(0.122677, 0.127273)
-texture = ExtResource("2_0g2q7")
-region_enabled = true
 region_rect = Rect2(315, 1609, 538, 110.979)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

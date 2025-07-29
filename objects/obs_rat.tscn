@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjvaeesg11ow8"]
+[gd_scene load_steps=15 format=3 uid="uid://cjvaeesg11ow8"]
 
 [ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="2_8cnln"]
 [ext_resource type="Script" uid="uid://b7cf0jrk81444" path="res://objects/obs_rat.gd" id="2_al31q"]
@@ -16,7 +16,13 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cnln"]
+atlas = ExtResource("2_8cnln")
+region = Rect2(878, 820, 51, 132)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yg17f"]
+radius = 8.03972
+height = 26.4827
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8cnln"]
 random_pitch = 1.1
@@ -50,8 +56,7 @@ unique_name_in_owner = true
 rotation = 1.64934
 scale = Vector2(2, 2)
 skew = -0.0238584
-texture = ExtResource("2_8cnln")
-region_enabled = true
+texture = SubResource("AtlasTexture_8cnln")
 region_rect = Rect2(878, 820, 51, 132)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Path2D/PathFollow2D"]
@@ -73,13 +78,14 @@ collision_mask = 2
 script = ExtResource("3_tfsen")
 
 [node name="CollisionShape3D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
-rotation = 0.71733
+position = Vector2(2.19956, -3.46458)
+rotation = 0.474302
 shape = SubResource("CapsuleShape2D_yg17f")
 
 [node name="Area2D2" type="Area2D" parent="Path2D/PathFollow2D"]
 unique_name_in_owner = true
-position = Vector2(-3.01164, 2.53922)
-rotation = 1.04028
+position = Vector2(29.7784, 7.59536)
+rotation = 0.812634
 scale = Vector2(8.5511, 8.75746)
 skew = 0.0361742
 collision_layer = 4
@@ -93,12 +99,11 @@ shape = SubResource("CapsuleShape2D_yg17f")
 
 [node name="Squeak" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_8cnln")
-volume_db = -2.0
 bus = &"SFX"
 
 [node name="Walking" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_3xmd1")
-volume_db = -3.0
+volume_db = -2.0
 pitch_scale = 2.0
 bus = &"SFX"
 

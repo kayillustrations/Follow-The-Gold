@@ -1,25 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnebyvwvdm3kw"]
+[gd_scene load_steps=7 format=3 uid="uid://dnebyvwvdm3kw"]
 
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_xrqpe"]
 [ext_resource type="Script" uid="uid://d4hv7xr8j368x" path="res://objects/obs_sewer.gd" id="2_dwx8m"]
 [ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="3_htohe"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_htohe"]
-radius = 20.0
-height = 39.9999
+[sub_resource type="AtlasTexture" id="AtlasTexture_htohe"]
+atlas = ExtResource("3_htohe")
+region = Rect2(649, 482, 160, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgf34"]
+atlas = ExtResource("3_htohe")
+region = Rect2(1092, 470.333, 120.667, 156)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1p0n2"]
+radius = 17.5071
 
 [node name="Sewer" instance=ExtResource("1_xrqpe")]
 script = ExtResource("2_dwx8m")
+sprites = Array[Texture2D]([SubResource("AtlasTexture_htohe"), SubResource("AtlasTexture_tgf34")])
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, 19.5001)
 scale = Vector2(0.25, 0.258)
-texture = ExtResource("3_htohe")
+texture = SubResource("AtlasTexture_tgf34")
 region_rect = Rect2(649, 482, 160, 150)
 
 [node name="Area2D" parent="." index="3"]
 effect = 4
 
 [node name="CollisionShape3D" parent="Area2D" index="0"]
-position = Vector2(0, 17.5)
-shape = SubResource("CapsuleShape2D_htohe")
+position = Vector2(0, 19)
+shape = SubResource("CircleShape2D_1p0n2")

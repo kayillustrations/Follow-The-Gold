@@ -7,7 +7,7 @@ var settings_config:ConfigFile = ConfigFile.new()
 
 @onready var sfx_index: int = AudioServer.get_bus_index("SFX")
 @onready var music_index: int = AudioServer.get_bus_index("Music")
-var volume_music:float = 1
+var volume_music:float = .5
 var volume_sfx:float = 1
 
 var highscore: int = 0

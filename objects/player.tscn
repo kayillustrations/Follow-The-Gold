@@ -192,32 +192,27 @@ autostart = true
 
 [node name="Audio_boost" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("25_mle5l")
-volume_db = -5.0
 bus = &"SFX"
 
 [node name="Audio_damage" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_mqnmn")
-volume_db = -4.3
 bus = &"SFX"
 
 [node name="Audio_vision" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_5esnd")
-volume_db = -5.0
 bus = &"SFX"
 
 [node name="Audio_slow" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_w1o2u")
-volume_db = -5.0
 bus = &"SFX"
 
 [node name="Audio_disorient" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_s4hvt")
-volume_db = -5.0
 bus = &"SFX"
 
 [node name="Audio_coin" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_2sux5")
-volume_db = -7.0
+volume_db = -5.0
 bus = &"SFX"
 
 [node name="Audio_move" type="AudioStreamPlayer2D" parent="."]

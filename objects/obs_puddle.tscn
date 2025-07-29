@@ -1,8 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://n1u4mdpwh8rw"]
+[gd_scene load_steps=8 format=3 uid="uid://n1u4mdpwh8rw"]
 
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_2yiwk"]
 [ext_resource type="Script" uid="uid://dv0xfi3owvx2d" path="res://objects/obs_puddle.gd" id="2_j2rvv"]
 [ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="3_1vs7u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vs7u"]
+atlas = ExtResource("3_1vs7u")
+region = Rect2(693, 242, 126, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76ksd"]
+atlas = ExtResource("3_1vs7u")
+region = Rect2(849, 244, 128, 123)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxrbc"]
+atlas = ExtResource("3_1vs7u")
+region = Rect2(1010, 244, 134, 114)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbo80"]
 radius = 15.5
@@ -11,11 +23,13 @@ height = 33.0
 [node name="Puddle" instance=ExtResource("1_2yiwk")]
 scale = Vector2(4, 4)
 script = ExtResource("2_j2rvv")
+sprites = Array[Texture2D]([SubResource("AtlasTexture_1vs7u"), SubResource("AtlasTexture_76ksd"), SubResource("AtlasTexture_vxrbc")])
+random_sprite = true
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, 15)
 scale = Vector2(0.2452, 0.254386)
-texture = ExtResource("3_1vs7u")
+texture = SubResource("AtlasTexture_1vs7u")
 region_rect = Rect2(1010, 244, 134, 114)
 
 [node name="CollisionShape2D" parent="." index="1"]

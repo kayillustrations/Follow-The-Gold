@@ -79,7 +79,7 @@ func Spawn(obstacle:int):
 			location = ChooseChild(sewers)
 			instance = preload("res://objects/obs_sewer.tscn")
 		SignalBus.Obstacles.POPPY:
-			location = ChooseChild(sidewalks) + Vector2((400 * [-1,1].pick_random()),0)
+			location = ChooseChild(sidewalks) + Vector2(100 * randf_range(-1,1),0)
 			instance = preload("res://objects/obs_poppy.tscn")
 		SignalBus.Obstacles.RAT:
 			location = outside_bounds.get_children().pick_random().position
@@ -91,9 +91,9 @@ func Spawn(obstacle:int):
 	var temp_obs:Node2D = instance.instantiate()
 	temp_obs.position = location
 	moving.add_child(temp_obs)
+	temp_obs.Config()
 	if temp_obs.get_child(0).name == "Path2D" && location.x > 0: 
 		temp_obs.scale.x *= -1
-		print("right")
 
 func ChooseInsideShape(shape:CollisionShape2D):
 	var rand_x = randf_range(0, shape.shape.size.x)
