@@ -1,6 +1,5 @@
-[gd_scene load_steps=45 format=3 uid="uid://camr044y2lsco"]
+[gd_scene load_steps=43 format=3 uid="uid://camr044y2lsco"]
 
-[ext_resource type="Shader" uid="uid://cohm0mpa32itf" path="res://scenes/glass.gdshader" id="4_arp2o"]
 [ext_resource type="Texture2D" uid="uid://cd35i7r5y6bjo" path="res://_imported/temp art/8.png" id="4_klq6b"]
 [ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="4_wc255"]
 [ext_resource type="Texture2D" uid="uid://bwyqp5xc1ybyf" path="res://_imported/abstract_artistic_paint_splatter_texture.png" id="5_arp2o"]
@@ -21,19 +20,6 @@
 shader = ExtResource("12_8iemx")
 shader_parameter/distortion_strength = 0.5
 shader_parameter/distortion_radius = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_82cfe"]
-shader = ExtResource("4_arp2o")
-shader_parameter/crack_depth = 0.281
-shader_parameter/crack_scale = 2.484
-shader_parameter/crack_zebra_scale = 1.091
-shader_parameter/crack_zebra_amp = 0.0
-shader_parameter/crack_profile = 0.94
-shader_parameter/crack_slope = 50.0
-shader_parameter/crack_width = 0.001
-shader_parameter/refraction_offset = Vector2(25, 25)
-shader_parameter/reflection_offset = Vector2(1, 1)
-shader_parameter/reflection_color = Color(0.837239, 0.627986, 0.590111, 0.501961)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ux5qa"]
 
@@ -186,11 +172,6 @@ follow_viewport = false
 modulate = Color(0.862, 0.77, 1, 1)
 texture = ExtResource("8_fpun6")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Stationary/Parallax/brick"]
-modulate = Color(0.862, 0.77, 1, 1)
-material = SubResource("ShaderMaterial_82cfe")
-texture = ExtResource("8_fpun6")
-
 [node name="shading" type="Parallax2D" parent="Stationary/Parallax"]
 scroll_offset = Vector2(0, -386.905)
 repeat_size = Vector2(0, 1080)
@@ -200,8 +181,8 @@ follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Stationary/Parallax/shading"]
 material = SubResource("ShaderMaterial_ux5qa")
-position = Vector2(0, -4.75)
-scale = Vector2(1.02885, 0.990193)
+position = Vector2(0, -5.25011)
+scale = Vector2(1.02885, 0.989275)
 texture = SubResource("GradientTexture2D_wc255")
 
 [node name="shading_L" type="Parallax2D" parent="Stationary/Parallax"]

@@ -1,6 +1,6 @@
 extends Node
 
-const SCENE_SAVE_FOLDER:String = "res://saves/"
+const SCENE_SAVE_FOLDER:String = "user://saves/"
 
 var game_config:ConfigFile = ConfigFile.new()
 var settings_config:ConfigFile = ConfigFile.new()

@@ -102,7 +102,7 @@ layout_mode = 2
 text = "#"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.01
 one_shot = true
 
 [node name="Health" type="Control" parent="."]

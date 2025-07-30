@@ -30,6 +30,7 @@ var new_scene_path: String
 func _ready() -> void:
 	UISceneActivate(ui)
 	UISceneActivate(debug_menu)
+	UISceneActivate($"UI Scenes/x")
 	Input.set_custom_mouse_cursor(mouse_cursor)
 
 func _process(_delta: float) -> void:
@@ -51,6 +52,7 @@ func load_scene(path_name: String):
 	#await transition_ended
 	get_tree().change_scene_to_file(path_name)
 	current_scene_path = new_scene_path
+	UISceneActivate($"UI Scenes/x")
 	#transition fade out
 	#await transition_ended
 	#transition idle/reset
@@ -86,7 +88,7 @@ func AddTempScene(scene:PackedScene):
 	MouseVisual(true)
 	currentTemp = scene_instance
 	temp_parent.layer = 2
-	print(temp_parent.get_child_count())
+	#print(temp_parent.get_child_count())
 	return scene_instance
 
 func DeleteTempScene(scene_self:Node):
@@ -131,3 +133,8 @@ func ButtonHover():
 	$Hover.play()
 func ButtonClick():
 	$Click.play()
+
+func _on_x_pressed() -> void:
+	if GameManager.isStarted:
+		AddTempScene(pause_menu)
+	pass # Replace with function body.

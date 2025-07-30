@@ -66,7 +66,7 @@ func _process(delta) -> void:
 		if Input.is_action_just_pressed("Click"):
 			if isJustClicked && ActivateBoost():
 				isJustClicked = false
-				print("boosted")
+				#print("boosted")
 			else: 
 				isJustClicked = true
 				$justClicked.start(.25)
@@ -266,5 +266,5 @@ func _on_viewport_size_changed():
 
 func _on_just_clicked_timeout() -> void:
 	isJustClicked = false
-	print("timeout")
+	#print("timeout")
 	pass # Replace with function body.

@@ -33,11 +33,12 @@ func Config():
 	TickUp(score,calculated_score,1)
 	await label_finished
 	Highscore()
+	tick_audio.stop()
 
 func TickUp(text:Label, number:int,start:int):
 	var i: int = start
 	while i <= number:
-		if Input.is_action_just_pressed("Boost"):
+		if Input.is_action_just_pressed("Boost")||Input.is_action_just_pressed("Click"):
 			break
 		if number < 100: 
 			label_tick.start(.05)
@@ -50,7 +51,7 @@ func TickUp(text:Label, number:int,start:int):
 	label_finished.emit()
 
 func Score():
-	calculated_score = GameManager.total_time_milli
+	calculated_score = GameManager.total_time_milli * .1
 	calculated_score += GameManager.coins_collected * 10
 	calculated_score -= GameManager.obstacles_hit
 	pass

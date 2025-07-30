@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://boekkw20lfm00"]
+[gd_scene load_steps=10 format=3 uid="uid://boekkw20lfm00"]
 
 [ext_resource type="Script" uid="uid://b40x7j5j8wihv" path="res://_globals/autoloads/SceneLoader.gd" id="1_csm60"]
 [ext_resource type="PackedScene" uid="uid://bbxdll7jkkq64" path="res://scenes/ui.tscn" id="2_0hl77"]
@@ -9,6 +9,32 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqkuy"]
 atlas = ExtResource("2_cijvv")
 region = Rect2(994, 228, 60, 51)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cijvv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqkuy"]
+bg_color = Color(1, 0.676167, 0.33, 0.568627)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.62, 0.248, 0.3162, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2iym8"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.784314, 0.376471, 0.34902, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="SceneLoader" type="Control"]
 layout_mode = 3
@@ -34,6 +60,35 @@ offset_left = -124.5
 offset_right = 124.5
 grow_horizontal = 2
 
+[node name="x" type="Button" parent="UI Scenes"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = -75.0
+offset_right = 58.0
+offset_bottom = -46.0
+grow_vertical = 0
+scale = Vector2(1.8, 1.8)
+theme_override_colors/font_hover_pressed_color = Color(0.784314, 0.376471, 0.34902, 1)
+theme_override_colors/font_hover_color = Color(0.784314, 0.376471, 0.34902, 1)
+theme_override_colors/font_color = Color(0.784314, 0.376471, 0.34902, 1)
+theme_override_colors/font_focus_color = Color(0.784314, 0.376471, 0.34902, 1)
+theme_override_colors/font_pressed_color = Color(0.784314, 0.376471, 0.34902, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cijvv")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_cijvv")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_cijvv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_aqkuy")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_aqkuy")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_aqkuy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aqkuy")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_cijvv")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cijvv")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_2iym8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2iym8")
+text = "x"
+
 [node name="Hover" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_cijvv")
 bus = &"SFX"
@@ -43,3 +98,5 @@ stream = ExtResource("4_cijvv")
 volume_db = 6.0
 pitch_scale = 2.0
 bus = &"SFX"
+
+[connection signal="pressed" from="UI Scenes/x" to="." method="_on_x_pressed"]
