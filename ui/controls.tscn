@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://28qgr4itx81d"]
+[gd_scene load_steps=7 format=3 uid="uid://28qgr4itx81d"]
+
+[ext_resource type="Texture2D" uid="uid://dp7fy8bbe0pv0" path="res://_imported/mouse.png" id="1_ewaii"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nt7q6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob35n"]
+atlas = ExtResource("1_ewaii")
+region = Rect2(65, 277, 91, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bxso"]
+atlas = ExtResource("1_ewaii")
+region = Rect2(52, 84, 120, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgu1a"]
+atlas = ExtResource("1_ewaii")
+region = Rect2(423, 229, 121, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0tqn"]
+atlas = ExtResource("1_ewaii")
+region = Rect2(407, 42, 153, 172)
 
 [node name="Controls" type="Control"]
 layout_mode = 3
@@ -12,34 +30,36 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="PRESS" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -165.0
-offset_top = -1.0
-offset_right = 150.0
-offset_bottom = 39.0
+offset_left = -192.0
+offset_top = -15.0
+offset_right = 192.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 75
-
-[node name="Movement" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.980392, 0.784314, 0.65098, 1)
+theme_override_colors/font_color = Color(0.980006, 0.785951, 0.650623, 1)
 theme_override_font_sizes/font_size = 30
-text = "Movement"
+text = "PRESS ANY KEY TO START"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Boost" type="Label" parent="HBoxContainer"]
+[node name="Move" type="Label" parent="."]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.980392, 0.784314, 0.65098, 1)
+offset_left = -266.0
+offset_top = -192.0
+offset_right = -194.0
+offset_bottom = -162.0
+theme_override_colors/font_color = Color(0.980006, 0.785951, 0.650623, 1)
 theme_override_font_sizes/font_size = 30
-text = "Boost"
+text = "Move"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WASD" type="Panel" parent="."]
 layout_mode = 1
@@ -48,10 +68,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -136.0
-offset_top = -50.0
-offset_right = -136.0
-offset_bottom = 50.0
+offset_left = -232.0
+offset_top = -151.0
+offset_right = -232.0
+offset_bottom = -51.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
@@ -164,10 +184,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -51.0
-offset_right = -90.0
-offset_bottom = 49.0
+offset_left = -272.0
+offset_top = -85.0
+offset_right = -272.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
@@ -279,31 +299,179 @@ theme_override_colors/font_color = Color(0.423529, 0.211765, 0.266667, 1)
 theme_override_font_sizes/font_size = 50
 text = ">"
 
-[node name="Space" type="Panel" parent="."]
+[node name="Or" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 24.0
-offset_top = -24.0
-offset_right = 103.5
-offset_bottom = 28.0
+offset_left = -252.0
+offset_top = -21.0
+offset_right = -211.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.980006, 0.785951, 0.650623, 1)
+theme_override_font_sizes/font_size = 20
+text = "or"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Or2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 218.0
+offset_top = -19.0
+offset_right = 259.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.980006, 0.785951, 0.650623, 1)
+theme_override_font_sizes/font_size = 20
+text = "or"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mouse" type="TextureRect" parent="."]
+modulate = Color(0.980392, 0.784314, 0.65098, 1)
+layout_mode = 0
+offset_left = -248.0
+offset_top = 22.0
+offset_right = -191.0
+offset_bottom = 78.0
+scale = Vector2(0.75, 0.75)
+texture = SubResource("AtlasTexture_ob35n")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Hand" type="TextureRect" parent="."]
+modulate = Color(0.980392, 0.784314, 0.65098, 1)
+layout_mode = 0
+offset_left = -249.0
+offset_top = 84.0
+offset_right = -192.0
+offset_bottom = 140.0
+scale = Vector2(0.75, 0.75)
+texture = SubResource("AtlasTexture_3bxso")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Keys" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -356.0
+offset_top = -232.0
+offset_right = -96.0
+offset_bottom = -192.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Keys" type="Label" parent="Keys"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.980006, 0.785951, 0.650623, 1)
+theme_override_font_sizes/font_size = 30
+text = "Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Keys2" type="Label" parent="Keys"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.980006, 0.785951, 0.650623, 1)
+theme_override_font_sizes/font_size = 30
+text = "Boost"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Boost" type="Label" parent="."]
+layout_mode = 2
+offset_left = 199.0
+offset_top = -182.0
+offset_right = 289.0
+offset_bottom = -152.0
+theme_override_colors/font_color = Color(0.980006, 0.785951, 0.650623, 1)
+theme_override_font_sizes/font_size = 30
+text = "Boost"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enter" type="Panel" parent="."]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 190.0
+offset_top = -75.5
+offset_right = 390.0
+offset_bottom = -0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nt7q6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Enter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Enter/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.980392, 0.784314, 0.65098, 1)
+
+[node name="Label" type="Label" parent="Enter/VBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.419608, 0.207843, 0.262745, 1)
+theme_override_font_sizes/font_size = 50
+text = "Enter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Space" type="Panel" parent="."]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 190.0
+offset_top = -137.0
+offset_right = 390.0
+offset_bottom = -62.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_nt7q6")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Space"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="Space/VBoxContainer"]
-custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
+size_flags_vertical = 3
 color = Color(0.980392, 0.784314, 0.65098, 1)
 
 [node name="Label" type="Label" parent="Space/VBoxContainer/ColorRect"]
@@ -319,21 +487,24 @@ text = "Space"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PRESS" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -192.0
-offset_top = 174.0
-offset_right = 192.0
-offset_bottom = 204.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.980006, 0.785951, 0.650623, 1)
-theme_override_font_sizes/font_size = 30
-text = "PRESS ANY KEY TO START"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Mouse2" type="TextureRect" parent="."]
+modulate = Color(0.980392, 0.784314, 0.65098, 1)
+offset_left = 221.0
+offset_top = 22.0
+offset_right = 298.0
+offset_bottom = 99.0
+scale = Vector2(0.75, 0.75)
+texture = SubResource("AtlasTexture_mgu1a")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Hand2" type="TextureRect" parent="."]
+modulate = Color(0.980392, 0.784314, 0.65098, 1)
+offset_left = 218.0
+offset_top = 84.0
+offset_right = 293.0
+offset_bottom = 159.0
+scale = Vector2(0.75, 0.75)
+texture = SubResource("AtlasTexture_w0tqn")
+expand_mode = 3
+stretch_mode = 4

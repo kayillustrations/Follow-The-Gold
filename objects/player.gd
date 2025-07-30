@@ -23,6 +23,7 @@ var walk_mod: float = .9
 var mouse_pos:Vector2
 var viewport_size: Vector2
 var temp_calc: Vector2
+var isJustClicked: bool = false
 
 var direction_x: float = 0.0
 var direction_y: float = 0.0
@@ -56,14 +57,20 @@ func _process(delta) -> void:
 		return
 	
 	if Input.is_action_just_pressed("Boost"):
-		if canBoost && velocity != Vector2(0,0):
-			Boost(true)
-			cooldown.start(1)
+		ActivateBoost()
 	
 	if GameManager.usingMouse:
 		mouse_pos = get_global_mouse_position()
 		temp_calc = mouse_pos - global_position #diff between clara and mouse
 		MouseMovement()
+		if Input.is_action_just_pressed("Click"):
+			if isJustClicked && ActivateBoost():
+				isJustClicked = false
+				print("boosted")
+			else: 
+				isJustClicked = true
+				$justClicked.start(.25)
+			
 		return
 	
 	if Input.is_action_just_pressed("up"):
@@ -176,9 +183,16 @@ func GetAnimated():
 		animated_sprite_2d.animation = "angle"
 		particles_walk.emitting = true
 
+func ActivateBoost():
+	if canBoost && velocity != Vector2(0,0):
+		Boost(true)
+		return true
+	return false
+
 func Boost(activated:bool):
 	var tween:= create_tween()
 	if activated:
+		cooldown.start(1)
 		canBoost = false
 		boost.start(.5)
 		particles_boost.emitting = true
@@ -248,3 +262,9 @@ func _on_move_timeout() -> void:
 
 func _on_viewport_size_changed():
 	viewport_size = get_viewport().size
+
+
+func _on_just_clicked_timeout() -> void:
+	isJustClicked = false
+	print("timeout")
+	pass # Replace with function body.
