@@ -34,6 +34,7 @@ func ApplyEffect(effect):
 	match effect:
 		SignalBus.Effects.DAMAGE:
 			sprite_color(false,damaged_color)
+			$"..".particles_blood.emitting = true
 			$"../Audio_damage".play()
 			SignalBus.isDamaged.emit(true)
 			ChangeHealth(1)
@@ -73,19 +74,23 @@ func sprite_color(isColored:bool,color:Color):
 
 func Slowness(timer:Timer):
 	SignalBus.isSlowed.emit(true)
+	$"..".particles_damp.emitting = true
 	timer.start(1)
 	
 	await timer.timeout
 	SignalBus.isSlowed.emit(false)
 	SignalBus.isAffected.emit(false)
+	$"..".particles_damp.emitting = false
 	GameManager.player_speed = GameManager.max_current_speed
 	timer.queue_free()
 
 func Disorient(timer:Timer):
 	SignalBus.isDisoriented.emit(true)
+	$"..".particles_dizzy.emitting = true
 	timer.start(1.5)
 	
 	await timer.timeout
+	$"..".particles_dizzy.emitting = false
 	SignalBus.isDisoriented.emit(false)
 	SignalBus.isAffected.emit(false)
 	timer.queue_free()

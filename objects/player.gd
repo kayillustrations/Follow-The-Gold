@@ -6,7 +6,11 @@ extends CharacterBody2D
 @onready var health_comp: HealthComp = $HealthComp
 #@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-
+@onready var particles_walk: CPUParticles2D = $"Walk part"
+@onready var particles_damp: CPUParticles2D = $damp
+@onready var particles_blood: CPUParticles2D = $blood
+@onready var particles_dizzy: CPUParticles2D = $dizzy
+@onready var particles_boost: CPUParticles2D = $"boost part"
 
 var player_starting_position : Vector2
 
@@ -42,6 +46,7 @@ func _ready() -> void:
 	eq_effect = AudioServer.get_bus_effect(1,0)
 	get_viewport().size_changed.connect(_on_viewport_size_changed)
 	_on_viewport_size_changed()
+	ResetPlayer()
 
 func _process(delta) -> void:
 	if GameManager.isPaused:
@@ -85,6 +90,11 @@ func ResetPlayer():
 	direction_y = 0
 	position = player_starting_position
 	velocity = Vector2.ZERO
+	particles_walk.emitting = false
+	particles_damp.emitting = false
+	particles_blood.emitting = false
+	particles_dizzy.emitting = false
+	particles_boost.emitting = false
 	get_parent().get_parent().get_child(0).position = Vector2(0,0) #reset camera
 
 func CheckState():
@@ -144,23 +154,30 @@ func AxisMovement():
 func GetAnimated():
 	if direction_x > 0:animated_sprite_2d.flip_h = true
 	else: animated_sprite_2d.flip_h = false
-	if direction_y < 0: animated_sprite_2d.speed_scale = 1.75
-	else: animated_sprite_2d.speed_scale = 1.15
+	if direction_y < 0: 
+		animated_sprite_2d.speed_scale = 1.75
+	else: 
+		animated_sprite_2d.speed_scale = 1.15
 	
 	if direction_x == 0 && direction_y > 0:
 		animated_sprite_2d.animation = "idle"
+		particles_walk.emitting = false
 	elif direction_x == 0:
 		animated_sprite_2d.animation = "forward"
+		particles_walk.emitting = true
 	elif abs(direction_x) == 1:
 		animated_sprite_2d.animation = "side"
+		particles_walk.emitting = true
 	else:
 		animated_sprite_2d.animation = "angle"
+		particles_walk.emitting = true
 
 func Boost(activated:bool):
 	var tween:= create_tween()
 	if activated:
 		canBoost = false
 		boost.start(.5)
+		particles_boost.emitting = true
 		#PlayAnim(Boost)
 		$move.paused = true
 		$Audio_boost.play()
@@ -183,6 +200,7 @@ func Boost(activated:bool):
 		eq_effect.set_band_gain_db(1, 0)
 		eq_effect.set_band_gain_db(2, 0)
 		eq_effect.set_band_gain_db(3, 0)
+
 func CoinSFX():
 	$Audio_coin.play()
 
@@ -194,40 +212,6 @@ func PauseTimers(b:bool):
 
 func PauseWalk(b:bool):
 	$move.paused = b
-	pass
-
-func Movement():
-	## Handle jump.
-	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
-
-	# Get the input direction_x and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction_x_y := Input.get_axis("ui_up","ui_down")
-	var direction_x_x := Input.get_axis("ui_left", "ui_right")
-	
-	if !canMove: 
-		velocity.y += GameManager.b_movement
-		direction_x_x = 0
-	
-	velocity = Vector2(direction_x_x,direction_x_y) * GameManager.player_speed/1.5
-	
-	if !direction_x_x && !direction_x_y:
-		velocity.x = move_toward(velocity.x, 0, GameManager.player_speed)
-		velocity.y = move_toward(velocity.y, 0, GameManager.player_speed)
-	elif direction_x_x && direction_x_y:
-		velocity.y += GameManager.b_movement/4
-	else:
-		velocity = Vector2(direction_x_x,direction_x_y) * GameManager.player_speed
-		velocity.y += GameManager.b_movement/2
-
-	if isSlowed:
-		velocity.x /= 2
-		velocity.y /= 2
-		velocity.y += GameManager.b_movement/2
-	#velocity.y += GameManager.b_movement
-
-	move_and_slide()
 
 func edit_canMove(b:bool): 
 	canMove = !b

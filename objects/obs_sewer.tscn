@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnebyvwvdm3kw"]
+[gd_scene load_steps=12 format=3 uid="uid://dnebyvwvdm3kw"]
 
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_xrqpe"]
 [ext_resource type="Script" uid="uid://d4hv7xr8j368x" path="res://objects/obs_sewer.gd" id="2_dwx8m"]
 [ext_resource type="Texture2D" uid="uid://j6jyr22w6oqa" path="res://art/draft2.png" id="3_htohe"]
+[ext_resource type="Texture2D" uid="uid://rl4qhoiwaal" path="res://_imported/temp art/particles.png" id="4_tgf34"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_htohe"]
 atlas = ExtResource("3_htohe")
@@ -14,6 +15,23 @@ region = Rect2(1092, 470.333, 120.667, 156)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1p0n2"]
 radius = 17.5071
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p0n2"]
+atlas = ExtResource("4_tgf34")
+region = Rect2(207, 154, 77, 62)
+
+[sub_resource type="Curve" id="Curve_tgf34"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_1p0n2"]
+_data = [Vector2(0, 0.514135), 0.0, 0.0, 0, 0, Vector2(0.973384, 1), -0.475617, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_7e1h2"]
+offsets = PackedFloat32Array(0, 0.755556)
+colors = PackedColorArray(0.86, 0.66435, 0.559, 1, 1, 1, 1, 0)
 
 [node name="Sewer" instance=ExtResource("1_xrqpe")]
 script = ExtResource("2_dwx8m")
@@ -31,3 +49,22 @@ effect = 4
 [node name="CollisionShape3D" parent="Area2D" index="0"]
 position = Vector2(0, 19)
 shape = SubResource("CircleShape2D_1p0n2")
+
+[node name="smoke" type="CPUParticles2D" parent="." index="4"]
+position = Vector2(0, 28)
+rotation = 3.14159
+amount = 2
+texture = SubResource("AtlasTexture_1p0n2")
+lifetime = 2.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, 1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+damping_curve = SubResource("Curve_tgf34")
+scale_amount_curve = SubResource("Curve_1p0n2")
+color = Color(0.66048, 0.6536, 0.86, 0.411765)
+color_ramp = SubResource("Gradient_7e1h2")
