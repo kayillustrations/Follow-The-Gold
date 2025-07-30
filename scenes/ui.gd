@@ -4,9 +4,9 @@ const HEART = preload("res://ui/heart.tscn")
 
 @onready var timer: Timer = $Timer
 
-@onready var min: Label = $ColorRect/VBoxContainer/HBox/Min
-@onready var sec: Label = $ColorRect/VBoxContainer/HBox/Sec
-@onready var millisec: Label = $ColorRect/VBoxContainer/HBox/Millisec
+@onready var min: Label =%Min
+@onready var sec: Label = %Sec
+@onready var millisec: Label = %Millisec
 
 @onready var health: Label = $ColorRect/VBoxContainer/HBox2/Health
 @onready var hit: Label = $ColorRect/VBoxContainer/HBox3/Hit
@@ -26,14 +26,14 @@ func _update_all():
 
 func _update_time():
 	if GameManager.current_time[0]<10:
-		%Millisec.text = "0" + str(GameManager.current_time[0])
-	else: %Millisec.text = str(GameManager.current_time[0])
+		millisec.text = "0" + str(GameManager.current_time[0])
+	else: millisec.text = str(GameManager.current_time[0])
 	if GameManager.current_time[1]<10:
-		%Sec.text = "0" + str(GameManager.current_time[1])
-	else: %Sec.text = str(GameManager.current_time[1])
+		sec.text = "0" + str(GameManager.current_time[1])
+	else: sec.text = str(GameManager.current_time[1])
 	if GameManager.current_time[2]<10:
-		%Min.text = "0" + str(GameManager.current_time[2])
-	else: %Min.text = str(GameManager.current_time[2])
+		min.text = "0" + str(GameManager.current_time[2])
+	else: min.text = str(GameManager.current_time[2])
 	pass
 
 func ResetHealth():

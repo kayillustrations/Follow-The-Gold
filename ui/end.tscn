@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxbdyufawa35i"]
+[gd_scene load_steps=7 format=3 uid="uid://dxbdyufawa35i"]
 
 [ext_resource type="Script" uid="uid://bxw8ttkp2klyr" path="res://ui/end.gd" id="1_0ot1k"]
 [ext_resource type="Texture2D" uid="uid://dgcfa5ilmxcie" path="res://art/the end2.png" id="2_ta184"]
 [ext_resource type="Texture2D" uid="uid://dqx6624xb3kmq" path="res://art/ui.png" id="3_j8qh2"]
+[ext_resource type="AudioStream" uid="uid://db4mip8pub23a" path="res://sound/sfx/sfx_ui/UIbuttonhover.wav" id="4_j8qh2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uafu2"]
 content_margin_left = 10.0
@@ -262,6 +263,33 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_uafu2")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_kxvjv")
 theme_override_styles/normal = SubResource("StyleBoxTexture_kxvjv")
 text = "Quit"
+
+[node name="New" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = 53.0
+offset_right = -28.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.154572
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[wave][rainbow freq=1.0 sat=0.3 val=0.8 speed=0.5]New![/rainbow]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label Tick" type="Timer" parent="."]
+one_shot = true
+
+[node name="tick audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_j8qh2")
+pitch_scale = 1.75
 
 [connection signal="pressed" from="MarginContainer/TextureRect/Start" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="MarginContainer/TextureRect/Quit2" to="." method="_on_quit_pressed"]
