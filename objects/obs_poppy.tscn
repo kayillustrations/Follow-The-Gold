@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7jfb875f8a2f"]
+[gd_scene load_steps=12 format=3 uid="uid://b7jfb875f8a2f"]
 
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_i24vo"]
 [ext_resource type="Script" uid="uid://eve848u1a0tk" path="res://objects/obs_poppy.gd" id="2_c4wqy"]
 [ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="3_ihaoh"]
+[ext_resource type="Texture2D" uid="uid://rl4qhoiwaal" path="res://_imported/temp art/particles.png" id="4_qe1os"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ihaoh"]
 atlas = ExtResource("3_ihaoh")
@@ -12,23 +13,66 @@ region = Rect2(473, 302, 107, 139)
 atlas = ExtResource("3_ihaoh")
 region = Rect2(421, 452, 117, 125)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbdjv"]
+atlas = ExtResource("4_qe1os")
+region = Rect2(207, 154, 77, 62)
+
+[sub_resource type="Curve" id="Curve_4v7tv"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7ytu3"]
+_data = [Vector2(0, 0.468208), 0.0, 0.912139, 0, 0, Vector2(1, 0.476761), -2.15257, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_dmalg"]
+offsets = PackedFloat32Array(0, 0.755556)
+colors = PackedColorArray(0.86, 0.66435, 0.559, 1, 1, 1, 1, 0)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7c8k3"]
 radius = 11.5
 height = 34.0
 
 [node name="Poppy" instance=ExtResource("1_i24vo")]
 script = ExtResource("2_c4wqy")
-sprites = Array[Texture2D]([SubResource("AtlasTexture_ihaoh"), SubResource("AtlasTexture_qe1os")])
 random_sprite = true
+sprites = Array[Texture2D]([SubResource("AtlasTexture_ihaoh"), SubResource("AtlasTexture_qe1os")])
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="smoke" type="CPUParticles2D" parent="." index="0"]
+position = Vector2(0, -16.5)
+rotation = 3.14159
+amount = 5
+texture = SubResource("AtlasTexture_wbdjv")
+lifetime = 2.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, 1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 2.0
+angular_velocity_max = 1.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.5
+tangential_accel_min = 0.05
+tangential_accel_max = 0.05
+damping_curve = SubResource("Curve_4v7tv")
+angle_min = -5.0
+angle_max = 5.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_7ytu3")
+color = Color(0.86, 0.473, 0.58265, 0.552941)
+color_ramp = SubResource("Gradient_dmalg")
+
+[node name="Sprite2D" parent="." index="1"]
 position = Vector2(0, -14)
 scale = Vector2(0.25, 0.258)
 texture = SubResource("AtlasTexture_ihaoh")
-region_enabled = false
 region_rect = Rect2(473, 302, 107, 139)
 
-[node name="Area2D" parent="." index="3"]
+[node name="Area2D" parent="." index="4"]
 effect = 2
 
 [node name="CollisionShape3D" parent="Area2D" index="0"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://dh2v0600vkess"]
+[gd_scene load_steps=50 format=3 uid="uid://dh2v0600vkess"]
 
 [ext_resource type="Script" uid="uid://053yqqoj8kga" path="res://objects/player.gd" id="1_ykyjo"]
 [ext_resource type="Texture2D" uid="uid://rl4qhoiwaal" path="res://_imported/temp art/particles.png" id="2_i4kk0"]
@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://bt7ggbwqjp8" path="res://art/side/side_0004.png" id="22_775wt"]
 [ext_resource type="Texture2D" uid="uid://d2qjxevb1h042" path="res://art/side/side_0005.png" id="23_dsdn8"]
 [ext_resource type="AudioStream" uid="uid://cpagb8ca1gvlb" path="res://sound/sfx/sfx_player/boostSFX_v2.wav" id="25_mle5l"]
+[ext_resource type="Texture2D" uid="uid://dqx6624xb3kmq" path="res://art/ui.png" id="26_s854h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i4kk0"]
 atlas = ExtResource("2_i4kk0")
@@ -154,6 +155,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5pfi"]
+atlas = ExtResource("26_s854h")
+region = Rect2(1274, 47, 142, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2hc5"]
+atlas = ExtResource("26_s854h")
+region = Rect2(1303, 217, 96, 101)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_s854h"]
 atlas = ExtResource("2_i4kk0")
 region = Rect2(0, 105, 32, 55)
@@ -234,6 +243,30 @@ scale = Vector2(0.362667, 0.362667)
 sprite_frames = SubResource("SpriteFrames_cyhxw")
 animation = &"dead"
 autoplay = "idle"
+
+[node name="heart" type="CPUParticles2D" parent="."]
+position = Vector2(-1, -121)
+emitting = false
+amount = 1
+texture = SubResource("AtlasTexture_a5pfi")
+one_shot = true
+local_coords = true
+gravity = Vector2(0, -100)
+scale_amount_min = 0.25
+scale_amount_max = 0.25
+color_ramp = SubResource("Gradient_i4kk0")
+
+[node name="coin" type="CPUParticles2D" parent="."]
+position = Vector2(-1, -121)
+emitting = false
+amount = 1
+texture = SubResource("AtlasTexture_f2hc5")
+one_shot = true
+local_coords = true
+gravity = Vector2(0, -100)
+scale_amount_min = 0.25
+scale_amount_max = 0.25
+color_ramp = SubResource("Gradient_i4kk0")
 
 [node name="damp" type="CPUParticles2D" parent="."]
 position = Vector2(0, -56)

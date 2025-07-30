@@ -35,6 +35,7 @@ func ApplyEffect(effect):
 		SignalBus.Effects.DAMAGE:
 			sprite_color(false,damaged_color)
 			$"..".particles_blood.emitting = true
+			$"..".particles_heart.emitting = true
 			$"../Audio_damage".play()
 			SignalBus.isDamaged.emit(true)
 			ChangeHealth(1)

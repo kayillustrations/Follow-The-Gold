@@ -11,6 +11,8 @@ extends CharacterBody2D
 @onready var particles_blood: CPUParticles2D = $blood
 @onready var particles_dizzy: CPUParticles2D = $dizzy
 @onready var particles_boost: CPUParticles2D = $"boost part"
+@onready var particles_heart: CPUParticles2D = $heart
+@onready var particles_coin: CPUParticles2D = $coin
 
 var player_starting_position : Vector2
 
@@ -95,6 +97,8 @@ func ResetPlayer():
 	particles_blood.emitting = false
 	particles_dizzy.emitting = false
 	particles_boost.emitting = false
+	particles_heart.emitting = false
+	particles_coin.emitting = false
 	get_parent().get_parent().get_child(0).position = Vector2(0,0) #reset camera
 
 func CheckState():
@@ -202,6 +206,7 @@ func Boost(activated:bool):
 		eq_effect.set_band_gain_db(3, 0)
 
 func CoinSFX():
+	particles_coin.emitting = true
 	$Audio_coin.play()
 
 func PauseTimers(b:bool):
