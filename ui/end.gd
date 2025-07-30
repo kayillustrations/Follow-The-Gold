@@ -46,6 +46,7 @@ func TickUp(text:Label, number:int,start:int):
 		text.text = str(i)
 		tick_audio.play()
 		await label_tick.timeout
+	text.text = str(number)
 	label_finished.emit()
 
 func Score():
@@ -61,6 +62,7 @@ func Highscore():
 		GameSave.highscore = calculated_score
 		GameSave.SaveGame()
 	else: 
+		$New.visible = false
 		GameSave.LoadGame()
 		highscore.text = str(GameSave.highscore)
 	pass
@@ -69,7 +71,6 @@ func _on_restart_pressed() -> void:
 	SceneLoader.DeleteAllTemp()
 	GameManager.ResetGame()
 	pass # Replace with function body.
-
 
 func _on_quit_pressed() -> void:
 	SceneLoader.load_scene(SceneLoader.menu_path)
