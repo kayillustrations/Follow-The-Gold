@@ -83,7 +83,7 @@ normal = Vector2(1, 0)
 normal = Vector2(-1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olg7q"]
-size = Vector2(1382, 20)
+size = Vector2(1382, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arp2o"]
 size = Vector2(900, 50)
@@ -219,12 +219,14 @@ follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Stationary/Parallax/street"]
 clip_children = 2
+position = Vector2(0, 0.5)
 texture = SubResource("GradientTexture2D_gunhw")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Stationary/Parallax/street/Sprite2D"]
 modulate = Color(0.612516, 0.358006, 0.357855, 0.227451)
 material = SubResource("ShaderMaterial_ux5qa")
-scale = Vector2(0.226, 0.226)
+position = Vector2(0, -1.43051e-05)
+scale = Vector2(0.0761719, 0.104624)
 texture = ExtResource("5_arp2o")
 
 [node name="left" type="Parallax2D" parent="Stationary/Parallax"]
@@ -326,6 +328,7 @@ collision_mask = 2
 script = ExtResource("6_8c41q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stationary/DamagerComp"]
+position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_olg7q")
 
 [node name="Despawner T" parent="Stationary" instance=ExtResource("6_2r41h")]
