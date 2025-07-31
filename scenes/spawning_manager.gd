@@ -85,7 +85,7 @@ func Spawn(obstacle:int):
 			location = outside_bounds.get_children().pick_random().position
 			instance = preload("res://objects/obs_rat.tscn")
 		SignalBus.Obstacles.CROW:
-			location = ChooseChild(inside_bounds) - offset
+			location = Vector2(GameManager.player.global_position.x,0)
 			instance = preload("res://objects/obs_crow.tscn")
 	location.y += position.y
 	var temp_obs:Node2D = instance.instantiate()

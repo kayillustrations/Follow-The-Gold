@@ -27,25 +27,26 @@ func Config():
 	
 	TickUp(obstacles,GameManager.obstacles_hit,0)
 	await label_finished
-	obstacles.text = str(GameManager.obstacles_hit)
 	
 	Score()
 	TickUp(score,calculated_score,1)
 	await label_finished
+	
 	Highscore()
 	tick_audio.stop()
 
 func TickUp(text:Label, number:int,start:int):
 	var i: int = start
 	while i <= number:
-		if Input.is_action_just_pressed("Boost")||Input.is_action_just_pressed("Click"):
-			break
 		if number < 100: 
 			label_tick.start(.05)
 		else: label_tick.start(.005)
 		i += 1
 		text.text = str(i)
 		tick_audio.play()
+		if Input.is_action_just_pressed("Boost")||Input.is_action_just_pressed("Click"):
+			text.text = str(number)
+			i = number
 		await label_tick.timeout
 	text.text = str(number)
 	label_finished.emit()
@@ -58,14 +59,14 @@ func Score():
 
 func Highscore():
 	if calculated_score > GameSave.highscore:
-		TickUp(highscore,calculated_score,GameSave.highscore)
 		$New.visible = true
 		GameSave.highscore = calculated_score
 		GameSave.SaveGame()
 	else: 
 		$New.visible = false
 		GameSave.LoadGame()
-		highscore.text = str(GameSave.highscore)
+		
+	highscore.text = str(GameSave.highscore)
 	pass
 
 func _on_restart_pressed() -> void:
