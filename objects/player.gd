@@ -97,6 +97,7 @@ func _physics_process(delta: float) -> void:
 func ResetPlayer():
 	direction_x = 0
 	direction_y = 0
+	animated_sprite_2d.play("idle")
 	position = player_starting_position
 	velocity = Vector2.ZERO
 	particles_walk.emitting = false

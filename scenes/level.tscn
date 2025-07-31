@@ -30,8 +30,8 @@ colors = PackedColorArray(0.59, 0.2242, 0.2242, 0.282353)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wc255"]
 gradient = SubResource("Gradient_fpun6")
-width = 624
-height = 1090
+width = 650
+height = 500
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 0)
 
@@ -43,7 +43,7 @@ colors = PackedColorArray(0.78, 0.5005, 0.39, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_gunhw"]
 gradient = SubResource("Gradient_82cfe")
 width = 624
-height = 1089
+height = 500
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 0)
 
@@ -173,55 +173,52 @@ modulate = Color(0.862, 0.77, 1, 1)
 texture = ExtResource("8_fpun6")
 
 [node name="shading" type="Parallax2D" parent="Stationary/Parallax"]
-scroll_offset = Vector2(0, -386.905)
-repeat_size = Vector2(0, 1080)
+repeat_size = Vector2(0, 500)
 autoscroll = Vector2(0, -150)
+repeat_times = 4
 limit_begin = Vector2(0, 0)
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Stationary/Parallax/shading"]
 material = SubResource("ShaderMaterial_ux5qa")
-position = Vector2(0, -5.25011)
-scale = Vector2(1.02885, 0.989275)
+position = Vector2(-0.000565164, -5.24462)
 texture = SubResource("GradientTexture2D_wc255")
 
 [node name="shading_L" type="Parallax2D" parent="Stationary/Parallax"]
-scroll_offset = Vector2(-800, -371)
-repeat_size = Vector2(0, 1080)
+scroll_offset = Vector2(-810, 0)
+repeat_size = Vector2(0, 500)
 autoscroll = Vector2(0, -150)
+repeat_times = 4
 limit_begin = Vector2(0, 0)
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Stationary/Parallax/shading_L"]
 material = SubResource("ShaderMaterial_ux5qa")
 position = Vector2(0, -5)
-scale = Vector2(1, 0.990826)
 texture = SubResource("GradientTexture2D_wc255")
 
 [node name="shading_R" type="Parallax2D" parent="Stationary/Parallax"]
-scroll_offset = Vector2(800, -371)
-repeat_size = Vector2(0, 1080)
+scroll_offset = Vector2(810, 0)
+repeat_size = Vector2(0, 500)
 autoscroll = Vector2(0, -150)
+repeat_times = 4
 limit_begin = Vector2(0, 0)
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Stationary/Parallax/shading_R"]
 material = SubResource("ShaderMaterial_ux5qa")
 position = Vector2(0, -4.5)
-scale = Vector2(1, 0.991743)
 texture = SubResource("GradientTexture2D_wc255")
 
 [node name="street" type="Parallax2D" parent="Stationary/Parallax"]
-scroll_offset = Vector2(0, -360)
-repeat_size = Vector2(0, 1080)
+repeat_size = Vector2(0, 500)
 autoscroll = Vector2(0, -150)
+repeat_times = 4
 limit_begin = Vector2(0, 0)
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Stationary/Parallax/street"]
 clip_children = 2
-position = Vector2(0, 0.25)
-scale = Vector2(1, 1.00046)
 texture = SubResource("GradientTexture2D_gunhw")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Stationary/Parallax/street/Sprite2D"]
