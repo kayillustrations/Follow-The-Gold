@@ -9,8 +9,10 @@ var intro_player: AudioStreamPlayer
 var loop_player: AudioStreamPlayer
 var loop_started := false
 var streamloaded := false
+var bufferMs: float = 0.0
 
 func _ready() -> void:
+	bufferMs = (512.0 / AudioServer.get_mix_rate())
 	intro_player = AudioStreamPlayer.new()
 	loop_player = AudioStreamPlayer.new()
 	intro_player.name = "Cutloop Player"
@@ -31,17 +33,16 @@ func _switchmusic(tracknameCut : String, tracknameWrapped : String, newVol : flo
 	
 	cutloop_stream = load(tracknameCut)
 	wrappedloop_stream = load(tracknameWrapped)
-	
 	streamloaded = true
 	
-	intro_player.stream = wrappedloop_stream
+	intro_player.stream = cutloop_stream
 	
 	if get_child_count() <= 0:
 		add_child(intro_player)
+		intro_player.set("parameters/looping", false)
 		
 	
 	intro_player.volume_db = newVol - db_offset
-	intro_player.play(0.0)
 	loop_started = false
 	
 	loop_player.stream = wrappedloop_stream
@@ -50,17 +51,8 @@ func _switchmusic(tracknameCut : String, tracknameWrapped : String, newVol : flo
 		add_child(loop_player)
 		loop_player.set("parameters/looping", true)
 		
-	
-func _introdone():
-		loop_player.play()
-		loop_started = true
-	
-func _process(delta):
-	var timeleft = (cutloop_stream.get_length() - intro_player.get_playback_position())
-	
-	if timeleft <= 0.0116:
-		loop_player.play()
-		
+	loop_player.play(0.0)
+
 func _restartmusic():
 	if intro_player.playing:
 		intro_player.stop()
