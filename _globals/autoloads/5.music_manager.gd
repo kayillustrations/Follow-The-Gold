@@ -43,7 +43,6 @@ func _switchmusic(tracknameCut : String, tracknameWrapped : String, newVol : flo
 		
 	
 	intro_player.volume_db = newVol - db_offset
-	intro_player.play(0.0)
 	loop_started = false
 	
 	loop_player.stream = wrappedloop_stream
@@ -52,18 +51,8 @@ func _switchmusic(tracknameCut : String, tracknameWrapped : String, newVol : flo
 		add_child(loop_player)
 		loop_player.set("parameters/looping", true)
 		
-	
-func _introdone():
-		loop_player.play()
-		loop_started = true
-		intro_player.stop()
-	
-func _process(delta):
-	var timeleft = (cutloop_stream.get_length() - intro_player.get_playback_position())
-	
-	if timeleft <= bufferMs:
-		loop_player.play()
-		
+	loop_player.play(0.0)
+
 func _restartmusic():
 	if intro_player.playing:
 		intro_player.stop()
