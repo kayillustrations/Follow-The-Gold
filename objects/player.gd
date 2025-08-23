@@ -19,6 +19,7 @@ var player_starting_position : Vector2
 #const JUMP_VELOCITY = -400.0
 
 var walk_mod: float = .9
+var boost_velocity: Vector2
 
 var mouse_pos:Vector2
 var viewport_size: Vector2
@@ -135,6 +136,9 @@ func MouseMovement():
 	pass
 
 func AxisMovement():
+	if isBoosted:
+		velocity = boost_velocity
+		
 	if direction_x == 0:
 		velocity.x = move_toward(velocity.x, 0, GameManager.player_speed)
 	elif abs(direction_x) < 1: #diagonal
@@ -153,7 +157,7 @@ func AxisMovement():
 		velocity.y = GameManager.b_movement/2
 		walk_mod = 1/4
 	elif isBoosted:
-		velocity *=2
+		velocity = boost_velocity
 	else: 
 		Boost(false)
 		walk_mod = .9
@@ -185,13 +189,15 @@ func GetAnimated():
 		particles_walk.emitting = true
 
 func ActivateBoost():
-	if canBoost && velocity != Vector2(0,0):
+	if canBoost: #&& velocity != Vector2(0,0):
 		Boost(true)
 		return true
 	return false
 
 func Boost(activated:bool):
 	var tween:= create_tween()
+	var vel_y: float = 0
+	var vel_x: float = 0
 	if activated:
 		cooldown.start(1)
 		canBoost = false
@@ -200,11 +206,21 @@ func Boost(activated:bool):
 		#PlayAnim(Boost)
 		$move.paused = true
 		$Audio_boost.play()
-		if abs(direction_x) < 1 && direction_y == 0:
-			tween.tween_property(self,"velocity",velocity*10,.1)
-		tween.tween_property(self,"velocity",velocity*2,.1)
-		isBoosted = true
 		
+		if direction_y != 0:
+			vel_y = GameManager.player_speed * -1.5 * direction_y
+		else: vel_y = GameManager.player_speed/1.5
+		
+		if direction_x != 0:
+			vel_x = GameManager.player_speed*2 * direction_x
+		
+		boost_velocity = Vector2(vel_x,vel_y)
+		tween.tween_property(self,"velocity",boost_velocity,.1)
+		
+		#if abs(direction_x) < 1 && direction_y == 0:
+			#tween.tween_property(self,"velocity",velocity*10,.1)
+		#tween.tween_property(self,"velocity",velocity*2,.1)
+		isBoosted = true
 		eq_effect.set_band_gain_db(0, -40)
 		eq_effect.set_band_gain_db(1, -20)
 		eq_effect.set_band_gain_db(2, -10)

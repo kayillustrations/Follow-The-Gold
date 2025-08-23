@@ -11,6 +11,7 @@ var max_health: int = 3
 var isPaused: bool = false
 var isStarted: bool = false
 var usingMouse: bool = false
+var isFullscreen:bool = false
 
 var current_health: int
 var obstacles_hit: int

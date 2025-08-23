@@ -3,8 +3,11 @@ extends Control
 var starts_focus: Button
 var is_focused: Button
 
+var windowed_mode
+
 func _ready() -> void:
 	starts_focus = $Panel/Start
+	windowed_mode = DisplayServer.window_get_mode()
 	if SceneLoader.ui.visible:
 		SceneLoader.UISceneActivate(SceneLoader.ui)
 		SceneLoader.ui.timer.stop()
@@ -48,4 +51,9 @@ func _on_credits_pressed() -> void:
 
 
 func _on_reload_pressed() -> void:
-	get_tree().reload_current_scene()
+	if !GameManager.isFullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		GameManager.isFullscreen = true
+	else:
+		DisplayServer.window_set_mode(windowed_mode)
+		GameManager.isFullscreen = false
