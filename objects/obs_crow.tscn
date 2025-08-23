@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bj06xa2kbeinh"]
+[gd_scene load_steps=17 format=3 uid="uid://bj06xa2kbeinh"]
 
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_q3604"]
 [ext_resource type="Script" uid="uid://s7j7gjthofv5" path="res://objects/obs_crow.gd" id="2_0tqeh"]
@@ -14,9 +14,13 @@
 atlas = ExtResource("3_umgv5")
 region = Rect2(173, 7, 59, 87)
 
+[sub_resource type="Curve" id="Curve_umgv5"]
+_data = [Vector2(0, 0.509139), 0.0, 2.61848, 0, 0, Vector2(0.991525, 0.0088985), -8.85423, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Gradient" id="Gradient_qdjrm"]
 offsets = PackedFloat32Array(0.533333, 1)
-colors = PackedColorArray(0.86, 0.66435, 0.559, 1, 1, 1, 1, 0)
+colors = PackedColorArray(0.893213, 0.439531, 0.433439, 1, 1, 1, 1, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_stpov"]
 atlas = ExtResource("3_stpov")
@@ -41,20 +45,19 @@ script = ExtResource("2_0tqeh")
 [node name="!" type="CPUParticles2D" parent="." index="0"]
 position = Vector2(0, -55.5)
 emitting = false
-amount = 5
 texture = SubResource("AtlasTexture_t7r3u")
 one_shot = true
 explosiveness = 1.0
 local_coords = true
 particle_flag_align_y = true
 direction = Vector2(0, -1)
-spread = 70.0
+spread = 50.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 50.0
 initial_velocity_max = 50.0
-scale_amount_min = 0.1
-scale_amount_max = 0.25
-color = Color(1, 0.31, 0.5975, 1)
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_umgv5")
 color_ramp = SubResource("Gradient_qdjrm")
 
 [node name="Sprite2D" parent="." index="1"]

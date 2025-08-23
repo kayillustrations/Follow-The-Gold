@@ -55,5 +55,5 @@ func _on_reload_pressed() -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		GameManager.isFullscreen = true
 	else:
-		DisplayServer.window_set_mode(windowed_mode)
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		GameManager.isFullscreen = false
