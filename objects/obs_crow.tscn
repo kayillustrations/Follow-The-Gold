@@ -1,13 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://bj06xa2kbeinh"]
+[gd_scene load_steps=16 format=3 uid="uid://bj06xa2kbeinh"]
 
 [ext_resource type="PackedScene" uid="uid://b04pl3lwnnh5n" path="res://objects/obstacle_base.tscn" id="1_q3604"]
 [ext_resource type="Script" uid="uid://s7j7gjthofv5" path="res://objects/obs_crow.gd" id="2_0tqeh"]
 [ext_resource type="Texture2D" uid="uid://b6ddwbuw5b8gd" path="res://art/draft.png" id="3_stpov"]
+[ext_resource type="Texture2D" uid="uid://rl4qhoiwaal" path="res://_imported/temp art/particles.png" id="3_umgv5"]
 [ext_resource type="Script" uid="uid://dhu2arpfxq6j5" path="res://_globals/components/damager_comp.gd" id="4_lfxj6"]
 [ext_resource type="AudioStream" uid="uid://djrvnfgx6jdx8" path="res://sound/sfx/sfx_obstacles/sfx_wingflaps/wingflapVar1.wav" id="5_mkg1d"]
 [ext_resource type="AudioStream" uid="uid://cu0p5fx0bqrg" path="res://sound/sfx/sfx_obstacles/squacksfx.wav" id="6_aq32w"]
 [ext_resource type="AudioStream" uid="uid://dxdxb86dkpe3g" path="res://sound/sfx/sfx_obstacles/sfx_wingflaps/wingflapVar2.wav" id="6_stpov"]
 [ext_resource type="AudioStream" uid="uid://x8huxqe2mh1n" path="res://sound/sfx/sfx_obstacles/sfx_wingflaps/wingflapVar3.wav" id="7_umgv5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7r3u"]
+atlas = ExtResource("3_umgv5")
+region = Rect2(173, 7, 59, 87)
+
+[sub_resource type="Gradient" id="Gradient_qdjrm"]
+offsets = PackedFloat32Array(0.533333, 1)
+colors = PackedColorArray(0.86, 0.66435, 0.559, 1, 1, 1, 1, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_stpov"]
 atlas = ExtResource("3_stpov")
@@ -29,21 +38,40 @@ stream_2/stream = ExtResource("7_umgv5")
 [node name="Crow" instance=ExtResource("1_q3604")]
 script = ExtResource("2_0tqeh")
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="!" type="CPUParticles2D" parent="." index="0"]
+position = Vector2(0, -55.5)
+emitting = false
+amount = 5
+texture = SubResource("AtlasTexture_t7r3u")
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+particle_flag_align_y = true
+direction = Vector2(0, -1)
+spread = 70.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.1
+scale_amount_max = 0.25
+color = Color(1, 0.31, 0.5975, 1)
+color_ramp = SubResource("Gradient_qdjrm")
+
+[node name="Sprite2D" parent="." index="1"]
 z_index = 50
 position = Vector2(1, -7)
 scale = Vector2(0.25, 0.258)
 texture = SubResource("AtlasTexture_stpov")
 region_rect = Rect2(337, 721, 250, 197)
 
-[node name="Area2D" parent="." index="3"]
+[node name="Area2D" parent="." index="4"]
 effect = 3
 
 [node name="CollisionShape3D" parent="Area2D" index="0"]
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_stpov")
 
-[node name="Area2D2" type="Area2D" parent="." index="4"]
+[node name="Area2D2" type="Area2D" parent="." index="5"]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("4_lfxj6")
@@ -52,19 +80,22 @@ script = ExtResource("4_lfxj6")
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_umgv5")
 
-[node name="Wings" type="AudioStreamPlayer2D" parent="." index="5"]
+[node name="Wings" type="AudioStreamPlayer2D" parent="." index="6"]
 stream = SubResource("AudioStreamRandomizer_lfxj6")
 volume_db = -13.0
 bus = &"SFX"
 
-[node name="Caw" type="AudioStreamPlayer2D" parent="." index="6"]
+[node name="Caw" type="AudioStreamPlayer2D" parent="." index="7"]
 stream = ExtResource("6_aq32w")
 volume_db = 5.0
 bus = &"SFX"
 
-[node name="Timer" type="Timer" parent="." index="7"]
+[node name="Timer" type="Timer" parent="." index="8"]
 wait_time = 0.25
 one_shot = true
+autostart = true
+
+[node name="MoveTimer" type="Timer" parent="." index="9"]
 autostart = true
 
 [connection signal="area_entered" from="Area2D2" to="Area2D2" method="_on_area_entered"]

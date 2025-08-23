@@ -39,7 +39,40 @@ script = ExtResource("2_c4wqy")
 random_sprite = true
 sprites = Array[Texture2D]([SubResource("AtlasTexture_ihaoh"), SubResource("AtlasTexture_qe1os")])
 
-[node name="smoke" type="CPUParticles2D" parent="." index="0"]
+[node name="smoke2" type="CPUParticles2D" parent="." index="0"]
+position = Vector2(1, -20.5)
+amount = 5
+texture = SubResource("AtlasTexture_wbdjv")
+lifetime = 2.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, 1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 2.0
+angular_velocity_max = 1.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.5
+tangential_accel_min = 0.05
+tangential_accel_max = 0.05
+damping_curve = SubResource("Curve_4v7tv")
+angle_min = -5.0
+angle_max = 5.0
+scale_amount_min = 0.2
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_7ytu3")
+color = Color(0.86, 0.473, 0.58265, 0.552941)
+color_ramp = SubResource("Gradient_dmalg")
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(0.863482, 1, 0.870863, 1)
+position = Vector2(0, -14)
+scale = Vector2(0.25, 0.258)
+texture = SubResource("AtlasTexture_ihaoh")
+region_rect = Rect2(473, 302, 107, 139)
+
+[node name="smoke" type="CPUParticles2D" parent="." index="2"]
 position = Vector2(0, -16.5)
 rotation = 3.14159
 amount = 5
@@ -60,19 +93,13 @@ tangential_accel_max = 0.05
 damping_curve = SubResource("Curve_4v7tv")
 angle_min = -5.0
 angle_max = 5.0
-scale_amount_min = 0.1
-scale_amount_max = 0.5
+scale_amount_min = 0.0
+scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_7ytu3")
 color = Color(0.86, 0.473, 0.58265, 0.552941)
 color_ramp = SubResource("Gradient_dmalg")
 
-[node name="Sprite2D" parent="." index="1"]
-position = Vector2(0, -14)
-scale = Vector2(0.25, 0.258)
-texture = SubResource("AtlasTexture_ihaoh")
-region_rect = Rect2(473, 302, 107, 139)
-
-[node name="Area2D" parent="." index="4"]
+[node name="Area2D" parent="." index="5"]
 effect = 2
 
 [node name="CollisionShape3D" parent="Area2D" index="0"]

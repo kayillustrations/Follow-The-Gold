@@ -1,9 +1,16 @@
 extends ObstacleObject
 
+var canMove = false
+
 func _ready() -> void:
 	$Caw.play()
+	$"!".emitting = true
+	await $MoveTimer.timeout
+	canMove = true
 
 func _physics_process(delta: float) -> void:
+	if !canMove:
+		return
 	$Timer.paused = GameManager.isPaused
 	
 	if GameManager.isPaused:

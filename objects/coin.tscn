@@ -1,25 +1,64 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpekxessi4apa"]
+[gd_scene load_steps=17 format=3 uid="uid://cpekxessi4apa"]
 
 [ext_resource type="Script" uid="uid://blmdpjw4smksr" path="res://scenes/coin_pickup.gd" id="1_je4cw"]
 [ext_resource type="Texture2D" uid="uid://bl1cvj2ygnhgj" path="res://_imported/temp art/coin.png" id="2_1o7s2"]
 [ext_resource type="Script" uid="uid://crb10ba5tswnq" path="res://objects/area_2d.gd" id="3_1o7s2"]
+[ext_resource type="Texture2D" uid="uid://dkpheyy85jqca" path="res://art/boxes.png" id="3_iwokp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_64w2a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fpun6"]
 radius = 12.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lxrr"]
+atlas = ExtResource("3_iwokp")
+region = Rect2(267, 511, 92, 84)
+
+[sub_resource type="Curve" id="Curve_osa5c"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ufjjf"]
+_data = [Vector2(0, 0.468208), 0.0, 0.912139, 0, 0, Vector2(1, 0.476761), -2.15257, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_6lxrr"]
+offsets = PackedFloat32Array(0, 0.755556)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_iwokp"]
+offsets = PackedFloat32Array(0, 0.575758)
+colors = PackedColorArray(1, 1, 1, 0.631373, 1, 0.924, 0.62, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hyi47"]
+gradient = SubResource("Gradient_iwokp")
+fill = 1
+fill_from = Vector2(0.495413, 0.504587)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyi47"]
+atlas = ExtResource("3_iwokp")
+region = Rect2(371, 452, 57, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwokp"]
+atlas = ExtResource("3_iwokp")
+region = Rect2(361, 650, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufjjf"]
+atlas = ExtResource("3_iwokp")
+region = Rect2(367, 579, 35, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osa5c"]
+atlas = ExtResource("3_iwokp")
+region = Rect2(290, 634, 24, 27)
+
 [node name="Coin" type="StaticBody2D"]
 z_index = 1
 z_as_relative = false
+scale = Vector2(1.5, 1.5)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_je4cw")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.542553, 0.5)
-scale = Vector2(0.244681, 0.244681)
-texture = ExtResource("2_1o7s2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_64w2a")
@@ -31,6 +70,129 @@ script = ExtResource("3_1o7s2")
 
 [node name="CollisionShape3D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_fpun6")
+
+[node name="Sparkle5" type="CPUParticles2D" parent="."]
+amount = 2
+texture = SubResource("AtlasTexture_6lxrr")
+lifetime = 2.0
+local_coords = true
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 30.0
+direction = Vector2(0, 1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 2.0
+orbit_velocity_min = 0.05
+orbit_velocity_max = 0.1
+damping_curve = SubResource("Curve_osa5c")
+angle_min = -5.0
+angle_max = 5.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_ufjjf")
+color_ramp = SubResource("Gradient_6lxrr")
+
+[node name="outline" type="Sprite2D" parent="."]
+rotation = 0.424115
+scale = Vector2(1, 0.8)
+texture = SubResource("GradientTexture2D_hyi47")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.542553, 0.5)
+scale = Vector2(0.244681, 0.244681)
+texture = ExtResource("2_1o7s2")
+
+[node name="Sparkle" type="CPUParticles2D" parent="."]
+amount = 2
+texture = SubResource("AtlasTexture_hyi47")
+lifetime = 2.0
+local_coords = true
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 30.0
+direction = Vector2(0, 1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 2.0
+angular_velocity_max = 1.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.2
+tangential_accel_min = 0.05
+tangential_accel_max = 0.05
+damping_min = 0.5
+damping_max = 1.0
+damping_curve = SubResource("Curve_osa5c")
+angle_min = -5.0
+angle_max = 5.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_ufjjf")
+color_ramp = SubResource("Gradient_6lxrr")
+
+[node name="Sparkle2" type="CPUParticles2D" parent="."]
+amount = 2
+texture = SubResource("AtlasTexture_iwokp")
+lifetime = 2.0
+local_coords = true
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 30.0
+direction = Vector2(0, 1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 2.0
+orbit_velocity_min = -0.2
+orbit_velocity_max = 0.2
+damping_curve = SubResource("Curve_osa5c")
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_ufjjf")
+color_ramp = SubResource("Gradient_6lxrr")
+
+[node name="Sparkle3" type="CPUParticles2D" parent="."]
+amount = 5
+texture = SubResource("AtlasTexture_ufjjf")
+lifetime = 2.0
+local_coords = true
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 30.0
+direction = Vector2(0, 1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 2.0
+orbit_velocity_min = -0.2
+orbit_velocity_max = 0.2
+damping_curve = SubResource("Curve_osa5c")
+angle_min = -5.0
+angle_max = 5.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_ufjjf")
+color_ramp = SubResource("Gradient_6lxrr")
+
+[node name="Sparkle4" type="CPUParticles2D" parent="."]
+amount = 5
+texture = SubResource("AtlasTexture_osa5c")
+lifetime = 2.0
+local_coords = true
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 30.0
+direction = Vector2(0, 1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 2.0
+orbit_velocity_min = -0.2
+orbit_velocity_max = 0.2
+damping_curve = SubResource("Curve_osa5c")
+angle_min = -5.0
+angle_max = 5.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_ufjjf")
+color_ramp = SubResource("Gradient_6lxrr")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
