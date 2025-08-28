@@ -6,18 +6,18 @@ var player:CharacterBody2D
 var player_speed: float = 200
 var max_current_speed: float = 200
 var max_health: int = 3
- 
-#------Universal------
-var isPaused: bool = false
-var isStarted: bool = false
-var usingMouse: bool = false
-var isFullscreen:bool = false
 
 var current_health: int
 var obstacles_hit: int
 var coins_collected: int
 var current_time: Array = [0,0,0] #milliseconds, seconds, minutes
 var total_time_milli: int
+ 
+#------Universal------
+var isPaused: bool = false
+var isStarted: bool = false
+var usingMouse: bool = false
+var isFullscreen:bool = false
 
 var coins_spawned: int
 var obstacles_spawned: int

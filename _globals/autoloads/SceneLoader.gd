@@ -81,6 +81,7 @@ func UISceneActivate(scene_node: Control):
 func AddTempScene(scene:PackedScene):
 	var scene_instance = scene.instantiate()
 	temp_parent.add_child(scene_instance)
+	
 	ConnectButtons(scene_instance)
 	GameManager.PauseGame(true)
 	
